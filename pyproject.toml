@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fleet-oversight-env"
+version = "2.0.0"
+description = "Fleet AI Oversight RL Environment — OpenEnv Round 2 — Team HackWithPals"
+requires-python = ">=3.11"
+dependencies = [
+    "openenv-core>=0.2.0",
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.0.0",
+    "sentence-transformers>=2.2.2",
+    "faiss-cpu>=1.7.4",
+    "datasets>=2.14.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+]
+
+[project.urls]
+Homepage = "https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals"
+Repository = "https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["env*", "workers*", "fleet*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.json", "*.html"]
