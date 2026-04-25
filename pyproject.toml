@@ -19,6 +19,9 @@ dependencies = [
     "matplotlib>=3.7.0",
 ]
 
+[project.scripts]
+server = "app:main"
+
 [project.urls]
 Homepage = "https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals"
 Repository = "https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals"
