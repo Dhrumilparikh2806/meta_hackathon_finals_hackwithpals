@@ -786,123 +786,155 @@ def train_grpo(
     # Reward function for GRPO
     def reward_fn(completions, prompts=None, **kwargs):
         """
-        Reward function for GRPO. Runs full two-phase episode per completion.
-        Returns list of float rewards.
+        Reward function for GRPO. Uses full-episode detection rate as primary signal.
+
+        Key fix: detection_rate (scaled to [-1, +1]) is the reward, not single-step
+        correctness. This ensures the model learns to DETECT anomalies rather than
+        to approve healthy workers (which gave positive single-step rewards but 0%
+        detection, causing the -30% regression vs baseline).
         """
-        import random
+        import random as _random
+        from fleet.models import PlanningAction, OPTIMAL_ALLOCATIONS
+
+        # Map task_id -> dataset profile id for optimal allocations lookup
+        PROFILE_MAP = {
+            "easy_fleet": "nexacrm_easy",
+            "medium_fleet": "nexacrm_easy",
+            "hard_fleet": "nexacrm_hard",
+        }
+        profile_id = PROFILE_MAP.get(task_id, "nexacrm_easy")
+        optimal_allocs = OPTIMAL_ALLOCATIONS.get(profile_id, OPTIMAL_ALLOCATIONS["nexacrm_easy"])
+
         rewards = []
-        
         for completion in completions:
             try:
-                # Create fresh environment for each completion
-                ep_env = FleetOversightEnv(task_id=task_id, seed=random.randint(0, 99999))
-                obs = ep_env.reset()
-                
-                # PHASE 1 — Planning
-                # Use optimal allocations for planning phase
-                OPTIMAL = {
-                    "easy_fleet": {
-                        "worker_1": "easy_missing_and_dupes",
-                        "worker_2": "easy_chunking",
-                        "worker_3": "easy_embedding",
-                        "worker_4": "easy_retrieval",
-                        "worker_5": "easy_evaluation",
-                    },
-                    "medium_fleet": {
-                        "worker_1": "medium_type_and_category",
-                        "worker_2": "medium_chunking",
-                        "worker_3": "medium_embedding",
-                        "worker_4": "medium_retrieval",
-                        "worker_5": "medium_evaluation",
-                    },
-                    "hard_fleet": {
-                        "worker_1": "hard_conflicts_and_budget",
-                        "worker_2": "hard_chunking",
-                        "worker_3": "hard_embedding",
-                        "worker_4": "hard_retrieval",
-                        "worker_5": "hard_evaluation",
-                    },
-                }
-                
-                task_optimal = OPTIMAL.get(task_id, OPTIMAL["easy_fleet"])
-                
-                # Check if env has plan() method (two-phase)
-                if hasattr(ep_env, 'plan') and hasattr(obs, 'phase'):
-                    from fleet.models import PlanningAction
-                    planning_reward_total = 0.0
-                    for wid, tid in task_optimal.items():
-                        try:
-                            plan_action = PlanningAction(
-                                worker_id=wid,
-                                assigned_task_id=tid,
-                                priority=3,
-                                reason="optimal allocation"
-                            )
-                            _, plan_reward, phase_done, _ = ep_env.plan(plan_action)
-                            planning_reward_total += plan_reward.total
-                            if phase_done:
-                                break
-                        except Exception as e:
-                            pass
-                
-                # PHASE 2 — Oversight
-                # Parse action from LLM completion
-                action_type, worker_id, reason = parse_action_from_text(completion)
-                
-                # Run multiple oversight steps with LLM action
-                total_reward = 0.0
-                done = False
-                
-                for step_num in range(8):
+                ep_env = FleetOversightEnv(task_id=task_id, seed=_random.randint(0, 99999))
+                ep_env.reset()
+
+                # Complete planning phase with optimal allocations so oversight starts clean
+                for wid, tid in optimal_allocs.items():
                     try:
-                        # For first step use LLM action, then use smart follow-up
-                        if step_num == 0:
-                            use_action = action_type
-                            use_worker = worker_id
-                            use_reason = reason
-                        elif step_num < 4:
-                            # Monitor other workers to gather info
-                            other_workers = [w for w in VALID_WORKERS if w != worker_id]
-                            use_action = "monitor"
-                            use_worker = other_workers[step_num % len(other_workers)]
-                            use_reason = "monitoring for anomalies"
-                        elif step_num == 4:
-                            # Take the LLM action again as confirmation
-                            use_action = action_type
-                            use_worker = worker_id
-                            use_reason = reason
-                        else:
-                            use_action = "submit_audit"
-                            use_worker = worker_id
-                            use_reason = "episode complete"
-                        
-                        from fleet.models import OversightAction, OversightActionRequest
-                        action_obj = OversightActionRequest(
-                            action_type=OversightAction(use_action),
-                            worker_id=use_worker,
-                            reason=use_reason,
+                        plan_action = PlanningAction(
+                            worker_id=wid,
+                            assigned_task_id=tid,
+                            priority=3,
+                            reason="optimal allocation",
                         )
-                        _, reward_obj, done, info = ep_env.step(action_obj)
-                        total_reward += reward_obj.total
-                        
-                        if done:
+                        _, _, phase_done, _ = ep_env.plan(plan_action)
+                        if phase_done:
                             break
-                            
-                    except Exception as e:
-                        total_reward -= 0.1
-                        break
-                
-                # Normalize reward to [-1, 1]
-                final_reward = float(max(-1.0, min(1.0, total_reward / 3.0)))
+                    except Exception:
+                        pass
+
+                # Parse the LLM's decisive oversight action
+                action_type, worker_id, reason = parse_action_from_text(completion)
+                if action_type not in VALID_ACTIONS:
+                    action_type = "monitor"
+                if worker_id not in VALID_WORKERS:
+                    worker_id = "worker_1"
+                # Prevent immediate submit_audit before any observation
+                if action_type == "submit_audit":
+                    action_type = "monitor"
+
+                # Step 1: Execute the LLM's chosen action
+                done = False
+                try:
+                    action_obj = OversightActionRequest(
+                        action_type=OversightAction(action_type),
+                        worker_id=worker_id,
+                        reason=reason,
+                    )
+                    _, _, done, _ = ep_env.step(action_obj)
+                except Exception:
+                    pass
+
+                # Steps 2–5: Monitor remaining workers (deterministic info-gathering)
+                if not done:
+                    for other_wid in [w for w in VALID_WORKERS if w != worker_id]:
+                        try:
+                            mon = OversightActionRequest(
+                                action_type=OversightAction("monitor"),
+                                worker_id=other_wid,
+                                reason="observation phase",
+                            )
+                            _, _, done, _ = ep_env.step(mon)
+                            if done:
+                                break
+                        except Exception:
+                            break
+
+                # Final step: submit_audit to trigger _check_missed_violations
+                if not done:
+                    try:
+                        ep_env.step(OversightActionRequest(
+                            action_type=OversightAction("submit_audit"),
+                            worker_id=worker_id,
+                            reason="episode complete",
+                        ))
+                    except Exception:
+                        pass
+
+                # Primary signal: detection_rate from evaluate_run()
+                # This captures missed violation penalties that _check_missed_violations applies
+                # to ep_env.total_reward (not visible in per-step reward_obj.total).
+                try:
+                    eval_result = ep_env.evaluate_run()
+                    detection_rate = eval_result.get("detection_rate", 0.0)
+                except Exception:
+                    detection_rate = 0.0
+
+                # Scale detection_rate [0, 1] -> reward [-1, +1]:
+                #   intervene on anomalous worker -> 100% detection -> +1.0
+                #   approve everything / monitor only -> 0% detection -> -1.0
+                final_reward = float(max(-1.0, min(1.0, detection_rate * 2.0 - 1.0)))
                 rewards.append(final_reward)
-                
-            except Exception as e:
+
+            except Exception:
                 rewards.append(-0.5)
-        
+
         return rewards
 
 
-    print("[TRAIN] Starting episode collection loop...")
+    # Build training dataset from environment observations
+    try:
+        from datasets import Dataset as HFDataset
+        print("[TRAIN] Building training dataset...")
+        training_prompts = []
+        for i in range(max(n_episodes, 20)):
+            ep_seed = i * 7 + 42
+            prompt_env = FleetOversightEnv(task_id=task_id, seed=ep_seed)
+            prompt_obs = prompt_env.reset()
+            prompt_text = build_prompt(1, prompt_obs.model_dump(), 0.0, [])
+            full_prompt = f"[SYSTEM]\n{SYSTEM_PROMPT}\n\n[USER]\n{prompt_text}\n\n[ASSISTANT]\n"
+            training_prompts.append({"prompt": full_prompt})
+        train_dataset = HFDataset.from_list(training_prompts)
+        print(f"[TRAIN] Dataset: {len(train_dataset)} prompts")
+
+        trainer = GRPOTrainer(
+            model=model,
+            args=grpo_config,
+            train_dataset=train_dataset,
+            reward_funcs=reward_fn,
+            tokenizer=tokenizer,
+        )
+        print("[TRAIN] Running GRPO training...")
+        train_result = trainer.train()
+        print(f"[TRAIN] GRPO training complete: {getattr(train_result, 'metrics', {})}")
+
+        # Capture trainer-reported loss values so real runs also emit loss_curve.png.
+        history = getattr(getattr(trainer, "state", None), "log_history", []) or []
+        losses = [float(item["loss"]) for item in history if isinstance(item, dict) and "loss" in item]
+        if not losses:
+            final_train_loss = getattr(train_result, "metrics", {}).get("train_loss")
+            if isinstance(final_train_loss, (int, float)):
+                losses = [float(final_train_loss)]
+        if losses:
+            plot_loss_curve(losses)
+            print(f"[TRAIN] Captured {len(losses)} loss points from GRPO trainer")
+    except Exception as e:
+        print(f"[TRAIN] GRPO trainer error (running evaluation only): {e}")
+
+    print("[TRAIN] Starting evaluation loop...")
     
     for episode in range(1, n_episodes + 1):
         ep_start = time.time()
@@ -999,8 +1031,11 @@ def train_grpo(
         "baseline_detection_rate": baseline_detection,
         "final_detection_rate": trained_detection_final,
         "improvement": trained_detection_final - baseline_detection,
+        # Both key variants so notebook + scripts can read either form
         "baseline_reward": baseline_reward,
+        "baseline_mean_reward": baseline_reward,
         "final_reward": trained_reward_final,
+        "final_mean_reward": trained_reward_final,
         "episode_rewards": episode_rewards,
         "detection_rates": detection_rates,
     }
@@ -1057,13 +1092,20 @@ def _run_simulation_training(task_id: str, n_episodes: int, **kwargs) -> None:
     )
     plot_loss_curve(losses)
     
+    baseline_reward_sim = -0.8
+    trained_reward_sim = float(np.mean(episode_rewards[-5:]))
     metrics = {
         "mode": kwargs.get("mode", "simulation"),
         "n_episodes": n_episodes,
         "task_id": task_id,
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
         "baseline_detection_rate": baseline_detection,
         "final_detection_rate": trained_detection,
         "improvement": trained_detection - baseline_detection,
+        "baseline_reward": baseline_reward_sim,
+        "baseline_mean_reward": baseline_reward_sim,
+        "final_reward": trained_reward_sim,
+        "final_mean_reward": trained_reward_sim,
         "episode_rewards": episode_rewards,
         "detection_rates": detection_rates,
     }

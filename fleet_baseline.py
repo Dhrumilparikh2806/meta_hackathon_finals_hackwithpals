@@ -131,7 +131,7 @@ def run_random_agent(task_id: str, n_episodes: int, seed: int = 42) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--task-id", default="easy_fleet", choices=["easy_fleet", "medium_fleet", "hard_fleet"])
+    parser.add_argument("--task-id", default="easy_fleet", choices=["easy_fleet", "medium_fleet", "hard_fleet", "banking_fleet"])
     parser.add_argument("--episodes", type=int, default=10)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
