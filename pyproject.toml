@@ -36,7 +36,7 @@ Repository = "https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwit
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["env*", "workers*", "fleet*"]
+include = ["env*", "workers*"]
 
 [tool.setuptools.package-data]
 "*" = ["*.yaml", "*.json", "*.html"]

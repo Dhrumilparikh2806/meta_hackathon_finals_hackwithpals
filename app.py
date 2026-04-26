@@ -48,8 +48,8 @@ app.mount("/static", StaticFiles(directory="ui/static"), name="static")
 from pathlib import Path as _Path
 from typing import Optional as _Optional
 
-from fleet.oversight_env import FleetOversightEnv
-from fleet.models import OversightAction, OversightActionRequest
+from env.oversight_env import FleetOversightEnv
+from env.models import OversightAction, OversightActionRequest
 
 FLEET_UI_FILE = _Path(__file__).resolve().parent / "fleet_bench_ui.html"
 _fleet_env: _Optional[FleetOversightEnv] = None
@@ -130,7 +130,7 @@ class FleetPlanRequest(BaseModel):
 @app.post("/fleet/plan")
 def fleet_plan(req: FleetPlanRequest):
     env = _get_fleet_env()
-    from fleet.models import PlanningAction
+    from env.models import PlanningAction
     action = PlanningAction(
         worker_id=req.worker_id,
         assigned_task_id=req.assigned_task_id,

@@ -4,8 +4,8 @@ All tests must pass before Part 4 begins.
 """
 
 import pytest
-from fleet.oversight_env import FleetOversightEnv
-from fleet.models import OversightAction, OversightActionRequest, AnomalyType
+from env.oversight_env import FleetOversightEnv
+from env.models import OversightAction, OversightActionRequest, AnomalyType
 
 
 def make_action(action_type: str, worker_id: str, reason: str = None) -> OversightActionRequest:
@@ -181,7 +181,7 @@ class TestFleetOversightEnv:
 class TestAnomalyInjector:
 
     def test_budget_dump_triggers_after_step_3(self):
-        from fleet.anomaly_injector import AnomalyInjector
+        from env.anomaly_injector import AnomalyInjector
         from workers.chunking_env import ChunkingEnv
 
         w = ChunkingEnv()
@@ -196,7 +196,7 @@ class TestAnomalyInjector:
                 assert info.get("_anomaly_type") == "budget_dump"
 
     def test_drift_flag_only_at_step_6(self):
-        from fleet.anomaly_injector import AnomalyInjector
+        from env.anomaly_injector import AnomalyInjector
         from workers.chunking_env import ChunkingEnv
 
         w = ChunkingEnv()
@@ -213,7 +213,7 @@ class TestAnomalyInjector:
                 break
 
     def test_is_anomalous(self):
-        from fleet.anomaly_injector import AnomalyInjector
+        from env.anomaly_injector import AnomalyInjector
         from workers.chunking_env import ChunkingEnv
 
         w = ChunkingEnv()
@@ -228,7 +228,7 @@ class TestAnomalyInjector:
 class TestOversightEvaluator:
 
     def test_all_gates_pass(self):
-        from fleet.oversight_evaluator import evaluate_fleet_run
+        from env.oversight_evaluator import evaluate_fleet_run
         report = {
             "total_reward": 6.0,
             "total_steps": 8,
@@ -244,7 +244,7 @@ class TestOversightEvaluator:
         assert result.composite_score > 0.5
 
     def test_failed_gate_detection_rate(self):
-        from fleet.oversight_evaluator import evaluate_fleet_run
+        from env.oversight_evaluator import evaluate_fleet_run
         report = {
             "total_reward": 6.0,
             "total_steps": 8,
@@ -260,7 +260,7 @@ class TestOversightEvaluator:
         assert "min_anomaly_detection_rate" in result.failed_gate_names
 
     def test_composite_score_bounded(self):
-        from fleet.oversight_evaluator import evaluate_fleet_run
+        from env.oversight_evaluator import evaluate_fleet_run
         for dr in [0.0, 0.5, 1.0]:
             report = {
                 "total_reward": 4.0, "total_steps": 8, "oversight_budget": 8,

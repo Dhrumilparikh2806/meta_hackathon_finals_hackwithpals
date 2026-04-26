@@ -17,7 +17,7 @@ from __future__ import annotations
 import random
 from typing import Callable
 
-from fleet.models import AnomalyType
+from env.models import AnomalyType
 
 
 class AnomalyInjector:

@@ -10,7 +10,7 @@ import uuid
 from types import MethodType
 from typing import Any, Optional
 
-from fleet.models import (
+from env.models import (
     AnomalyType,
     Difficulty,
     EpisodePhase,
@@ -27,15 +27,15 @@ from fleet.models import (
     WorkerPartialObservation,
     WorkerStatus,
 )
-from fleet.worker_registry import WorkerRegistry
-from fleet.anomaly_injector import AnomalyInjector
-from fleet.oversight_rewards import compute_oversight_step_reward, compute_explainability_score
-from fleet.oversight_governance import OversightGovernance
-from fleet.oversight_evaluator import evaluate_fleet_run
+from env.worker_registry import WorkerRegistry
+from env.anomaly_injector import AnomalyInjector
+from env.oversight_rewards import compute_oversight_step_reward, compute_explainability_score
+from env.oversight_governance import OversightGovernance
+from env.oversight_evaluator import evaluate_fleet_run
 
 # Worker imports
-import env.environment as triage_env_module
-from env.environment import DataQualityTriageEnv      # Worker 1 — Round 1
+import env.worker_triage as triage_env_module
+from env.worker_triage import DataQualityTriageEnv      # Worker 1 — Round 1
 from workers.chunking_env import ChunkingEnv          # Worker 2
 from workers.embedding_env import EmbeddingEnv        # Worker 3
 from workers.retrieval_env import RetrievalEnv        # Worker 4
@@ -266,7 +266,7 @@ class FleetOversightEnv:
         self.planning_budget_remaining = self.planning_budget
         
         # Load dataset profile
-        from fleet.models import DATASET_PROFILES
+        from env.models import DATASET_PROFILES
         profile_id = self.task_config.dataset_profile_id
         self.dataset_profile = DATASET_PROFILES.get(profile_id, DATASET_PROFILES["nexacrm_easy"])
 
@@ -554,8 +554,8 @@ class FleetOversightEnv:
         if self.episode_phase != EpisodePhase.PLANNING:
             return self._get_planning_obs(), PlanningReward(), False, {"error": "not_in_planning_phase"}
         
-        from fleet.models import OPTIMAL_ALLOCATIONS
-        from fleet.oversight_rewards import compute_planning_reward
+        from env.models import OPTIMAL_ALLOCATIONS
+        from env.oversight_rewards import compute_planning_reward
         
         # Validate worker
         if action.worker_id not in ["worker_1", "worker_2", "worker_3", "worker_4", "worker_5"]:
@@ -640,7 +640,7 @@ class FleetOversightEnv:
         - Anomalies injected per ANOMALY_INJECTION_MAP
         - Oversight budget timer starts
         """
-        from fleet.models import OPTIMAL_ALLOCATIONS
+        from env.models import OPTIMAL_ALLOCATIONS
         
         # Build task map from agent allocations + defaults
         optimal = OPTIMAL_ALLOCATIONS.get(
@@ -653,7 +653,7 @@ class FleetOversightEnv:
             task_map[wid] = self.planning_allocations.get(wid, optimal[wid])
         
         # Initialize workers with allocated tasks
-        from env.environment import DataQualityTriageEnv
+        from env.worker_triage import DataQualityTriageEnv
         from workers.chunking_env import ChunkingEnv
         from workers.embedding_env import EmbeddingEnv
         from workers.retrieval_env import RetrievalEnv
@@ -676,7 +676,7 @@ class FleetOversightEnv:
         self.anomaly_injector.inject(worker_instances, anomaly_config)
         
         for worker_id, anomaly_type in anomaly_config:
-            from fleet.models import AnomalyType
+            from env.models import AnomalyType
             if anomaly_type != AnomalyType.NONE:
                 self.registry.set_anomaly_flag(worker_id, 1)
         

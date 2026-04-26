@@ -24,7 +24,7 @@ DESIGN PRINCIPLES:
 
 from __future__ import annotations
 
-from fleet.models import OversightAction, OversightReward
+from env.models import OversightAction, OversightReward
 
 
 def compute_oversight_step_reward(
@@ -195,7 +195,7 @@ def compute_planning_reward(
         - allocation_quality: +0.40, +0.20, or -0.30 depending on match
         - total: same value clamped to [-1.0, 1.0]
     """
-    from fleet.models import PlanningReward, OPTIMAL_ALLOCATIONS
+    from env.models import PlanningReward, OPTIMAL_ALLOCATIONS
     
     reward = PlanningReward()
     epsilon = 1e-6

@@ -93,8 +93,8 @@ import numpy as np
 # ------------------------------------------------------------------ #
 # Environment imports                                                  #
 # ------------------------------------------------------------------ #
-from fleet.oversight_env import FleetOversightEnv
-from fleet.models import OversightAction, OversightActionRequest
+from env.oversight_env import FleetOversightEnv
+from env.models import OversightAction, OversightActionRequest
 
 # ------------------------------------------------------------------ #
 # Constants                                                            #
@@ -794,7 +794,7 @@ def train_grpo(
         detection, causing the -30% regression vs baseline).
         """
         import random as _random
-        from fleet.models import PlanningAction, OPTIMAL_ALLOCATIONS
+        from env.models import PlanningAction, OPTIMAL_ALLOCATIONS
 
         # Map task_id -> dataset profile id for optimal allocations lookup
         PROFILE_MAP = {

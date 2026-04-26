@@ -9,7 +9,7 @@ from __future__ import annotations
 import time
 from typing import Optional
 
-from fleet.models import AuditEvent
+from env.models import AuditEvent
 
 
 class OversightGovernance:

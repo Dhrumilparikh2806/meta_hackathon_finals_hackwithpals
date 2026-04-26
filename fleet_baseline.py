@@ -38,8 +38,8 @@ import random
 import numpy as np
 from pathlib import Path
 
-from fleet.oversight_env import FleetOversightEnv
-from fleet.models import OversightAction, OversightActionRequest
+from env.oversight_env import FleetOversightEnv
+from env.models import OversightAction, OversightActionRequest
 
 VALID_ACTIONS = [a.value for a in OversightAction]
 VALID_WORKERS = ["worker_1", "worker_2", "worker_3", "worker_4", "worker_5"]

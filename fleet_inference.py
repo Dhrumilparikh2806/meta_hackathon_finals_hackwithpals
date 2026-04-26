@@ -42,8 +42,8 @@ Usage:
 import os, json, re, textwrap, argparse
 from typing import Optional, List
 from openai import OpenAI
-from fleet.oversight_env import FleetOversightEnv
-from fleet.models import OversightAction, OversightActionRequest
+from env.oversight_env import FleetOversightEnv
+from env.models import OversightAction, OversightActionRequest
 
 API_KEY = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
 API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")

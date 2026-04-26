@@ -6,7 +6,7 @@ All tests must pass before Part 2 begins.
 import pytest
 from unittest.mock import MagicMock
 from workers.base_worker import BaseWorker
-from fleet.models import (
+from env.models import (
     WorkerStatus,
     AnomalyType,
     OversightAction,
@@ -276,6 +276,6 @@ class TestImports:
         assert BaseWorker is not None
 
     def test_fleet_models_import(self):
-        from fleet.models import FleetObservation, OversightReward
+        from env.models import FleetObservation, OversightReward
         assert FleetObservation is not None
         assert OversightReward is not None

@@ -13,7 +13,7 @@ planning phase decisions (task allocation accuracy).
 
 from __future__ import annotations
 
-from fleet.models import FleetEvaluationResult, FleetGateResult
+from env.models import FleetEvaluationResult, FleetGateResult
 
 
 def evaluate_fleet_run(run_report: dict) -> FleetEvaluationResult:

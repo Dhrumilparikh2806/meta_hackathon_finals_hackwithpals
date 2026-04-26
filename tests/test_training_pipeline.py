@@ -6,8 +6,8 @@ Does not require GPU — tests environment integration only.
 import pytest
 import json
 from pathlib import Path
-from fleet.oversight_env import FleetOversightEnv
-from fleet.models import OversightAction, OversightActionRequest
+from env.oversight_env import FleetOversightEnv
+from env.models import OversightAction, OversightActionRequest
 from fleet_train import (
     parse_action_from_text,
     build_prompt,
