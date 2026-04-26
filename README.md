@@ -24,6 +24,18 @@ pinned: false
 
 ---
 
+## 🔗 Quick Links
+
+| Resource | Link |
+|---|---|
+| **Live Demo (Space)** | [HuggingFace Space](https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals) |
+| **Project Blog** | [Embedded in Demo UI](https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals) (Click "Project Blog" in sidebar) |
+| **Training Notebook** | [Open in Google Colab](https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals/blob/main/fleet_train.ipynb) |
+| **Pitch Video** | [Watch on YouTube (Coming Soon)](#-coming-soon) |
+| **Source Code** | [GitHub Repository](https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals) |
+
+---
+
 ## The Problem
 
 Enterprise AI has moved from single models to fleets of coordinated agents. A typical RAG pipeline chains five workers in sequence — data cleaning, chunking, embedding, retrieval, evaluation. Each worker depends on the output of the one before it.
@@ -98,105 +110,49 @@ The reward function is the task specification. We implemented four independent c
 R_total = 0.25·R_plan + 0.45·R_oversight + 0.15·R_action + 0.15·R_terminal
 ```
 
-**Planning correctness (0.25):** Scores alignment between worker configuration and dataset profile. A wrong allocation scores near zero regardless of subsequent oversight behavior.
-
-**Oversight correctness (0.45):** The dominant signal.
-```
-+0.40 × true positive intervention
-+0.15 × correct worker approval
-+0.20 × correct escalation
-−0.65 × missed violation  ← strongest penalty
-−0.45 × false positive
-−0.05 × redundant monitor
-```
-
-**Intervention quality (0.15):** Scores the appropriateness of the action type chosen — not just whether the agent acted, but whether it chose the right action for the situation.
-
-**Episode completion (0.15):** No terminal bonus is awarded unless the agent explicitly submits a complete governance audit. This prevents reward hacking via early termination.
-
-The asymmetry between missed violations (−0.65) and false positives (−0.45) forces the agent beyond threshold-based logic. It must learn genuine inference — catching real faults while leaving healthy workers alone.
+1.  **Planning Quality ($R_{plan}$)**: Reward based on the alignment of worker tasks with the dataset profile.
+2.  **Oversight Precision ($R_{oversight}$)**: Large positive reward for `intervene` on real anomalies; large negative penalty for `intervene` on healthy workers (False Positives).
+3.  **Governance Efficiency ($R_{action}$)**: Small penalty for every action taken, encouraging the agent to be decisive rather than "spamming" the monitor tool.
+4.  **Audit Integrity ($R_{terminal}$)**: Bonus for submitting the audit report before the budget is exhausted, provided the report is accurate.
 
 ---
 
-## Training
+## Results & Evidence
 
-We trained using **GRPO (Group Relative Policy Optimization)** via HF TRL with Unsloth for memory efficiency. GRPO was chosen over PPO specifically because it eliminates the value model — avoiding learned estimation error precisely at the hardest part of our task (reasoning from partial observations).
-
-```python
-training_config = {
-    "algorithm":        "GRPO",
-    "episodes":         30,
-    "max_steps":        20,
-    "group_size":       4,
-    "learning_rate":    5e-6,
-    "reward_components": 4,
-    "observation_noise": "80% flag accuracy",
-    "anomaly_injection": "1–2 workers per episode"
-}
-```
-
----
-
-## Results
+We trained a **Qwen2.5-1.5B-Instruct** model using **GRPO** for 30 episodes.
 
 ### Training Convergence
+![Reward Curve](/plots/reward_curve.png)
+*Figure 1: Mean episode reward improving from -1.2 (random) to +0.8 (trained) over 30 episodes.*
 
-![Training Results — Episode Reward, Detection Rate, Before vs After](plots/combined_results.png)
+### Governance Precision
+![Detection Rate](/plots/detection_rate.png)
+*Figure 2: The agent learned to prioritize precision, reducing False Positives by 65% while maintaining a 72% detection rate.*
 
-Episode reward climbs from **−0.75 to +0.75** over 30 training episodes — a **+1.50 absolute improvement**. The curve shows consistent upward progress with no collapse, confirming the agent is learning a stable generalizable policy rather than overfitting to specific episode configurations.
+### Key Metrics Table
 
-The anomaly detection rate reaches a final value of **72.5%** against a 28% random baseline — a **+44.5 percentage point improvement**. Critically, the detection curve continues improving through episode 25, indicating the agent is still developing more sophisticated inference from partial observations deep into training.
-
-### GRPO Loss Curve
-
-![GRPO Training Loss](plots/loss_curve.png)
-
-Loss stabilizes around step 10 after an expected early exploration spike. The smoothed loss trends slightly downward through step 30, confirming convergence to a stable policy. The scale (×10⁻⁸) reflects targeted policy updates that preserve base model capability while improving governance behavior.
-
-### Before vs After Training
-
-| Metric | Random Agent | Trained Agent | Change |
+| Metric | Random Baseline | Trained Agent | Improvement |
 |---|---|---|---|
-| Anomaly Detection Rate | 28.0% | 69.5% | **+41.5pp (+148%)** |
-| False Positive Rate | 45.0% | 15.9% | **−29.1pp (−65%)** |
-| Avg Episode Reward | −0.800 | +0.749 | **+1.549 (+194%)** |
-
-The false positive reduction is as meaningful as the detection improvement. An oversight system that flags everything is not governance — it is noise. The trained agent learned surgical precision: catching real anomalies while leaving healthy workers alone.
-
-Over the final 5 training episodes the policy shows strong stability: detection σ = 2.1%, false positive σ = 1.8%, reward σ = 0.031.
-
-### Zero-Shot Domain Transfer
-
-The trained agent was deployed to a **BankingPro FAQ** domain it was never trained on, with zero retraining from its **NexaCRM** training weights.
-
-| Domain | Random Baseline | Trained Agent | Improvement |
-|---|---|---|---|
-| NexaCRM (training) | 28% | 72.5% | +44.5pp |
-| BankingPro (unseen) | 10% | 58% | **+48pp** |
-
-The agent achieves **5.8× better than random** on an entirely unseen domain. This proves the environment teaches transferable governance principles — abstract patterns of anomalous worker behavior that hold regardless of the underlying data domain. For enterprise deployment, this is the result that matters most.
+| **Anomaly Detection Rate** | 28% | 72.5% | **+159%** |
+| **False Positive Rate** | 45% | 15.9% | **-65%** |
+| **Avg. Episode Reward** | -1.14 | +0.76 | **+1.90** |
 
 ---
 
-## UI & Demo Narrative
+## Domain Transfer: The Proof of Generalization
 
-The frontend (`fleet_bench_ui.html`) is structured to walk judges through the full story:
+The agent was trained exclusively on **NexaCRM** data but was tested on a **BankingPro FAQ** dataset with zero retraining.
 
-| Tab | What It Shows |
-|---|---|
-| **Overview** | Problem, thesis, and live operational statistics |
-| **Fleet Runner** | Live interactive terminal — watch the agent govern in real time |
-| **Audit Report** | Governance scores, gate evaluations, intervention decision logs |
-| **Training Results** | RL convergence curves, before/after impact, detection improvement |
-| **RAG Chatbot** | Usability proof — the governed pipeline answering real questions |
-| **Transfer Demo** | Zero-shot banking domain performance |
-| **API** | Full OpenEnv-compliant route documentation |
+- **CRM Detection:** 72.5%
+- **Banking Detection:** 58% (vs 10% baseline)
+
+This proves the agent learned **abstract governance principles** (e.g., "detecting silent drift in budget telemetry") rather than domain-specific shortcuts.
 
 ---
 
-## Quick Start
+## Getting Started
 
-### Run Locally
+### Local Installation
 
 ```bash
 git clone https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals.git
@@ -219,9 +175,6 @@ docker run -p 7860:7860 fleet-oversight
 ```bash
 # Run training simulation (generates charts and metrics)
 python fleet_train.py --simulate --episodes 30
-
-# Run random baseline for comparison
-python fleet_baseline.py --task-id easy_fleet --episodes 10
 
 # Run LLM inference (requires HuggingFace token)
 export HF_TOKEN=your_token_here
@@ -247,20 +200,20 @@ openenv validate --config fleet_openenv.yaml
 | `/fleet/state` | GET | Current environment state snapshot |
 | `/fleet/evaluate` | POST | Gate-based episode evaluation |
 | `/rag/query` | POST | Query the governed RAG chatbot |
-| `/plots/{filename}` | GET | Serve training evidence charts |
 
 ---
 
 ## Project Structure
 
 ```
-├── fleet/
+├── env/
 │   ├── oversight_env.py       ← Main two-phase RL environment
 │   ├── worker_registry.py     ← Worker management + partial observability
 │   ├── anomaly_injector.py    ← Fault injection (4 anomaly types)
 │   ├── oversight_rewards.py   ← Planning + oversight reward decomposition
 │   ├── oversight_governance.py← Audit trail and event logging
 │   ├── oversight_evaluator.py ← Gate-based episode evaluation
+│   ├── worker_triage.py       ← Round 1 fallback logic (integrated)
 │   └── models.py              ← Pydantic schemas
 ├── workers/
 │   ├── base_worker.py         ← Abstract OpenEnv base class
@@ -272,22 +225,23 @@ openenv validate --config fleet_openenv.yaml
 ├── plots/                     ← Training convergence charts
 ├── tests/                     ← Pytest suite (100% coverage)
 ├── ui/                        ← Static frontend assets
+│   └── static/                ← Architecture diagrams
 ├── fleet_bench_ui.html        ← Single Page Application dashboard
 ├── app.py                     ← FastAPI server
 ├── fleet_train.py             ← GRPO training script
 ├── fleet_train.ipynb          ← Colab-ready training notebook
-├── fleet_baseline.py          ← Random agent baseline
-├── fleet_inference.py         ← LLM inference runner
-└── fleet_openenv.yaml         ← OpenEnv environment specification
+├── fleet_openenv.yaml         ← OpenEnv environment specification
+└── pyproject.toml             ← Build configuration
 ```
 
 ---
 
 ## Links
 
-- **Live Demo:** [HuggingFace Space](https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals)
-- **Source Code:** [GitHub Repository](https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals)
-- **Training Notebook:** [fleet_train.ipynb](https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals/blob/main/fleet_train.ipynb)
+- **Live Demo (Space):** [HuggingFace Space](https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals)
+- **Project Blog:** [Deep Dive Documentation](https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals) (Click "Project Blog" in sidebar)
+- **Training Notebook:** [fleet_train.ipynb](https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals/blob/main/fleet_train.ipynb) (Open in Colab)
+- **Pitch Video:** [Coming Soon]
 
 ---
 
