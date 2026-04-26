@@ -17,13 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def root():
-    return RedirectResponse(url="/fleet-ui")
-
 # ------------------------------------------------------------------ #
 # EXISTING ROUTES (Round 1)                                          #
 # ------------------------------------------------------------------ #
+
 
 @app.get("/health")
 async def health():
@@ -209,61 +206,34 @@ def rag_query(req: _RAGQueryRequest):
     return {"error": None, "answer": answer, "source_chunks": source_chunks, "confidence": round(top[0][1], 4) if top else 0.0}
 
 # ------------------------------------------------------------------ #
-# UI Routes (Round 1)                                                  #
+# UI Routes                                                           #
 # ------------------------------------------------------------------ #
 
 ui_router = APIRouter(prefix="/ui", tags=["ui"])
 
+@app.get("/", response_class=HTMLResponse)
+@app.get("/dashboard", response_class=HTMLResponse)
 @ui_router.get("/", response_class=HTMLResponse)
 @ui_router.get("", response_class=HTMLResponse)
-async def ui_landing():
-    path = _Path(__file__).resolve().parent / "ui" / "static" / "landing.html"
-    if not path.exists():
-        return HTMLResponse(content="<h1>Landing Page Not Found</h1>", status_code=404)
-    with open(path, encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
-
 @ui_router.get("/fleet", response_class=HTMLResponse)
-async def ui_fleet():
-    path = _Path(__file__).resolve().parent / "ui" / "static" / "fleet_monitor.html"
-    if not path.exists():
-        return HTMLResponse(content="<h1>Fleet Monitor Not Found</h1>", status_code=404)
-    with open(path, encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
-
 @ui_router.get("/chat", response_class=HTMLResponse)
-async def ui_chat():
-    path = _Path(__file__).resolve().parent / "ui" / "static" / "chat.html"
-    if not path.exists():
-        return HTMLResponse(content="<h1>Chat Not Found</h1>", status_code=404)
-    with open(path, encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
-
 @ui_router.get("/results", response_class=HTMLResponse)
-async def ui_results():
-    path = _Path(__file__).resolve().parent / "ui" / "static" / "training_results.html"
-    if not path.exists():
-        return HTMLResponse(content="<h1>Results Not Found</h1>", status_code=404)
-    with open(path, encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
-
 @ui_router.get("/api", response_class=HTMLResponse)
-async def ui_api():
-    path = _Path(__file__).resolve().parent / "ui" / "static" / "api_docs.html"
-    if not path.exists():
-        return HTMLResponse(content="<h1>API Docs Not Found</h1>", status_code=404)
-    with open(path, encoding="utf-8") as f:
+@ui_router.get("/health", response_class=HTMLResponse)
+@ui_router.get("/transfer", response_class=HTMLResponse)
+@ui_router.get("/audit", response_class=HTMLResponse)
+async def unified_ui():
+    if not FLEET_UI_FILE.exists():
+        return HTMLResponse(content="<h1>Fleet UI Not Found</h1>", status_code=404)
+    with open(FLEET_UI_FILE, encoding="utf-8") as f:
         return HTMLResponse(content=f.read())
 
-@ui_router.get("/health", response_class=HTMLResponse)
-async def ui_health():
-    path = _Path(__file__).resolve().parent / "ui" / "static" / "health_dashboard.html"
-    if not path.exists():
-        return HTMLResponse(content="<h1>Health Dashboard Not Found</h1>", status_code=404)
-    with open(path, encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
+@app.get("/fleet-ui")
+def fleet_ui_legacy():
+    return RedirectResponse(url="/ui/")
 
 app.include_router(ui_router)
+
 
 # ------------------------------------------------------------------ #
 # Plot Serving Route                                                   #
