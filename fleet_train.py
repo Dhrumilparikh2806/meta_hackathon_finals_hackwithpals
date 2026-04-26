@@ -48,6 +48,11 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 sys.path.append(os.getcwd())
 
+print(f"DEBUG: Current directory: {os.getcwd()}")
+print(f"DEBUG: Files in current directory: {os.listdir(os.getcwd())}")
+if os.path.exists("//"):
+    print(f"DEBUG: Files in //: {os.listdir('//')}")
+
 import argparse
 import json
 import os
