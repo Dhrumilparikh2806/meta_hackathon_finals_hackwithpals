@@ -7,7 +7,7 @@
   "mean_total_reward": 0.030000000000000016,
   "std_total_reward": 0.4696807426326951,
   "mean_fp_rate": 0.2333333333333333,
-  "approved_rate": 0.0,
+  "approved_rate": 0.1,
   "detection_rates": [
     1.0,
     1.0,
