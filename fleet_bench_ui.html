@@ -368,8 +368,6 @@
     <div class="nav-section">Evaluation</div>
     <div class="nav-item" onclick="showScreen('training')"><div class="nav-dot"></div>Training Results</div>
     <div class="nav-item" onclick="showScreen('blog')"><div class="nav-dot"></div>Project Blog</div>
-    <div class="nav-item" onclick="showScreen('blog')"><div class="nav-dot"></div>Project Blog</div>
-    <div class="nav-item" onclick="showScreen('blog')"><div class="nav-dot"></div>Project Blog</div>
     <div class="nav-section">API</div>
     <div class="nav-item" onclick="showScreen('api')"><div class="nav-dot"></div>API Docs</div>
     <div class="nav-item" onclick="showScreen('health')"><div class="nav-dot"></div>Health Check</div>
@@ -2014,8 +2012,6 @@ const SCREEN_TITLES = {
   transfer: ["Transfer Demo", "NexaCRM trained → BankingFAQ deployed · Zero retraining"],
   training: ["Training Results", "GRPO training · Qwen2.5-1.5B-Instruct · HF Jobs T4 · 30 episodes · easy_fleet"],
   blog: ["Project Blog", "Deep dive into the architecture and governance philosophy"],
-  blog: ["Project Blog", "Deep dive into the architecture and governance philosophy"],
-  blog: ["Project Blog", "Deep dive into the architecture and governance philosophy"],
   api: ["API Documentation", "Integrate with the Oversight Engine"],
   health: ["System Health", "Node & Worker Status"]
 };
@@ -2029,8 +2025,6 @@ function showScreen(screenId) {
   const navItem = Array.from(document.querySelectorAll('.nav-item')).find(i => {
     const txt = i.textContent.toLowerCase();
     if (screenId === 'training') return txt.includes('results');
-    if (screenId === 'blog') return txt.includes('blog');
-    if (screenId === 'blog') return txt.includes('blog');
     if (screenId === 'blog') return txt.includes('blog');
     if (screenId === 'runner') return txt.includes('runner');
     if (screenId === 'audit') return txt.includes('audit');

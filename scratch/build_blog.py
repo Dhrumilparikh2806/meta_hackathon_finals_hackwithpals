@@ -40,20 +40,31 @@ blog_screen = f"""
 with open("fleet_bench_ui.html", "r", encoding="utf-8") as f:
     ui_html = f.read()
 
-nav_insert = """    <div class="nav-item" onclick="showScreen('training')"><div class="nav-dot"></div>Training Results</div>
+# 1. Add Navigation Item (Idempotent)
+if 'onclick="showScreen(\'blog\')"' not in ui_html:
+    nav_insert = """    <div class="nav-item" onclick="showScreen('training')"><div class="nav-dot"></div>Training Results</div>
     <div class="nav-item" onclick="showScreen('blog')"><div class="nav-dot"></div>Project Blog</div>"""
-ui_html = ui_html.replace("""    <div class="nav-item" onclick="showScreen('training')"><div class="nav-dot"></div>Training Results</div>""", nav_insert)
+    ui_html = ui_html.replace("""    <div class="nav-item" onclick="showScreen('training')"><div class="nav-dot"></div>Training Results</div>""", nav_insert)
 
-ui_html = ui_html.replace("  </main>", blog_screen + "\n  </main>")
+# 2. Add Blog Screen (Replace existing if present)
+if '<div id="screen-blog"' in ui_html:
+    # Use regex to replace the entire old screen-blog div
+    ui_html = re.sub(r'<div id="screen-blog".*?</div>\s*</div>\s*</div>', blog_screen.strip(), ui_html, flags=re.DOTALL)
+else:
+    ui_html = ui_html.replace("  </main>", blog_screen + "\n  </main>")
 
-title_insert = """  training: ["Training Results", "GRPO training · Qwen2.5-1.5B-Instruct · HF Jobs T4 · 30 episodes · easy_fleet"],
+# 3. Add Screen Title (Idempotent)
+if 'blog: ["Project Blog"' not in ui_html:
+    title_insert = """  training: ["Training Results", "GRPO training · Qwen2.5-1.5B-Instruct · HF Jobs T4 · 30 episodes · easy_fleet"],
   blog: ["Project Blog", "Deep dive into the architecture and governance philosophy"],"""
-ui_html = ui_html.replace("""  training: ["Training Results", "GRPO training · Qwen2.5-1.5B-Instruct · HF Jobs T4 · 30 episodes · easy_fleet"],""", title_insert)
+    ui_html = ui_html.replace("""  training: ["Training Results", "GRPO training · Qwen2.5-1.5B-Instruct · HF Jobs T4 · 30 episodes · easy_fleet"],""", title_insert)
 
-show_screen_logic = """    if (screenId === 'training') return txt.includes('results');
+# 4. Add Sidebar Logic (Idempotent)
+if "if (screenId === 'blog') return txt.includes('blog');" not in ui_html:
+    show_screen_logic = """    if (screenId === 'training') return txt.includes('results');
     if (screenId === 'blog') return txt.includes('blog');"""
-ui_html = ui_html.replace("""    if (screenId === 'training') return txt.includes('results');""", show_screen_logic)
+    ui_html = ui_html.replace("""    if (screenId === 'training') return txt.includes('results');""", show_screen_logic)
 
 with open("fleet_bench_ui.html", "w", encoding="utf-8") as f:
     f.write(ui_html)
-print("Blog added successfully!")
+print("Blog updated successfully (idempotent)!")
