@@ -1938,7 +1938,7 @@ async function autoRunEpisode() {
   const autoBtn = document.getElementById('btn-auto');
   if (autoBtn) {
     autoBtn.disabled = true;
-    autoBtn.textContent = '⏳ Running…';
+    autoBtn.textContent = '⏳ Running Smart Agent…';
   }
 
   try {
@@ -1947,73 +1947,63 @@ async function autoRunEpisode() {
       body: JSON.stringify({ task_id: SESSION.selectedTask, seed: 42 })
     });
     
-    document.getElementById('log').innerHTML = '';
-    document.getElementById('eval-panel').style.display = 'none';
-    appendLog('runner-step-log', 'auto_run()', '→ Episode started — beginning planning phase', 'ok');
+    const logEl = document.getElementById('log');
+    if (logEl) logEl.innerHTML = '';
+    const evalPanel = document.getElementById('eval-panel');
+    if (evalPanel) evalPanel.style.display = 'none';
+    
+    appendLog('runner-step-log', 'auto_run()', '→ Smart Oversight Agent initialized — Level: ' + SESSION.selectedTask, 'ok');
     
     const obs = resetResult.observation || resetResult;
+    let datasetId = 'nexacrm_easy';
     if (obs.dataset_profile) {
+      datasetId = obs.dataset_profile.dataset_id;
       showPlanningPhase(obs.dataset_profile);
     }
     
-    // Step 2: Auto allocate all workers based on task
-    await new Promise(r => setTimeout(r, 500));
+    // Step 2: Optimal Task Allocation based on Dataset
+    await new Promise(r => setTimeout(r, 600));
     
-    const taskDefaults = {
-      easy_fleet: {
-        worker_1: 'easy_missing_and_dupes',
-        worker_2: 'easy_chunking',
-        worker_3: 'easy_embedding',
-        worker_4: 'easy_retrieval',
-        worker_5: 'easy_evaluation',
+    const OPTIMAL_ALLOCATIONS = {
+      "nexacrm_easy": {
+        "worker_1": "easy_missing_and_dupes",
+        "worker_2": "easy_chunking",
+        "worker_3": "easy_embedding",
+        "worker_4": "easy_retrieval",
+        "worker_5": "easy_evaluation",
       },
-      medium_fleet: {
-        worker_1: 'medium_type_and_category',
-        worker_2: 'medium_chunking',
-        worker_3: 'medium_embedding',
-        worker_4: 'medium_retrieval',
-        worker_5: 'medium_evaluation',
+      "nexacrm_hard": {
+        "worker_1": "hard_conflicts_and_budget",
+        "worker_2": "hard_chunking",
+        "worker_3": "hard_embedding",
+        "worker_4": "hard_retrieval",
+        "worker_5": "hard_evaluation",
       },
-      hard_fleet: {
-        worker_1: 'hard_conflicts_and_budget',
-        worker_2: 'hard_chunking',
-        worker_3: 'hard_embedding',
-        worker_4: 'hard_retrieval',
-        worker_5: 'hard_evaluation',
-      },
-      banking_fleet: {
-        worker_1: 'medium_type_and_category',
-        worker_2: 'medium_chunking',
-        worker_3: 'hard_embedding',
-        worker_4: 'medium_retrieval',
-        worker_5: 'medium_evaluation',
+      "banking_faq": {
+        "worker_1": "medium_type_and_category",
+        "worker_2": "medium_chunking",
+        "worker_3": "hard_embedding",
+        "worker_4": "medium_retrieval",
+        "worker_5": "medium_evaluation",
       },
     };
     
-    const defaults = taskDefaults[SESSION.selectedTask] || taskDefaults['easy_fleet'];
+    const allocations = OPTIMAL_ALLOCATIONS[datasetId] || OPTIMAL_ALLOCATIONS["nexacrm_easy"];
     let planningReward = 0;
     
-    for (const [wid, taskId] of Object.entries(defaults)) {
-      // Set dropdown value visually
+    for (const [wid, taskId] of Object.entries(allocations)) {
       const sel = document.getElementById('select-' + wid);
       if (sel) sel.value = taskId;
       
-      // Submit allocation
       try {
         const planResult = await api('/fleet/plan', {
           method: 'POST',
-          body: JSON.stringify({
-            worker_id: wid,
-            assigned_task_id: taskId,
-            priority: 3,
-            reason: 'auto allocation',
-          })
+          body: JSON.stringify({ worker_id: wid, assigned_task_id: taskId, priority: 3, reason: 'Optimal allocation for ' + datasetId })
         });
         
         const reward = planResult.reward_total || 0;
         planningReward += reward;
         
-        // Update reward display
         const rewardEl = document.getElementById('alloc-reward-' + wid);
         if (rewardEl) {
           rewardEl.textContent = reward >= 0 ? '+' + reward.toFixed(2) + ' ✓' : reward.toFixed(2) + ' ✗';
@@ -2023,90 +2013,157 @@ async function autoRunEpisode() {
         const card = document.getElementById('alloc-' + wid);
         if (card) card.className = 'worker-card ' + (reward >= 0 ? 'healthy' : 'anomaly');
         
-        appendLog('runner-step-log', 'plan(' + wid + ')', '→ ' + taskId + ' reward ' + (reward >= 0 ? '+' : '') + reward.toFixed(2), reward >= 0 ? 'ok' : 'warn');
-        
-        document.getElementById('planning-reward-val').textContent = planningReward >= 0 ? '+' + planningReward.toFixed(3) : planningReward.toFixed(3);
-        document.getElementById('planning-reward-val').style.color = planningReward >= 0 ? 'var(--emerald)' : 'var(--rose)';
-        
-        const count = Object.keys(defaults).indexOf(wid) + 1;
-        document.getElementById('planning-progress-tag').textContent = count + ' / 5 workers allocated';
-        
+        appendLog('runner-step-log', 'plan(' + wid + ')', '→ ' + taskId + ' (Reward: ' + (reward >= 0 ? '+' : '') + reward.toFixed(2) + ')', reward >= 0 ? 'ok' : 'warn');
+        const pRewardVal = document.getElementById('planning-reward-val');
+        if (pRewardVal) pRewardVal.textContent = planningReward >= 0 ? '+' + planningReward.toFixed(3) : planningReward.toFixed(3);
+        const pProgTag = document.getElementById('planning-progress-tag');
+        if (pProgTag) pProgTag.textContent = (Object.keys(allocations).indexOf(wid) + 1) + ' / 5 allocated';
       } catch(e) {
         appendLog('runner-step-log', 'plan(' + wid + ')', '→ failed: ' + e.message, 'error');
       }
-      
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 300));
     }
     
-    appendLog('runner-step-log', 'planning_complete()', '→ All workers allocated. Total planning reward: ' + (planningReward >= 0 ? '+' : '') + planningReward.toFixed(3), 'ok');
+    appendLog('runner-step-log', 'planning_complete()', '→ Phase 1 finished. Planning Reward: ' + planningReward.toFixed(3), 'ok');
     
-    // Step 3: Wait for phase transition then show oversight
+    // Step 3: Adaptive Oversight
     await new Promise(r => setTimeout(r, 800));
     showOversightPhase();
-    epActive = true; // Ensure episode is active for oversight
-    appendLog('runner-step-log', 'phase_transition()', '→ Entering oversight phase', 'ok');
-    await new Promise(r => setTimeout(r, 500));
+    epActive = true;
     
-    // Step 4: Run oversight actions
-    const oversightPlan = [
-      ['monitor', 'worker_1'],
-      ['monitor', 'worker_2'],
-      ['monitor', 'worker_3'],
-      ['intervene', 'worker_2'],
-      ['approve', 'worker_1'],
-      ['approve', 'worker_3'],
-      ['escalate', 'worker_4'],
-      ['submit_audit', 'worker_1'],
-    ];
-    
-    for (const [action, worker] of oversightPlan) {
-      if (!epActive) break;
-      await new Promise(r => setTimeout(r, 700));
-      
+    const monitored = new Set();
+    const escalated = new Set();
+    const intervened = new Set();
+    const approved = new Set();
+
+    async function getWS() {
+      try { return (await (await fetch('/fleet/workers')).json()).workers || {}; }
+      catch { return {}; }
+    }
+
+    async function doAct(action, wid, reason) {
+      if (!epActive) return null;
       try {
         const result = await api('/fleet/step', {
           method: 'POST',
-          body: JSON.stringify({ action_type: action, worker_id: worker })
+          body: JSON.stringify({ action_type: action, worker_id: wid, reason })
         });
         
         const stepReward = result.reward_total || 0;
         SESSION.totalReward += stepReward;
         SESSION.stepCount += 1;
         
-        // Update stats
-        document.getElementById('s-step').textContent = result.observation?.step || SESSION.stepCount;
-        document.getElementById('s-reward').textContent = SESSION.totalReward.toFixed(3);
-        document.getElementById('s-reward').style.color = SESSION.totalReward >= 0 ? 'var(--emerald)' : 'var(--rose)';
+        const sStep = document.getElementById('s-step');
+        if (sStep) sStep.textContent = result.observation?.step || SESSION.stepCount;
         
-        const rewardVal = stepReward.toFixed(3);
-        const level = stepReward < 0 ? 'warn' : 'ok';
-        appendLog('runner-step-log', action + '(' + worker + ')', '→ reward ' + (stepReward >= 0 ? '+' : '') + rewardVal, level);
+        const sReward = document.getElementById('s-reward');
+        if (sReward) {
+          sReward.textContent = SESSION.totalReward.toFixed(3);
+          sReward.style.color = SESSION.totalReward >= 0 ? 'var(--emerald)' : 'var(--rose)';
+        }
         
-        updateRewardTracker(result.reward, SESSION.totalReward);
+        appendLog('runner-step-log', action + '(' + wid + ')', '→ reward ' + (stepReward >= 0 ? '+' : '') + stepReward.toFixed(3), stepReward < 0 ? 'warn' : 'ok');
+        
+        showReward(result.reward, SESSION.totalReward);
         await refreshWorkers();
         
         if (result.done) {
-          appendLog('runner-step-log', 'episode_done()', '→ Episode complete', 'ok');
+          epActive = false;
           await onDone();
-          break;
+          return { done: true };
         }
+        return { done: false, obs: result.observation };
       } catch(e) {
-        appendLog('runner-step-log', action + '(' + worker + ')', '→ failed: ' + e.message, 'error');
+        appendLog('runner-step-log', action + '(' + wid + ')', '→ failed: ' + e.message, 'error');
+        return { error: e.message };
       }
     }
+
+    // Main Oversight Strategy Loop
+    let loopCount = 0;
+    while (epActive && loopCount < 30) {
+      loopCount++;
+      const ws = await getWS();
+      let acted = false;
+
+      // 1. Handle explicit flags
+      for (const wid of W_ORDER) {
+        const w = ws[wid] || {};
+        if (w.anomaly_flag === 1 && !['completed','intervened'].includes(w.status)) {
+          if (escalated.has(wid)) {
+            const res = await doAct('intervene', wid, 'Confirmed anomaly after escalation.');
+            intervened.add(wid); if (res?.done) break;
+          } else {
+            const res = await doAct('escalate', wid, 'Anomaly flag detected.');
+            escalated.add(wid); if (res?.done) break;
+          }
+          acted = true; break;
+        }
+      }
+      if (!epActive) break;
+
+      // 2. Baseline Monitor
+      if (!acted) {
+        for (const wid of W_ORDER) {
+          if (!monitored.has(wid)) {
+            const res = await doAct('monitor', wid, 'Establishing baseline.');
+            monitored.add(wid);
+            acted = true; if (res?.done) break;
+            break;
+          }
+        }
+      }
+      if (!epActive) break;
+
+      // 3. Detect Drift (Low budget, no flag)
+      if (!acted) {
+        for (const wid of W_ORDER) {
+          const w = ws[wid] || {};
+          if (w.budget_remaining <= 2 && !['completed','intervened'].includes(w.status)) {
+            const res = await doAct('intervene', wid, 'Suspected Drift: budget critically low.');
+            intervened.add(wid);
+            acted = true; if (res?.done) break;
+            break;
+          }
+        }
+      }
+      if (!epActive) break;
+
+      // 4. Approve healthy workers
+      if (!acted) {
+        for (const wid of W_ORDER) {
+          const w = ws[wid] || {};
+          if (w.status === 'completed' && !approved.has(wid) && !intervened.has(wid)) {
+            const res = await doAct('approve', wid, 'Worker completed successfully.');
+            approved.add(wid);
+            acted = true; if (res?.done) break;
+            break;
+          }
+        }
+      }
+      if (!epActive) break;
+
+      // 5. Final Audit if budget low
+      const sBudgetTxt = document.getElementById('s-budget-txt');
+      const budgetTxt = sBudgetTxt ? sBudgetTxt.textContent : "0/0";
+      const budgetLeft = parseInt(budgetTxt.split('/')[0]) || 0;
+      if (!acted || budgetLeft <= 1) {
+        const res = await doAct('submit_audit', 'worker_1', 'Audit complete. Anomalies detected: ' + Array.from(intervened).join(', '));
+        break;
+      }
+      
+      await new Promise(r => setTimeout(r, 600));
+    }
     
-    // Step 5: Get final results
-    await new Promise(r => setTimeout(r, 500));
-    // refreshEvaluation is called by onDone()
-    
-    appendLog('runner-step-log', 'auto_run_complete()', '→ Full episode finished. Check Audit Report for results.', 'ok');
+    appendLog('runner-step-log', 'auto_run_complete()', '→ Automated Oversight finished successfully.', 'ok');
     
   } catch(e) {
     appendLog('runner-step-log', 'auto_run()', '→ failed: ' + e.message, 'error');
   } finally {
-    if (autoBtn) {
-      autoBtn.disabled = false;
-      autoBtn.textContent = '⚡ Auto Run (Full Episode)';
+    const autoBtnFinal = document.getElementById('btn-auto');
+    if (autoBtnFinal) {
+      autoBtnFinal.disabled = false;
+      autoBtnFinal.textContent = '⚡ Auto Run (Full Episode)';
     }
   }
 }
