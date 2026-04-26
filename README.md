@@ -2,10 +2,8 @@
 title: Fleet AI Oversight
 emoji: 🛡️
 colorFrom: indigo
-colorTo: slate
-sdk: fastapi
-sdk_version: 0.104.0
-app_file: app.py
+colorTo: blue
+sdk: docker
 pinned: false
 ---
 
