@@ -1,11 +1,15 @@
 from fastapi import FastAPI, APIRouter, HTTPException
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List
 import os
 
 app = FastAPI(title="Fleet AI Oversight")
+
+@app.get("/")
+async def root():
+    return RedirectResponse(url="/fleet-ui")
 
 # ------------------------------------------------------------------ #
 # EXISTING ROUTES (Round 1)                                          #
