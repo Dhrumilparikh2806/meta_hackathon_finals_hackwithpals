@@ -1,0 +1,3002 @@
+[
+  {
+    "chunk_id": "chunk_003",
+    "text": "NexaCRM FAQ: What is the price of the Pro plan? \u2014 $49 per user per month",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_007",
+    "text": "NexaCRM FAQ: How do I cancel my subscription? \u2014 Go to Settings > Billing > Cancel Subscription",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_012",
+    "text": "NexaCRM FAQ: Does NexaCRM integrate with Slack? \u2014 Yes, native Slack integration is available on all plans",
+    "source": "nexacrm_faq",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_015",
+    "text": "NexaCRM FAQ: Is customer data encrypted at rest? \u2014 Yes, all data is encrypted using AES-256",
+    "source": "nexacrm_faq",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_002",
+    "text": "NexaCRM FAQ: What is the free trial period? \u2014 14 days, no credit card required",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_004",
+    "text": "NexaCRM FAQ: How many users can I add on the Starter plan? \u2014 Up to 5 users",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_008",
+    "text": "NexaCRM FAQ: Can I export my data if I cancel? \u2014 Yes, full data export is available for 30 days after cancellation",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_019",
+    "text": "NexaCRM FAQ: What CRMs can NexaCRM migrate data from? \u2014 Salesforce, HubSpot, and Zoho",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_021",
+    "text": "NexaCRM FAQ: Is there a mobile app available? \u2014 Yes, available on iOS and Android",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_024",
+    "text": "NexaCRM FAQ: What happens if I exceed my storage limit? \u2014 You will be notified and prompted to upgrade your plan",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_031",
+    "text": "NexaCRM FAQ: How do I reset my password? \u2014 Click Forgot Password on the login page and follow the email instructions",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_005",
+    "text": "NexaCRM FAQ: What is the Enterprise plan price? \u2014 Custom pricing, contact sales for a quote",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_016",
+    "text": "NexaCRM FAQ: Does NexaCRM support GDPR compliance? \u2014 Yes, NexaCRM is fully GDPR compliant",
+    "source": "nexacrm_faq",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_022",
+    "text": "NexaCRM FAQ: Can I use NexaCRM offline? \u2014 No, NexaCRM requires an internet connection",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_033",
+    "text": "NexaCRM FAQ: How do I add a new team member? \u2014 Go to Settings > Team > Invite Member and enter their email",
+    "source": "nexacrm_faq",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_041",
+    "text": "NexaCRM FAQ: What file formats can I import contacts from? \u2014 CSV, Excel, and vCard formats are supported",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_001",
+    "text": "NexaCRM FAQ: Is there a free plan available? \u2014 Yes, a free plan is available for up to 2 users with limited features",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_009",
+    "text": "NexaCRM FAQ: How long is data retained after account deletion? \u2014 Data is retained for 90 days after account deletion before permanent removal",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_013",
+    "text": "NexaCRM FAQ: Does NexaCRM integrate with Google Workspace? \u2014 Yes, full integration with Gmail, Calendar, and Drive",
+    "source": "nexacrm_faq",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_017",
+    "text": "NexaCRM FAQ: What is the uptime SLA? \u2014 99.9% uptime guaranteed for Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_025",
+    "text": "NexaCRM FAQ: Can I customize the CRM pipeline stages? \u2014 Yes, pipeline stages are fully customizable on all paid plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_044",
+    "text": "NexaCRM FAQ: How do I generate a sales report? \u2014 Go to Reports > Sales > Select date range > Export",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_018",
+    "text": "NexaCRM FAQ: Is two-factor authentication available? \u2014 Yes, 2FA is available and recommended for all accounts",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_006",
+    "text": "NexaCRM FAQ: What payment methods are accepted? \u2014 Visa, Mastercard, American Express, and PayPal",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_035",
+    "text": "NexaCRM FAQ: How do I contact customer support? \u2014 Email support@nexacrm.com or use the live chat in the app",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_045",
+    "text": "NexaCRM FAQ: Can I integrate NexaCRM with my website? \u2014 Yes, via our JavaScript widget or REST API",
+    "source": "nexacrm_faq",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_010",
+    "text": "NexaCRM FAQ: What is the maximum storage per account? \u2014 Starter: 5GB, Pro: 50GB, Enterprise: Unlimited",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_046",
+    "text": "NexaCRM FAQ: Does NexaCRM have an API? \u2014 Yes, a full REST API is available on Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_036",
+    "text": "NexaCRM FAQ: How do I bulk delete contacts? \u2014 Select contacts using checkboxes, then click Actions > Delete Selected",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_034",
+    "text": "NexaCRM FAQ: Can I set user permission levels? \u2014 Yes, Admin, Manager, and Viewer roles are available",
+    "source": "nexacrm_faq",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_047",
+    "text": "NexaCRM FAQ: Is there a limit on email campaigns? \u2014 Starter: 1000 emails/month, Pro: 50000 emails/month, Enterprise: Unlimited",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_048",
+    "text": "NexaCRM FAQ: How do I set up email automation? \u2014 Go to Automation > New Workflow > Select Email trigger",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_026",
+    "text": "NexaCRM FAQ: Does NexaCRM support multiple currencies? \u2014 Yes, over 50 currencies are supported",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_011",
+    "text": "NexaCRM FAQ: Can I white-label NexaCRM? \u2014 White-labeling is available on the Enterprise plan only",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_007",
+    "text": "NexaCRM FAQ: How do I upgrade my plan? \u2014 Go to Settings > Billing > Change Plan",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_023",
+    "text": "NexaCRM FAQ: What browsers are supported? \u2014 Chrome, Firefox, Safari, and Edge are fully supported",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_049",
+    "text": "NexaCRM FAQ: How do I set up a custom domain? \u2014 Custom domains are available on Pro and Enterprise plans via Settings > Domain",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_037",
+    "text": "NexaCRM FAQ: Is there a knowledge base or help center? \u2014 Yes, available at help.nexacrm.com",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_014",
+    "text": "NexaCRM FAQ: Can I schedule meetings from NexaCRM? \u2014 Yes, meeting scheduling integrates with Google Calendar and Outlook",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_050",
+    "text": "NexaCRM FAQ: How do I track email opens? \u2014 Email tracking is enabled by default on Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_008",
+    "text": "NexaCRM FAQ: What is the refund policy? \u2014 Full refund available within 30 days of purchase",
+    "source": "nexacrm_faq",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_019",
+    "text": "NexaCRM FAQ: Does NexaCRM support SSO? \u2014 Yes, SAML-based SSO is available on Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_027",
+    "text": "NexaCRM FAQ: How many pipelines can I create? \u2014 Unlimited pipelines on Pro and Enterprise, 1 pipeline on Starter",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_041",
+    "text": "NexaCRM FAQ: Can I import data from spreadsheets? \u2014 Yes, Excel and CSV imports are supported",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_022",
+    "text": "NexaCRM FAQ: Is there a desktop app? \u2014 No desktop app, NexaCRM is fully web-based",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_044",
+    "text": "NexaCRM FAQ: How do I create a custom report? \u2014 Go to Reports > Custom > Add Fields > Save",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_010",
+    "text": "NexaCRM FAQ: What is the contact storage limit? \u2014 Starter: 1000 contacts, Pro: 100000 contacts, Enterprise: Unlimited",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_051",
+    "text": "NexaCRM FAQ: Can I send SMS from NexaCRM? \u2014 Yes, SMS campaigns are available via Twilio integration",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_025",
+    "text": "NexaCRM FAQ: How do I set up a sales funnel? \u2014 Go to Pipelines > New Pipeline > Add Stages",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_045",
+    "text": "NexaCRM FAQ: Does NexaCRM have a Zapier integration? \u2014 Yes, NexaCRM connects to 3000+ apps via Zapier",
+    "source": "nexacrm_faq",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_036",
+    "text": "NexaCRM FAQ: How do I archive a contact? \u2014 Open the contact profile and click Actions > Archive",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_035",
+    "text": "NexaCRM FAQ: Is phone support available? \u2014 Phone support is available for Enterprise customers only",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_046",
+    "text": "NexaCRM FAQ: Can I track website visitors in NexaCRM? \u2014 Yes, via the NexaCRM web tracking pixel",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_052",
+    "text": "NexaCRM FAQ: How do I create a contact segment? \u2014 Go to Contacts > Segments > New Segment > Add Filters",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_053",
+    "text": "NexaCRM FAQ: What analytics are available? \u2014 Sales analytics, email analytics, pipeline analytics, and custom dashboards",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_054",
+    "text": "NexaCRM FAQ: Is there a sandbox or test environment? \u2014 Yes, a sandbox environment is available on Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_038",
+    "text": "NexaCRM FAQ: How do I enable dark mode? \u2014 Go to Settings > Appearance > Theme > Dark",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_028",
+    "text": "NexaCRM FAQ: Can I create custom fields? \u2014 Yes, unlimited custom fields on Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_046",
+    "text": "NexaCRM FAQ: How do I set up a webhook? \u2014 Go to Settings > Integrations > Webhooks > Add Webhook",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_029",
+    "text": "NexaCRM FAQ: Does NexaCRM support multiple languages? \u2014 Yes, available in English, Spanish, French, German, and Japanese",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_039",
+    "text": "NexaCRM FAQ: How do I merge duplicate contacts? \u2014 Go to Contacts > Duplicates > Review > Merge",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_055",
+    "text": "NexaCRM FAQ: Can I assign tasks to team members? \u2014 Yes, tasks can be assigned via the contact or deal view",
+    "source": "nexacrm_faq",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_017",
+    "text": "NexaCRM FAQ: Is there an audit log? \u2014 Yes, full audit logs available on Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_056",
+    "text": "NexaCRM FAQ: How do I set up lead scoring? \u2014 Go to Settings > Lead Scoring > Add Scoring Rules",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_047",
+    "text": "NexaCRM FAQ: Can I create email templates? \u2014 Yes, unlimited email templates on all paid plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_025",
+    "text": "NexaCRM FAQ: How do I track deals? \u2014 Go to Deals > Pipeline View to see all deals by stage",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_019",
+    "text": "NexaCRM FAQ: Does NexaCRM integrate with HubSpot? \u2014 Data migration from HubSpot is supported but live sync is not available",
+    "source": "nexacrm_faq",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_038",
+    "text": "NexaCRM FAQ: How do I set up notifications? \u2014 Go to Settings > Notifications > Configure alert preferences",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_050",
+    "text": "NexaCRM FAQ: Can I run A/B tests on emails? \u2014 Yes, A/B testing is available on Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_057",
+    "text": "NexaCRM FAQ: How do I create a landing page? \u2014 Go to Marketing > Landing Pages > New Page",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_012",
+    "text": "NexaCRM FAQ: Is there a NexaCRM Chrome extension? \u2014 Yes, available in the Chrome Web Store for Gmail integration",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_053",
+    "text": "NexaCRM FAQ: How do I set revenue goals? \u2014 Go to Reports > Goals > Add Revenue Target",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_055",
+    "text": "NexaCRM FAQ: Can I create recurring tasks? \u2014 Yes, recurring tasks can be set up with custom frequency",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_041",
+    "text": "NexaCRM FAQ: How do I export contacts? \u2014 Go to Contacts > Select All > Export > Choose format",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_045",
+    "text": "NexaCRM FAQ: Does NexaCRM support LinkedIn integration? \u2014 Yes, LinkedIn Sales Navigator integration is available on Enterprise",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_037",
+    "text": "NexaCRM FAQ: How long does onboarding take? \u2014 Self-service onboarding takes 30 minutes, guided onboarding available for Enterprise",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_050",
+    "text": "NexaCRM FAQ: Can I track email bounces? \u2014 Yes, bounce tracking is automatic on all email campaigns",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_057",
+    "text": "NexaCRM FAQ: How do I create a contact form? \u2014 Go to Marketing > Forms > New Form > Embed on website",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_037",
+    "text": "NexaCRM FAQ: Is there a NexaCRM community forum? \u2014 Yes, at community.nexacrm.com",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_048",
+    "text": "NexaCRM FAQ: How do I set up multi-step automation? \u2014 Go to Automation > New Workflow > Add multiple action steps",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_055",
+    "text": "NexaCRM FAQ: Can I track phone calls in NexaCRM? \u2014 Yes, call logging is available with native VoIP integrations",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_025",
+    "text": "NexaCRM FAQ: How do I create a deal? \u2014 Go to Deals > New Deal > Enter deal name, value, and stage",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_053",
+    "text": "NexaCRM FAQ: Does NexaCRM have a forecasting feature? \u2014 Yes, revenue forecasting is available on Pro and Enterprise plans",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_034",
+    "text": "NexaCRM FAQ: How do I set user working hours? \u2014 Go to Settings > Team > Select User > Set Working Hours",
+    "source": "nexacrm_faq",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_058",
+    "text": "NexaCRM FAQ: Can I create product catalogs? \u2014 Yes, product catalogs can be linked to deals on Pro and Enterprise",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_046",
+    "text": "NexaCRM FAQ: How do I integrate with Stripe? \u2014 Go to Settings > Integrations > Stripe > Connect Account",
+    "source": "nexacrm_faq",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_046",
+    "text": "NexaCRM FAQ: Is there a NexaCRM API rate limit? \u2014 1000 requests per hour on Pro, 10000 per hour on Enterprise",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_048",
+    "text": "NexaCRM FAQ: How do I create a drip campaign? \u2014 Go to Automation > Drip Campaigns > New Campaign > Set schedule",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_025",
+    "text": "NexaCRM FAQ: Can I set deal probability? \u2014 Yes, probability can be set per stage or manually per deal",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_034",
+    "text": "NexaCRM FAQ: How do I remove a team member? \u2014 Go to Settings > Team > Select Member > Remove from Team",
+    "source": "nexacrm_faq",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_014",
+    "text": "NexaCRM FAQ: Does NexaCRM support video calls? \u2014 Yes, Zoom and Google Meet integrations are available",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_059",
+    "text": "NexaCRM FAQ: How do I set up a chatbot? \u2014 Go to Marketing > Chatbot > New Bot > Configure flows",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_060",
+    "text": "NexaCRM FAQ: Can I track contract status? \u2014 Yes, contract tracking with e-signature via DocuSign integration",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_034",
+    "text": "NexaCRM FAQ: How do I set up territory management? \u2014 Territory management is available on Enterprise plans via Settings > Territories",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_016",
+    "text": "NexaCRM FAQ: Is NexaCRM SOC 2 certified? \u2014 Yes, NexaCRM is SOC 2 Type II certified",
+    "source": "nexacrm_faq",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_025",
+    "text": "NexaCRM FAQ: How do I clone a pipeline? \u2014 Go to Pipelines > Select Pipeline > Actions > Duplicate",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_036",
+    "text": "NexaCRM FAQ: Can I add notes to a contact? \u2014 Yes, notes can be added from the contact profile under the Activity tab",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_056",
+    "text": "NexaCRM FAQ: How do I set up round-robin lead assignment? \u2014 Go to Settings > Lead Routing > Round Robin > Add team members",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_021",
+    "text": "NexaCRM FAQ: Does NexaCRM have a mobile SDK? \u2014 Yes, iOS and Android SDKs are available for Enterprise customers",
+    "source": "nexacrm_faq",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_036",
+    "text": "NexaCRM FAQ: How do I view activity history for a contact? \u2014 Open the contact profile and click the Activity tab",
+    "source": "nexacrm_faq",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_101",
+    "text": "NexaCRM features documentation entry 101: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_102",
+    "text": "NexaCRM pricing documentation entry 102: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_103",
+    "text": "NexaCRM security documentation entry 103: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_104",
+    "text": "NexaCRM integrations documentation entry 104: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_105",
+    "text": "NexaCRM account documentation entry 105: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_106",
+    "text": "NexaCRM support documentation entry 106: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_107",
+    "text": "NexaCRM features documentation entry 107: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_108",
+    "text": "NexaCRM pricing documentation entry 108: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_109",
+    "text": "NexaCRM security documentation entry 109: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_110",
+    "text": "NexaCRM integrations documentation entry 110: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_111",
+    "text": "NexaCRM account documentation entry 111: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_112",
+    "text": "NexaCRM support documentation entry 112: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_113",
+    "text": "NexaCRM features documentation entry 113: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_114",
+    "text": "NexaCRM pricing documentation entry 114: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_115",
+    "text": "NexaCRM security documentation entry 115: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_116",
+    "text": "NexaCRM integrations documentation entry 116: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_117",
+    "text": "NexaCRM account documentation entry 117: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_118",
+    "text": "NexaCRM support documentation entry 118: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_119",
+    "text": "NexaCRM features documentation entry 119: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_120",
+    "text": "NexaCRM pricing documentation entry 120: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_121",
+    "text": "NexaCRM security documentation entry 121: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_122",
+    "text": "NexaCRM integrations documentation entry 122: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_123",
+    "text": "NexaCRM account documentation entry 123: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_124",
+    "text": "NexaCRM support documentation entry 124: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_125",
+    "text": "NexaCRM features documentation entry 125: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_126",
+    "text": "NexaCRM pricing documentation entry 126: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_127",
+    "text": "NexaCRM security documentation entry 127: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_128",
+    "text": "NexaCRM integrations documentation entry 128: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_129",
+    "text": "NexaCRM account documentation entry 129: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_130",
+    "text": "NexaCRM support documentation entry 130: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_131",
+    "text": "NexaCRM features documentation entry 131: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_132",
+    "text": "NexaCRM pricing documentation entry 132: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_133",
+    "text": "NexaCRM security documentation entry 133: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_134",
+    "text": "NexaCRM integrations documentation entry 134: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_135",
+    "text": "NexaCRM account documentation entry 135: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_136",
+    "text": "NexaCRM support documentation entry 136: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_137",
+    "text": "NexaCRM features documentation entry 137: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_138",
+    "text": "NexaCRM pricing documentation entry 138: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_139",
+    "text": "NexaCRM security documentation entry 139: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_140",
+    "text": "NexaCRM integrations documentation entry 140: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_141",
+    "text": "NexaCRM account documentation entry 141: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_142",
+    "text": "NexaCRM support documentation entry 142: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_143",
+    "text": "NexaCRM features documentation entry 143: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_144",
+    "text": "NexaCRM pricing documentation entry 144: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_145",
+    "text": "NexaCRM security documentation entry 145: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_146",
+    "text": "NexaCRM integrations documentation entry 146: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_147",
+    "text": "NexaCRM account documentation entry 147: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_148",
+    "text": "NexaCRM support documentation entry 148: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_149",
+    "text": "NexaCRM features documentation entry 149: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_150",
+    "text": "NexaCRM pricing documentation entry 150: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_151",
+    "text": "NexaCRM security documentation entry 151: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_152",
+    "text": "NexaCRM integrations documentation entry 152: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_153",
+    "text": "NexaCRM account documentation entry 153: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_154",
+    "text": "NexaCRM support documentation entry 154: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_155",
+    "text": "NexaCRM features documentation entry 155: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_156",
+    "text": "NexaCRM pricing documentation entry 156: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_157",
+    "text": "NexaCRM security documentation entry 157: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_158",
+    "text": "NexaCRM integrations documentation entry 158: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_159",
+    "text": "NexaCRM account documentation entry 159: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_160",
+    "text": "NexaCRM support documentation entry 160: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_161",
+    "text": "NexaCRM features documentation entry 161: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_162",
+    "text": "NexaCRM pricing documentation entry 162: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_163",
+    "text": "NexaCRM security documentation entry 163: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_164",
+    "text": "NexaCRM integrations documentation entry 164: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_165",
+    "text": "NexaCRM account documentation entry 165: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_166",
+    "text": "NexaCRM support documentation entry 166: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_167",
+    "text": "NexaCRM features documentation entry 167: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_168",
+    "text": "NexaCRM pricing documentation entry 168: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_169",
+    "text": "NexaCRM security documentation entry 169: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_170",
+    "text": "NexaCRM integrations documentation entry 170: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_171",
+    "text": "NexaCRM account documentation entry 171: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_172",
+    "text": "NexaCRM support documentation entry 172: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_173",
+    "text": "NexaCRM features documentation entry 173: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_174",
+    "text": "NexaCRM pricing documentation entry 174: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_175",
+    "text": "NexaCRM security documentation entry 175: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_176",
+    "text": "NexaCRM integrations documentation entry 176: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_177",
+    "text": "NexaCRM account documentation entry 177: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_178",
+    "text": "NexaCRM support documentation entry 178: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_179",
+    "text": "NexaCRM features documentation entry 179: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_180",
+    "text": "NexaCRM pricing documentation entry 180: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_181",
+    "text": "NexaCRM security documentation entry 181: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_182",
+    "text": "NexaCRM integrations documentation entry 182: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_183",
+    "text": "NexaCRM account documentation entry 183: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_184",
+    "text": "NexaCRM support documentation entry 184: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_185",
+    "text": "NexaCRM features documentation entry 185: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_186",
+    "text": "NexaCRM pricing documentation entry 186: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_187",
+    "text": "NexaCRM security documentation entry 187: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_188",
+    "text": "NexaCRM integrations documentation entry 188: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_189",
+    "text": "NexaCRM account documentation entry 189: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_190",
+    "text": "NexaCRM support documentation entry 190: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_191",
+    "text": "NexaCRM features documentation entry 191: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_192",
+    "text": "NexaCRM pricing documentation entry 192: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_193",
+    "text": "NexaCRM security documentation entry 193: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_194",
+    "text": "NexaCRM integrations documentation entry 194: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_195",
+    "text": "NexaCRM account documentation entry 195: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_196",
+    "text": "NexaCRM support documentation entry 196: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_197",
+    "text": "NexaCRM features documentation entry 197: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_198",
+    "text": "NexaCRM pricing documentation entry 198: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_199",
+    "text": "NexaCRM security documentation entry 199: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_200",
+    "text": "NexaCRM integrations documentation entry 200: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_201",
+    "text": "NexaCRM account documentation entry 201: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_202",
+    "text": "NexaCRM support documentation entry 202: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_203",
+    "text": "NexaCRM features documentation entry 203: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_204",
+    "text": "NexaCRM pricing documentation entry 204: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_205",
+    "text": "NexaCRM security documentation entry 205: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_206",
+    "text": "NexaCRM integrations documentation entry 206: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_207",
+    "text": "NexaCRM account documentation entry 207: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_208",
+    "text": "NexaCRM support documentation entry 208: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_209",
+    "text": "NexaCRM features documentation entry 209: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_210",
+    "text": "NexaCRM pricing documentation entry 210: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_211",
+    "text": "NexaCRM security documentation entry 211: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_212",
+    "text": "NexaCRM integrations documentation entry 212: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_213",
+    "text": "NexaCRM account documentation entry 213: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_214",
+    "text": "NexaCRM support documentation entry 214: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_215",
+    "text": "NexaCRM features documentation entry 215: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_216",
+    "text": "NexaCRM pricing documentation entry 216: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_217",
+    "text": "NexaCRM security documentation entry 217: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_218",
+    "text": "NexaCRM integrations documentation entry 218: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_219",
+    "text": "NexaCRM account documentation entry 219: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_220",
+    "text": "NexaCRM support documentation entry 220: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_221",
+    "text": "NexaCRM features documentation entry 221: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_222",
+    "text": "NexaCRM pricing documentation entry 222: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_223",
+    "text": "NexaCRM security documentation entry 223: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_224",
+    "text": "NexaCRM integrations documentation entry 224: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_225",
+    "text": "NexaCRM account documentation entry 225: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_226",
+    "text": "NexaCRM support documentation entry 226: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_227",
+    "text": "NexaCRM features documentation entry 227: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_228",
+    "text": "NexaCRM pricing documentation entry 228: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_229",
+    "text": "NexaCRM security documentation entry 229: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_230",
+    "text": "NexaCRM integrations documentation entry 230: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_231",
+    "text": "NexaCRM account documentation entry 231: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_232",
+    "text": "NexaCRM support documentation entry 232: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_233",
+    "text": "NexaCRM features documentation entry 233: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_234",
+    "text": "NexaCRM pricing documentation entry 234: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_235",
+    "text": "NexaCRM security documentation entry 235: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_236",
+    "text": "NexaCRM integrations documentation entry 236: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_237",
+    "text": "NexaCRM account documentation entry 237: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_238",
+    "text": "NexaCRM support documentation entry 238: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_239",
+    "text": "NexaCRM features documentation entry 239: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_240",
+    "text": "NexaCRM pricing documentation entry 240: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_241",
+    "text": "NexaCRM security documentation entry 241: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_242",
+    "text": "NexaCRM integrations documentation entry 242: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_243",
+    "text": "NexaCRM account documentation entry 243: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_244",
+    "text": "NexaCRM support documentation entry 244: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_245",
+    "text": "NexaCRM features documentation entry 245: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_246",
+    "text": "NexaCRM pricing documentation entry 246: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_247",
+    "text": "NexaCRM security documentation entry 247: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_248",
+    "text": "NexaCRM integrations documentation entry 248: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_249",
+    "text": "NexaCRM account documentation entry 249: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_250",
+    "text": "NexaCRM support documentation entry 250: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_251",
+    "text": "NexaCRM features documentation entry 251: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_252",
+    "text": "NexaCRM pricing documentation entry 252: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_253",
+    "text": "NexaCRM security documentation entry 253: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_254",
+    "text": "NexaCRM integrations documentation entry 254: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_255",
+    "text": "NexaCRM account documentation entry 255: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_256",
+    "text": "NexaCRM support documentation entry 256: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_257",
+    "text": "NexaCRM features documentation entry 257: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_258",
+    "text": "NexaCRM pricing documentation entry 258: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_259",
+    "text": "NexaCRM security documentation entry 259: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_260",
+    "text": "NexaCRM integrations documentation entry 260: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_261",
+    "text": "NexaCRM account documentation entry 261: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_262",
+    "text": "NexaCRM support documentation entry 262: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_263",
+    "text": "NexaCRM features documentation entry 263: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_264",
+    "text": "NexaCRM pricing documentation entry 264: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_265",
+    "text": "NexaCRM security documentation entry 265: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_266",
+    "text": "NexaCRM integrations documentation entry 266: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_267",
+    "text": "NexaCRM account documentation entry 267: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_268",
+    "text": "NexaCRM support documentation entry 268: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_269",
+    "text": "NexaCRM features documentation entry 269: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_270",
+    "text": "NexaCRM pricing documentation entry 270: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_271",
+    "text": "NexaCRM security documentation entry 271: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_272",
+    "text": "NexaCRM integrations documentation entry 272: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_273",
+    "text": "NexaCRM account documentation entry 273: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_274",
+    "text": "NexaCRM support documentation entry 274: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_275",
+    "text": "NexaCRM features documentation entry 275: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_276",
+    "text": "NexaCRM pricing documentation entry 276: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_277",
+    "text": "NexaCRM security documentation entry 277: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_278",
+    "text": "NexaCRM integrations documentation entry 278: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_279",
+    "text": "NexaCRM account documentation entry 279: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_280",
+    "text": "NexaCRM support documentation entry 280: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_281",
+    "text": "NexaCRM features documentation entry 281: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_282",
+    "text": "NexaCRM pricing documentation entry 282: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_283",
+    "text": "NexaCRM security documentation entry 283: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_284",
+    "text": "NexaCRM integrations documentation entry 284: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_285",
+    "text": "NexaCRM account documentation entry 285: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_286",
+    "text": "NexaCRM support documentation entry 286: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_287",
+    "text": "NexaCRM features documentation entry 287: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_288",
+    "text": "NexaCRM pricing documentation entry 288: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_289",
+    "text": "NexaCRM security documentation entry 289: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_290",
+    "text": "NexaCRM integrations documentation entry 290: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_291",
+    "text": "NexaCRM account documentation entry 291: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_292",
+    "text": "NexaCRM support documentation entry 292: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_293",
+    "text": "NexaCRM features documentation entry 293: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_294",
+    "text": "NexaCRM pricing documentation entry 294: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_295",
+    "text": "NexaCRM security documentation entry 295: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_296",
+    "text": "NexaCRM integrations documentation entry 296: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_297",
+    "text": "NexaCRM account documentation entry 297: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_298",
+    "text": "NexaCRM support documentation entry 298: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_299",
+    "text": "NexaCRM features documentation entry 299: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_300",
+    "text": "NexaCRM pricing documentation entry 300: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_301",
+    "text": "NexaCRM security documentation entry 301: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_302",
+    "text": "NexaCRM integrations documentation entry 302: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_303",
+    "text": "NexaCRM account documentation entry 303: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_304",
+    "text": "NexaCRM support documentation entry 304: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_305",
+    "text": "NexaCRM features documentation entry 305: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_306",
+    "text": "NexaCRM pricing documentation entry 306: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_307",
+    "text": "NexaCRM security documentation entry 307: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_308",
+    "text": "NexaCRM integrations documentation entry 308: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_309",
+    "text": "NexaCRM account documentation entry 309: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_310",
+    "text": "NexaCRM support documentation entry 310: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_311",
+    "text": "NexaCRM features documentation entry 311: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_312",
+    "text": "NexaCRM pricing documentation entry 312: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_313",
+    "text": "NexaCRM security documentation entry 313: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_314",
+    "text": "NexaCRM integrations documentation entry 314: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_315",
+    "text": "NexaCRM account documentation entry 315: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_316",
+    "text": "NexaCRM support documentation entry 316: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_317",
+    "text": "NexaCRM features documentation entry 317: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_318",
+    "text": "NexaCRM pricing documentation entry 318: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_319",
+    "text": "NexaCRM security documentation entry 319: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_320",
+    "text": "NexaCRM integrations documentation entry 320: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_321",
+    "text": "NexaCRM account documentation entry 321: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_322",
+    "text": "NexaCRM support documentation entry 322: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_323",
+    "text": "NexaCRM features documentation entry 323: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_324",
+    "text": "NexaCRM pricing documentation entry 324: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_325",
+    "text": "NexaCRM security documentation entry 325: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_326",
+    "text": "NexaCRM integrations documentation entry 326: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_327",
+    "text": "NexaCRM account documentation entry 327: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_328",
+    "text": "NexaCRM support documentation entry 328: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_329",
+    "text": "NexaCRM features documentation entry 329: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_330",
+    "text": "NexaCRM pricing documentation entry 330: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_331",
+    "text": "NexaCRM security documentation entry 331: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_332",
+    "text": "NexaCRM integrations documentation entry 332: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_333",
+    "text": "NexaCRM account documentation entry 333: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_334",
+    "text": "NexaCRM support documentation entry 334: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_335",
+    "text": "NexaCRM features documentation entry 335: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_336",
+    "text": "NexaCRM pricing documentation entry 336: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_337",
+    "text": "NexaCRM security documentation entry 337: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_338",
+    "text": "NexaCRM integrations documentation entry 338: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_339",
+    "text": "NexaCRM account documentation entry 339: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_340",
+    "text": "NexaCRM support documentation entry 340: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_341",
+    "text": "NexaCRM features documentation entry 341: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_342",
+    "text": "NexaCRM pricing documentation entry 342: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_343",
+    "text": "NexaCRM security documentation entry 343: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_344",
+    "text": "NexaCRM integrations documentation entry 344: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_345",
+    "text": "NexaCRM account documentation entry 345: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_346",
+    "text": "NexaCRM support documentation entry 346: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_347",
+    "text": "NexaCRM features documentation entry 347: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_348",
+    "text": "NexaCRM pricing documentation entry 348: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_349",
+    "text": "NexaCRM security documentation entry 349: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_350",
+    "text": "NexaCRM integrations documentation entry 350: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_351",
+    "text": "NexaCRM account documentation entry 351: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_352",
+    "text": "NexaCRM support documentation entry 352: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_353",
+    "text": "NexaCRM features documentation entry 353: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_354",
+    "text": "NexaCRM pricing documentation entry 354: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_355",
+    "text": "NexaCRM security documentation entry 355: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_356",
+    "text": "NexaCRM integrations documentation entry 356: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_357",
+    "text": "NexaCRM account documentation entry 357: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_358",
+    "text": "NexaCRM support documentation entry 358: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_359",
+    "text": "NexaCRM features documentation entry 359: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_360",
+    "text": "NexaCRM pricing documentation entry 360: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_361",
+    "text": "NexaCRM security documentation entry 361: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_362",
+    "text": "NexaCRM integrations documentation entry 362: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_363",
+    "text": "NexaCRM account documentation entry 363: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_364",
+    "text": "NexaCRM support documentation entry 364: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_365",
+    "text": "NexaCRM features documentation entry 365: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_366",
+    "text": "NexaCRM pricing documentation entry 366: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_367",
+    "text": "NexaCRM security documentation entry 367: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_368",
+    "text": "NexaCRM integrations documentation entry 368: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_369",
+    "text": "NexaCRM account documentation entry 369: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_370",
+    "text": "NexaCRM support documentation entry 370: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_371",
+    "text": "NexaCRM features documentation entry 371: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_372",
+    "text": "NexaCRM pricing documentation entry 372: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_373",
+    "text": "NexaCRM security documentation entry 373: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_374",
+    "text": "NexaCRM integrations documentation entry 374: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_375",
+    "text": "NexaCRM account documentation entry 375: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_376",
+    "text": "NexaCRM support documentation entry 376: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_377",
+    "text": "NexaCRM features documentation entry 377: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_378",
+    "text": "NexaCRM pricing documentation entry 378: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_379",
+    "text": "NexaCRM security documentation entry 379: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_380",
+    "text": "NexaCRM integrations documentation entry 380: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_381",
+    "text": "NexaCRM account documentation entry 381: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_382",
+    "text": "NexaCRM support documentation entry 382: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_383",
+    "text": "NexaCRM features documentation entry 383: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_384",
+    "text": "NexaCRM pricing documentation entry 384: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_385",
+    "text": "NexaCRM security documentation entry 385: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_386",
+    "text": "NexaCRM integrations documentation entry 386: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_387",
+    "text": "NexaCRM account documentation entry 387: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_388",
+    "text": "NexaCRM support documentation entry 388: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_389",
+    "text": "NexaCRM features documentation entry 389: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_390",
+    "text": "NexaCRM pricing documentation entry 390: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_391",
+    "text": "NexaCRM security documentation entry 391: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_392",
+    "text": "NexaCRM integrations documentation entry 392: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_393",
+    "text": "NexaCRM account documentation entry 393: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_394",
+    "text": "NexaCRM support documentation entry 394: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_395",
+    "text": "NexaCRM features documentation entry 395: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_396",
+    "text": "NexaCRM pricing documentation entry 396: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_397",
+    "text": "NexaCRM security documentation entry 397: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_398",
+    "text": "NexaCRM integrations documentation entry 398: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_399",
+    "text": "NexaCRM account documentation entry 399: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_400",
+    "text": "NexaCRM support documentation entry 400: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_401",
+    "text": "NexaCRM features documentation entry 401: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_402",
+    "text": "NexaCRM pricing documentation entry 402: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_403",
+    "text": "NexaCRM security documentation entry 403: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_404",
+    "text": "NexaCRM integrations documentation entry 404: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_405",
+    "text": "NexaCRM account documentation entry 405: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_406",
+    "text": "NexaCRM support documentation entry 406: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_407",
+    "text": "NexaCRM features documentation entry 407: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_408",
+    "text": "NexaCRM pricing documentation entry 408: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_409",
+    "text": "NexaCRM security documentation entry 409: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_410",
+    "text": "NexaCRM integrations documentation entry 410: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_411",
+    "text": "NexaCRM account documentation entry 411: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_412",
+    "text": "NexaCRM support documentation entry 412: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_413",
+    "text": "NexaCRM features documentation entry 413: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_414",
+    "text": "NexaCRM pricing documentation entry 414: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_415",
+    "text": "NexaCRM security documentation entry 415: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_416",
+    "text": "NexaCRM integrations documentation entry 416: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_417",
+    "text": "NexaCRM account documentation entry 417: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_418",
+    "text": "NexaCRM support documentation entry 418: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_419",
+    "text": "NexaCRM features documentation entry 419: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_420",
+    "text": "NexaCRM pricing documentation entry 420: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_421",
+    "text": "NexaCRM security documentation entry 421: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_422",
+    "text": "NexaCRM integrations documentation entry 422: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_423",
+    "text": "NexaCRM account documentation entry 423: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_424",
+    "text": "NexaCRM support documentation entry 424: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_425",
+    "text": "NexaCRM features documentation entry 425: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_426",
+    "text": "NexaCRM pricing documentation entry 426: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_427",
+    "text": "NexaCRM security documentation entry 427: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_428",
+    "text": "NexaCRM integrations documentation entry 428: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_429",
+    "text": "NexaCRM account documentation entry 429: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_430",
+    "text": "NexaCRM support documentation entry 430: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_431",
+    "text": "NexaCRM features documentation entry 431: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_432",
+    "text": "NexaCRM pricing documentation entry 432: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_433",
+    "text": "NexaCRM security documentation entry 433: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_434",
+    "text": "NexaCRM integrations documentation entry 434: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_435",
+    "text": "NexaCRM account documentation entry 435: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_436",
+    "text": "NexaCRM support documentation entry 436: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_437",
+    "text": "NexaCRM features documentation entry 437: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_438",
+    "text": "NexaCRM pricing documentation entry 438: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_439",
+    "text": "NexaCRM security documentation entry 439: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_440",
+    "text": "NexaCRM integrations documentation entry 440: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_441",
+    "text": "NexaCRM account documentation entry 441: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_442",
+    "text": "NexaCRM support documentation entry 442: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_443",
+    "text": "NexaCRM features documentation entry 443: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_444",
+    "text": "NexaCRM pricing documentation entry 444: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_445",
+    "text": "NexaCRM security documentation entry 445: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_446",
+    "text": "NexaCRM integrations documentation entry 446: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_447",
+    "text": "NexaCRM account documentation entry 447: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_448",
+    "text": "NexaCRM support documentation entry 448: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_449",
+    "text": "NexaCRM features documentation entry 449: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_450",
+    "text": "NexaCRM pricing documentation entry 450: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_451",
+    "text": "NexaCRM security documentation entry 451: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_452",
+    "text": "NexaCRM integrations documentation entry 452: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_453",
+    "text": "NexaCRM account documentation entry 453: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_454",
+    "text": "NexaCRM support documentation entry 454: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_455",
+    "text": "NexaCRM features documentation entry 455: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_456",
+    "text": "NexaCRM pricing documentation entry 456: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_457",
+    "text": "NexaCRM security documentation entry 457: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_458",
+    "text": "NexaCRM integrations documentation entry 458: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_459",
+    "text": "NexaCRM account documentation entry 459: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_460",
+    "text": "NexaCRM support documentation entry 460: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_461",
+    "text": "NexaCRM features documentation entry 461: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_462",
+    "text": "NexaCRM pricing documentation entry 462: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_463",
+    "text": "NexaCRM security documentation entry 463: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_464",
+    "text": "NexaCRM integrations documentation entry 464: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_465",
+    "text": "NexaCRM account documentation entry 465: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_466",
+    "text": "NexaCRM support documentation entry 466: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_467",
+    "text": "NexaCRM features documentation entry 467: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_468",
+    "text": "NexaCRM pricing documentation entry 468: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_469",
+    "text": "NexaCRM security documentation entry 469: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_470",
+    "text": "NexaCRM integrations documentation entry 470: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_471",
+    "text": "NexaCRM account documentation entry 471: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_472",
+    "text": "NexaCRM support documentation entry 472: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_473",
+    "text": "NexaCRM features documentation entry 473: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_474",
+    "text": "NexaCRM pricing documentation entry 474: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_475",
+    "text": "NexaCRM security documentation entry 475: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_476",
+    "text": "NexaCRM integrations documentation entry 476: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_477",
+    "text": "NexaCRM account documentation entry 477: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_478",
+    "text": "NexaCRM support documentation entry 478: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_479",
+    "text": "NexaCRM features documentation entry 479: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_480",
+    "text": "NexaCRM pricing documentation entry 480: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_481",
+    "text": "NexaCRM security documentation entry 481: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_482",
+    "text": "NexaCRM integrations documentation entry 482: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_483",
+    "text": "NexaCRM account documentation entry 483: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_484",
+    "text": "NexaCRM support documentation entry 484: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_485",
+    "text": "NexaCRM features documentation entry 485: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_486",
+    "text": "NexaCRM pricing documentation entry 486: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_487",
+    "text": "NexaCRM security documentation entry 487: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_488",
+    "text": "NexaCRM integrations documentation entry 488: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_489",
+    "text": "NexaCRM account documentation entry 489: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_490",
+    "text": "NexaCRM support documentation entry 490: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_491",
+    "text": "NexaCRM features documentation entry 491: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_492",
+    "text": "NexaCRM pricing documentation entry 492: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_493",
+    "text": "NexaCRM security documentation entry 493: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_494",
+    "text": "NexaCRM integrations documentation entry 494: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  },
+  {
+    "chunk_id": "chunk_495",
+    "text": "NexaCRM account documentation entry 495: This section covers account related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "account"
+  },
+  {
+    "chunk_id": "chunk_496",
+    "text": "NexaCRM support documentation entry 496: This section covers support related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "support"
+  },
+  {
+    "chunk_id": "chunk_497",
+    "text": "NexaCRM features documentation entry 497: This section covers features related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "features"
+  },
+  {
+    "chunk_id": "chunk_498",
+    "text": "NexaCRM pricing documentation entry 498: This section covers pricing related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "pricing"
+  },
+  {
+    "chunk_id": "chunk_499",
+    "text": "NexaCRM security documentation entry 499: This section covers security related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "security"
+  },
+  {
+    "chunk_id": "chunk_500",
+    "text": "NexaCRM integrations documentation entry 500: This section covers integrations related features and configurations for NexaCRM enterprise users.",
+    "source": "nexacrm_docs",
+    "category": "integrations"
+  }
+]

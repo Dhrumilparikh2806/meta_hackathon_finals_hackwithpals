@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Check — Fleet AI Oversight</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sidebar-bg: #0e0f11;
+    --sidebar-text: #a1a1aa;
+    --sidebar-accent: #6366f1;
+    --canvas: #f4f4f5;
+    --surface: #ffffff;
+    --border: #e4e4e7;
+    --text-primary: #111112;
+    --text-secondary: #71717a;
+    --text-mono: #3d3d3a;
+    --indigo: #6366f1;
+    --indigo-soft: #eef2ff;
+    --indigo-border: #c7d2fe;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --gray-100: #f4f4f5;
+    --gray-200: #e4e4e7;
+    --gray-300: #d4d4d8;
+    --gray-400: #a1a1aa;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--canvas); color: var(--text-primary); font-size: 13px; line-height: 1.5; min-height: 100vh; }
+
+  .app-shell { display: flex; min-height: 100vh; }
+  .sidebar { width: 220px; flex-shrink: 0; background: var(--sidebar-bg); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .sidebar-logo { padding: 18px 16px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 9px; }
+  .logo-mark { width: 28px; height: 28px; background: var(--sidebar-accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+  .logo-text { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .logo-text span { display: block; font-size: 10px; color: var(--sidebar-text); font-weight: 400; }
+  .nav-section { padding: 20px 12px 6px; font-size: 10px; font-weight: 600; color: rgba(161,161,170,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+  .nav-item { display: flex; align-items: center; gap: 9px; padding: 7px 12px; margin: 1px 4px; border-radius: 6px; font-size: 13px; color: var(--sidebar-text); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+  .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .nav-item.active { background: rgba(99,102,241,0.18); color: #fff; }
+  .nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+  .nav-item.active .nav-dot { opacity: 1; background: var(--sidebar-accent); }
+
+  .main { flex: 1; padding: 40px 48px; }
+
+  .page-header { margin-bottom: 32px; display: flex; align-items: flex-start; justify-content: space-between; }
+  .page-header-left h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .page-header-left p { font-size: 13px; color: var(--text-secondary); }
+  .refresh-info { font-size: 11px; color: var(--gray-400); text-align: right; }
+  .refresh-info span { display: block; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-secondary); }
+
+  /* Big status banner */
+  .status-banner { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-radius: 10px; margin-bottom: 28px; border: 1px solid; }
+  .status-banner.ok   { background: var(--emerald-soft); border-color: #a7f3d0; }
+  .status-banner.err  { background: var(--rose-soft); border-color: #fca5a5; }
+  .status-banner.spin { background: var(--gray-100); border-color: var(--gray-200); }
+  .banner-icon { font-size: 28px; }
+  .banner-text { flex: 1; }
+  .banner-title { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .banner-title.ok  { color: var(--emerald); }
+  .banner-title.err { color: var(--rose); }
+  .banner-title.spin{ color: var(--text-secondary); }
+  .banner-sub { font-size: 12px; color: var(--text-secondary); }
+  .banner-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-400); white-space: nowrap; }
+
+  /* Grid layout */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); }
+  .card-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 14px; }
+
+  .kv-row { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .kv-row:last-child { border-bottom: none; }
+  .kv-key { font-size: 12px; color: var(--text-secondary); }
+  .kv-val { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-primary); font-weight: 500; }
+  .kv-val.ok  { color: var(--emerald); }
+  .kv-val.err { color: var(--rose); }
+  .kv-val.dim { color: var(--gray-400); }
+
+  /* Episode card */
+  .episode-none { text-align: center; padding: 24px 0; color: var(--text-secondary); font-size: 12px; }
+  .episode-none a { color: var(--indigo); text-decoration: none; font-weight: 600; }
+  .episode-none a:hover { text-decoration: underline; }
+
+  /* Worker chips */
+  .worker-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .worker-chip { border-radius: 6px; padding: 10px 8px; text-align: center; border: 1px solid var(--border); background: var(--gray-100); }
+  .worker-chip.alert { background: var(--rose-soft); border-color: #fca5a5; }
+  .worker-chip.healthy { background: var(--emerald-soft); border-color: #a7f3d0; }
+  .wc-id { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; }
+  .wc-status { font-size: 11px; font-weight: 600; }
+  .wc-status.alert   { color: var(--rose); }
+  .wc-status.healthy { color: var(--emerald); }
+  .wc-status.dim     { color: var(--gray-400); }
+  .wc-risk { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* Budget bar */
+  .budget-bar-wrap { margin-top: 6px; }
+  .budget-track { height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden; }
+  .budget-fill { height: 100%; border-radius: 3px; transition: width 0.4s, background 0.4s; }
+
+  /* Endpoint health rows */
+  .ep-health-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .ep-health-row:last-child { border-bottom: none; }
+  .ep-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .ep-dot.ok   { background: var(--emerald); }
+  .ep-dot.err  { background: var(--rose); }
+  .ep-dot.spin { background: var(--gray-300); animation: pulse 1.5s infinite; }
+  .ep-path { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-mono); flex: 1; }
+  .ep-latency { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-400); }
+  .ep-status-code { font-family: 'DM Mono', monospace; font-size: 10px; padding: 1px 6px; border-radius: 4px; }
+  .sc-ok  { background: var(--emerald-soft); color: var(--emerald); }
+  .sc-err { background: var(--rose-soft); color: var(--rose); }
+
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">⚡</div>
+      <div class="logo-text">Fleet Oversight<span>v2.0 · Hackathon Finals</span></div>
+    </div>
+    <div class="nav-section">Workspace</div>
+    <a href="/ui/" class="nav-item"><span class="nav-dot"></span>Dashboard</a>
+    <a href="/ui/fleet" class="nav-item"><span class="nav-dot"></span>Fleet Runner</a>
+    <a href="/ui/chat" class="nav-item"><span class="nav-dot"></span>RAG Chatbot</a>
+    <div class="nav-section">Evaluation</div>
+    <a href="/ui/results" class="nav-item"><span class="nav-dot"></span>Training Results</a>
+    <div class="nav-section">API</div>
+    <a href="/ui/api" class="nav-item"><span class="nav-dot"></span>API Docs</a>
+    <a href="/ui/health" class="nav-item active"><span class="nav-dot"></span>Health Check</a>
+  </nav>
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>System Health</h1>
+        <p>Live environment status — refreshes every 5 seconds</p>
+      </div>
+      <div class="refresh-info">
+        Last checked<span id="last-checked">—</span>
+      </div>
+    </div>
+
+    <!-- Main banner -->
+    <div class="status-banner spin" id="main-banner">
+      <div class="banner-icon">⏳</div>
+      <div class="banner-text">
+        <div class="banner-title spin" id="banner-title">Checking…</div>
+        <div class="banner-sub" id="banner-sub">Pinging /health endpoint</div>
+      </div>
+      <div class="banner-time" id="banner-time"></div>
+    </div>
+
+    <!-- Row 1: metadata + episode state -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Project Metadata</div>
+        <div id="metadata-rows">
+          <div class="kv-row"><span class="kv-key">project</span><span class="kv-val dim">—</span></div>
+          <div class="kv-row"><span class="kv-key">version</span><span class="kv-val dim">—</span></div>
+          <div class="kv-row"><span class="kv-key">author</span><span class="kv-val dim">—</span></div>
+          <div class="kv-row"><span class="kv-key">description</span><span class="kv-val dim">—</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Active Episode</div>
+        <div id="episode-content">
+          <div class="episode-none">No episode running — <a href="/ui/fleet">launch Fleet Runner</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Endpoint health -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">Endpoint Health</div>
+      <div id="endpoint-rows">
+        <div class="ep-health-row"><div class="ep-dot spin"></div><span class="ep-path">/health</span><span class="ep-latency">—</span><span class="ep-status-code">—</span></div>
+        <div class="ep-health-row"><div class="ep-dot spin"></div><span class="ep-path">/metadata</span><span class="ep-latency">—</span><span class="ep-status-code">—</span></div>
+        <div class="ep-health-row"><div class="ep-dot spin"></div><span class="ep-path">/fleet/state</span><span class="ep-latency">—</span><span class="ep-status-code">—</span></div>
+        <div class="ep-health-row"><div class="ep-dot spin"></div><span class="ep-path">/fleet/workers</span><span class="ep-latency">—</span><span class="ep-status-code">—</span></div>
+        <div class="ep-health-row"><div class="ep-dot spin"></div><span class="ep-path">/rag/query</span><span class="ep-latency">—</span><span class="ep-status-code">—</span></div>
+      </div>
+    </div>
+
+    <!-- Worker state (only when episode running) -->
+    <div class="card" id="worker-card" style="display:none">
+      <div class="card-title">Worker Status</div>
+      <div class="worker-grid" id="worker-chips"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const ENDPOINTS = ['/health', '/metadata', '/fleet/state', '/fleet/workers', '/rag/query'];
+
+function now() {
+  return new Date().toLocaleTimeString();
+}
+
+async function probe(path) {
+  const t0 = performance.now();
+  try {
+    const resp = await fetch(path, { method: path === '/rag/query' ? 'POST' : 'GET',
+      headers: {'Content-Type':'application/json'},
+      body: path === '/rag/query' ? JSON.stringify({question:'ping'}) : undefined
+    });
+    const latency = Math.round(performance.now() - t0);
+    return { ok: resp.ok, status: resp.status, latency };
+  } catch {
+    return { ok: false, status: 0, latency: null };
+  }
+}
+
+function renderEndpointRows(results) {
+  const rows = results.map(({path, ok, status, latency}) => `
+    <div class="ep-health-row">
+      <div class="ep-dot ${ok ? 'ok' : 'err'}"></div>
+      <span class="ep-path">${path}</span>
+      <span class="ep-latency">${latency != null ? latency + 'ms' : '—'}</span>
+      <span class="ep-status-code ${ok ? 'sc-ok' : 'sc-err'}">${status || 'ERR'}</span>
+    </div>`).join('');
+  document.getElementById('endpoint-rows').innerHTML = rows;
+}
+
+function renderMetadata(data) {
+  document.getElementById('metadata-rows').innerHTML = `
+    <div class="kv-row"><span class="kv-key">project</span><span class="kv-val">${data.project}</span></div>
+    <div class="kv-row"><span class="kv-key">version</span><span class="kv-val">${data.version}</span></div>
+    <div class="kv-row"><span class="kv-key">author</span><span class="kv-val">${data.author}</span></div>
+    <div class="kv-row"><span class="kv-key">description</span><span class="kv-val" style="max-width:200px;text-align:right">${data.description}</span></div>
+  `;
+}
+
+function renderEpisode(state) {
+  if (!state || state.step_count === 0) {
+    document.getElementById('episode-content').innerHTML =
+      '<div class="episode-none">No episode running — <a href="/ui/fleet">launch Fleet Runner</a></div>';
+    return;
+  }
+  const budgetPct = Math.max(0, Math.min(100, (state.oversight_budget_remaining / 12) * 100));
+  const budgetColor = state.oversight_budget_remaining <= 2 ? 'var(--rose)' : state.oversight_budget_remaining <= 4 ? 'var(--amber)' : 'var(--indigo)';
+  document.getElementById('episode-content').innerHTML = `
+    <div class="kv-row"><span class="kv-key">task</span><span class="kv-val">${state.task_id}</span></div>
+    <div class="kv-row"><span class="kv-key">step</span><span class="kv-val">${state.step_count}</span></div>
+    <div class="kv-row"><span class="kv-key">reward</span><span class="kv-val ${state.total_reward >= 0 ? 'ok' : 'err'}">${Number(state.total_reward).toFixed(3)}</span></div>
+    <div class="kv-row"><span class="kv-key">budget</span><span class="kv-val">${state.oversight_budget_remaining}</span></div>
+    <div class="kv-row"><span class="kv-key">status</span><span class="kv-val ${state.is_done ? 'dim' : 'ok'}">${state.is_done ? 'done' : 'running'}</span></div>
+    <div class="budget-bar-wrap">
+      <div class="budget-track"><div class="budget-fill" style="width:${budgetPct}%;background:${budgetColor}"></div></div>
+    </div>
+  `;
+}
+
+function renderWorkers(workers) {
+  const WORKER_NAMES = {worker_0:'Clean',worker_1:'Chunk',worker_2:'Embed',worker_3:'Retrieve',worker_4:'Eval'};
+  const card = document.getElementById('worker-card');
+  const chips = document.getElementById('worker-chips');
+  if (!workers || Object.keys(workers).length === 0) { card.style.display = 'none'; return; }
+  card.style.display = 'block';
+  chips.innerHTML = Object.entries(workers).map(([id, w]) => {
+    const flagged = w.anomaly_flag === 1;
+    const cls = flagged ? 'alert' : 'healthy';
+    return `<div class="worker-chip ${cls}">
+      <div class="wc-id">${WORKER_NAMES[id] || id}</div>
+      <div class="wc-status ${cls}">${flagged ? '⚠ flagged' : '✓ ok'}</div>
+      <div class="wc-risk">risk ${Number(w.risk_score || 0).toFixed(2)}</div>
+    </div>`;
+  }).join('');
+}
+
+async function refresh() {
+  document.getElementById('last-checked').textContent = now();
+
+  // Probe all endpoints in parallel
+  const probes = await Promise.all(ENDPOINTS.map(p => probe(p).then(r => ({ path: p, ...r }))));
+  renderEndpointRows(probes);
+
+  // Health banner
+  const healthProbe = probes[0];
+  const banner = document.getElementById('main-banner');
+  const title = document.getElementById('banner-title');
+  const sub = document.getElementById('banner-sub');
+  const time = document.getElementById('banner-time');
+  if (healthProbe.ok) {
+    banner.className = 'status-banner ok';
+    title.className = 'banner-title ok';
+    title.textContent = 'All Systems Operational';
+    sub.textContent = 'Environment healthy — ready for fleet episodes';
+    time.textContent = `${healthProbe.latency}ms`;
+  } else {
+    banner.className = 'status-banner err';
+    title.className = 'banner-title err';
+    title.textContent = 'Environment Unreachable';
+    sub.textContent = 'Cannot reach server — is uvicorn running?';
+    time.textContent = '';
+  }
+
+  // Metadata
+  try {
+    const meta = await fetch('/metadata').then(r => r.json());
+    renderMetadata(meta);
+  } catch {}
+
+  // Episode state
+  try {
+    const s = await fetch('/fleet/state').then(r => r.json());
+    renderEpisode(s.state);
+    if (s.state && s.state.step_count > 0 && !s.state.is_done) {
+      try {
+        const wResp = await fetch('/fleet/workers').then(r => r.json());
+        renderWorkers(wResp.workers);
+      } catch { document.getElementById('worker-card').style.display = 'none'; }
+    } else {
+      document.getElementById('worker-card').style.display = 'none';
+    }
+  } catch {
+    renderEpisode(null);
+    document.getElementById('worker-card').style.display = 'none';
+  }
+}
+
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "restart-fastapi-backend",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$pid = (Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess); if ($pid) { Stop-Process -Id $pid -Force }; Set-Location 'c:\\Users\\Hp\\OneDrive\\Desktop\\MetaHackaThon-main'; python -m uvicorn app:app --host 0.0.0.0 --port 8000"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "restart-fastapi-backend-2",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$portPid = (Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess); if ($portPid) { Stop-Process -Id $portPid -Force }; Set-Location 'c:\\Users\\Hp\\OneDrive\\Desktop\\MetaHackaThon-main'; python -m uvicorn app:app --host 0.0.0.0 --port 8000"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "start-fastapi-backend",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$portPid = (Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess); if ($portPid) { Stop-Process -Id $portPid -Force }; Set-Location 'c:\\Users\\Hp\\OneDrive\\Desktop\\MetaHackaThon-main'; py -m uvicorn app:app --host 0.0.0.0 --port 8000"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "restart-fastapi-live",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$portPid = (Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess); if ($portPid) { Stop-Process -Id $portPid -Force }; Set-Location 'c:\\Users\\Hp\\OneDrive\\Desktop\\MetaHackaThon-main'; py -m uvicorn app:app --host 0.0.0.0 --port 8000"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

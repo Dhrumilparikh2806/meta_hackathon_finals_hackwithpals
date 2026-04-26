@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+checkpoints/
+plots/*.png
+data/*.json
+!data/setup_dataset.py
+!data/nexacrm_corpus.json
+!data/ground_truth_qa.json

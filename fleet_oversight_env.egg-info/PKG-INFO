@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: fleet-oversight-env
+Version: 2.0.0
+Summary: Fleet AI Oversight RL Environment — OpenEnv Round 2 — Team HackWithPals
+Project-URL: Homepage, https://huggingface.co/spaces/dhrumilparikh/Meta_Hackathon_Finals_Hackwithpals
+Project-URL: Repository, https://github.com/Dhrumilparikh2806/meta_hackathon_finals_hackwithpals
+Requires-Python: >=3.11
+Requires-Dist: openenv-core>=0.2.0
+Requires-Dist: fastapi>=0.104.0
+Requires-Dist: uvicorn[standard]>=0.24.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: sentence-transformers>=2.2.2
+Requires-Dist: faiss-cpu>=1.7.4
+Requires-Dist: datasets>=2.14.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: matplotlib>=3.7.0
