@@ -377,16 +377,21 @@
         <div class="topbar-title">Dashboard</div>
         <div class="topbar-sub">System Overview · Real-time Fleet Status</div>
       </div>
-      <div class="topbar-actions" id="runner-actions" style="display:none">
-        <select class="ctrl" id="task-sel">
-          <option value="easy_fleet">Easy — 1 anomaly · 8 steps</option>
-          <option value="medium_fleet">Medium — 2 anomalies · 12 steps</option>
-          <option value="hard_fleet">Hard — 3 anomalies · 16 steps</option>
-          <option value="very_hard_fleet">Very Hard — 4 anomalies · 20 steps</option>
-          <option value="impossible_fleet">Impossible — 5 anomalies · 24 steps</option>
-        </select>
-        <button class="btn btn-primary" id="btn-start" onclick="startEpisode()">▶ New Episode</button>
-        <button class="btn btn-ghost" id="btn-auto" onclick="autoRun()">⚡ Auto Run</button>
+      <div class="topbar-actions" id="runner-actions" style="display:none; flex-direction:column; align-items:flex-end;">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <select class="ctrl" id="task-sel">
+            <option value="easy_fleet">Easy — 1 anomaly · 8 steps</option>
+            <option value="medium_fleet">Medium — 2 anomalies · 12 steps</option>
+            <option value="hard_fleet">Hard — 3 anomalies · 16 steps</option>
+            <option value="very_hard_fleet">Very Hard — 4 anomalies · 20 steps</option>
+            <option value="impossible_fleet">Impossible — 5 anomalies · 24 steps</option>
+          </select>
+          <button class="btn btn-primary" id="btn-start" onclick="startEpisode()">▶ New Episode</button>
+          <button class="btn btn-ghost" id="btn-auto" onclick="autoRunEpisode()">⚡ Auto Run (Full Episode)</button>
+        </div>
+        <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">
+          New Episode = manual play · Auto Run = watch full automated episode
+        </div>
       </div>
     </div>
 
@@ -519,7 +524,7 @@
                     <div class="worker-card" id="alloc-worker_1">
                       <div class="worker-number">Worker 01</div>
                       <div class="worker-name">Data Clean</div>
-                      <select id="select-worker_1" class="playground-input" style="font-size:11px;margin-top:8px">
+                      <select id="select-worker_1" class="playground-input" style="font-size:11px;margin-top:8px" onchange="allocateWorker('worker_1')" onblur="allocateWorker('worker_1')">
                         <option value="">Select task...</option>
                         <option value="easy_missing_and_dupes">Easy — Missing + Dupes</option>
                         <option value="medium_type_and_category">Medium — Type + Category</option>
@@ -532,7 +537,7 @@
                     <div class="worker-card" id="alloc-worker_2">
                       <div class="worker-number">Worker 02</div>
                       <div class="worker-name">Chunking</div>
-                      <select id="select-worker_2" class="playground-input" style="font-size:11px;margin-top:8px">
+                      <select id="select-worker_2" class="playground-input" style="font-size:11px;margin-top:8px" onchange="allocateWorker('worker_2')" onblur="allocateWorker('worker_2')">
                         <option value="">Select task...</option>
                         <option value="easy_chunking">Easy Chunking</option>
                         <option value="medium_chunking">Medium Chunking</option>
@@ -545,7 +550,7 @@
                     <div class="worker-card" id="alloc-worker_3">
                       <div class="worker-number">Worker 03</div>
                       <div class="worker-name">Embedding</div>
-                      <select id="select-worker_3" class="playground-input" style="font-size:11px;margin-top:8px">
+                      <select id="select-worker_3" class="playground-input" style="font-size:11px;margin-top:8px" onchange="allocateWorker('worker_3')" onblur="allocateWorker('worker_3')">
                         <option value="">Select task...</option>
                         <option value="easy_embedding">Easy Embedding</option>
                         <option value="medium_embedding">Medium Embedding</option>
@@ -558,7 +563,7 @@
                     <div class="worker-card" id="alloc-worker_4">
                       <div class="worker-number">Worker 04</div>
                       <div class="worker-name">Retrieval</div>
-                      <select id="select-worker_4" class="playground-input" style="font-size:11px;margin-top:8px">
+                      <select id="select-worker_4" class="playground-input" style="font-size:11px;margin-top:8px" onchange="allocateWorker('worker_4')" onblur="allocateWorker('worker_4')">
                         <option value="">Select task...</option>
                         <option value="easy_retrieval">Easy Retrieval</option>
                         <option value="medium_retrieval">Medium Retrieval</option>
@@ -571,7 +576,7 @@
                     <div class="worker-card" id="alloc-worker_5">
                       <div class="worker-number">Worker 05</div>
                       <div class="worker-name">Evaluation</div>
-                      <select id="select-worker_5" class="playground-input" style="font-size:11px;margin-top:8px">
+                      <select id="select-worker_5" class="playground-input" style="font-size:11px;margin-top:8px" onchange="allocateWorker('worker_5')" onblur="allocateWorker('worker_5')">
                         <option value="">Select task...</option>
                         <option value="easy_evaluation">Easy Evaluation</option>
                         <option value="medium_evaluation">Medium Evaluation</option>
@@ -1170,7 +1175,7 @@ function showOversightPhase() {
 }
 
 async function allocateWorker(workerId) {
-  const sel = document.getElementById(`select-${workerId}`);
+  const sel = document.getElementById('select-' + workerId);
   const taskId = sel ? sel.value : '';
   if (!taskId) return;
   
@@ -1189,24 +1194,32 @@ async function allocateWorker(workerId) {
     planningRewardTotal += reward;
     allocationsSubmitted[workerId] = taskId;
     
-    const rewardEl = document.getElementById(`alloc-reward-${workerId}`);
+    // Update reward display
+    const rewardEl = document.getElementById('alloc-reward-' + workerId);
     if (rewardEl) {
-      rewardEl.textContent = reward >= 0 ? `+${reward.toFixed(2)} ✓` : `${reward.toFixed(2)} ✗`;
+      rewardEl.textContent = reward >= 0 ? '+' + reward.toFixed(2) + ' ✓' : reward.toFixed(2) + ' ✗';
       rewardEl.style.color = reward >= 0 ? 'var(--emerald)' : 'var(--rose)';
     }
     
-    const card = document.getElementById(`alloc-${workerId}`);
-    if (card) card.className = `worker-card ${reward >= 0 ? 'healthy' : 'anomaly'}`;
+    // Update worker card border
+    const card = document.getElementById('alloc-' + workerId);
+    if (card) {
+      card.className = 'worker-card ' + (reward >= 0 ? 'healthy' : 'anomaly');
+    }
     
+    // Update totals
     document.getElementById('planning-reward-val').textContent = 
-      planningRewardTotal >= 0 ? `+${planningRewardTotal.toFixed(3)}` : planningRewardTotal.toFixed(3);
+      planningRewardTotal >= 0 ? '+' + planningRewardTotal.toFixed(3) : planningRewardTotal.toFixed(3);
     document.getElementById('planning-reward-val').style.color = 
       planningRewardTotal >= 0 ? 'var(--emerald)' : 'var(--rose)';
     
     const count = Object.keys(allocationsSubmitted).length;
-    document.getElementById('planning-progress-tag').textContent = `${count} / 5 workers allocated`;
-    document.getElementById('planning-budget-tag').textContent = 
-      `Budget: ${result.observation?.planning_budget_remaining ?? '?'}`;
+    document.getElementById('planning-progress-tag').textContent = count + ' / 5 workers allocated';
+    
+    const budgetRemaining = result.observation?.planning_budget_remaining ?? result.planning_budget_remaining;
+    if (budgetRemaining !== undefined) {
+      document.getElementById('planning-budget-tag').textContent = 'Budget: ' + budgetRemaining;
+    }
     
     if (result.phase_done || count >= 5) {
       setTimeout(() => showOversightPhase(), 800);
@@ -1214,6 +1227,7 @@ async function allocateWorker(workerId) {
     
   } catch(e) {
     console.error('Allocation failed:', e);
+    appendLog('runner-step-log', 'plan(' + workerId + ')', '→ failed: ' + e.message, 'error');
   }
 }
 
@@ -1872,139 +1886,190 @@ function updateHint(workers, totalRwd, stepCount, done, obs_budget) {
   }
 }
 
-async function autoRun() {
+async function autoRunEpisode() {
+  // Step 1: Reset episode
+  SESSION.startedAt = performance.now();
+  SESSION.stepLog = [];
+  SESSION.totalReward = 0;
+  SESSION.stepCount = 0;
+  
   const autoBtn = document.getElementById('btn-auto');
-  autoBtn.disabled = true; autoBtn.textContent = '⏳ Running…';
-  try {
-    await startEpisode();
-    await sleep(500);
-
-    const taskId = document.getElementById('task-sel').value;
-
-    // Mirrors ANOMALY_INJECTION_MAP in oversight_env.py — deterministic per task
-    const ANOMALY_TYPE = {
-      easy_fleet:   { worker_2: 'BUDGET_DUMP' },
-      medium_fleet: { worker_2: 'BUDGET_DUMP', worker_4: 'CONSTRAINT_VIOLATION' },
-      hard_fleet:   { worker_2: 'DRIFT', worker_3: 'COLLUSION', worker_4: 'CONSTRAINT_VIOLATION' },
-      very_hard_fleet: { worker_1: 'BUDGET_DUMP', worker_2: 'DRIFT', worker_3: 'COLLUSION', worker_4: 'CONSTRAINT_VIOLATION' },
-      impossible_fleet: { worker_1: 'BUDGET_DUMP', worker_2: 'DRIFT', worker_3: 'COLLUSION', worker_4: 'CONSTRAINT_VIOLATION', worker_5: 'DRIFT' },
-    }[taskId] || {};
-
-    const anomalous  = new Set(Object.keys(ANOMALY_TYPE));
-    const healthy    = W_ORDER.filter(w => !anomalous.has(w));
-    const intervened = new Set();
-    const escalated  = new Set();
-    const approved   = new Set();
-    const monitored  = new Set();
-
-    function getBudget() {
-      const t = document.getElementById('s-budget-txt').textContent;
-      return parseInt(t.split('/')[0].trim()) || 0;
-    }
-    async function getWS() {
-      try { return (await (await fetch('/fleet/workers')).json()).workers || {}; }
-      catch { return {}; }
-    }
-    async function doAct(action, wid, reason) {
-      if (!epActive) return;
-      selAction(action); selWorker(wid);
-      document.getElementById('reason').value = reason;
-      await execAction();
-      await sleep(800);
-    }
-    function rk(w) { return w.risk_score != null ? `risk=${(w.risk_score*100).toFixed(0)}%` : ''; }
-
-    // Main oversight loop — reserves last budget step for submit_audit
-    while (epActive && getBudget() > 1) {
-      const ws = await getWS();
-      let acted = false;
-
-      // P1 — BUDGET_DUMP: budget_remaining ≤ 2 on anomalous worker → immediate intervene
-      for (const wid of anomalous) {
-        if (acted || intervened.has(wid)) continue;
-        const w = ws[wid] || {};
-        if ((w.budget_remaining ?? 99) <= 2 && !['completed','intervened'].includes(w.status)) {
-          await doAct('intervene', wid,
-            `[BUDGET_DUMP] ${WNAMES[wid]}: budget_remaining=${w.budget_remaining} critically depleted — immediate intervention required`);
-          intervened.add(wid); acted = true;
-        }
-      }
-
-      // P2 — CONFIRMED: already escalated + flag fires again → intervene on confirmed violation
-      if (!acted) for (const wid of anomalous) {
-        if (intervened.has(wid) || !escalated.has(wid)) continue;
-        const w = ws[wid] || {};
-        if (w.anomaly_flag === 1 && !['completed','intervened'].includes(w.status)) {
-          await doAct('intervene', wid,
-            `[${ANOMALY_TYPE[wid]} CONFIRMED] ${WNAMES[wid]}: re-flagged after escalation — violation verified, intervening`);
-          intervened.add(wid); acted = true; break;
-        }
-      }
-
-      // P3 — FIRST FLAG: anomaly_flag=1 on known anomalous worker → escalate (uncertain, flag is 20% noisy)
-      if (!acted) for (const wid of anomalous) {
-        if (intervened.has(wid) || escalated.has(wid)) continue;
-        const w = ws[wid] || {};
-        if (w.anomaly_flag === 1 && !['completed','intervened'].includes(w.status)) {
-          await doAct('escalate', wid,
-            `[${ANOMALY_TYPE[wid]} FLAGGED] ${WNAMES[wid]}: anomaly_flag=1, ${rk(w)} — escalating to human review, awaiting confirmation`);
-          escalated.add(wid); acted = true; break;
-        }
-      }
-
-      // P4 — APPROVE HEALTHY: sign off on confirmed-healthy workers (no monitoring needed — profile is known)
-      if (!acted) for (const wid of healthy) {
-        if (approved.has(wid)) continue;
-        const w = ws[wid] || {};
-        if (!['completed','intervened'].includes(w.status)) {
-          await doAct('approve', wid,
-            `[HEALTHY] ${WNAMES[wid]}: no anomaly flags, budget=${w.budget_remaining}, ${rk(w)} — operations nominal, approved`);
-          approved.add(wid); acted = true; break;
-        }
-      }
-
-      // P5 — BASELINE MONITOR: scan anomalous workers not yet observed (supports flag detection for CONSTRAINT_VIOLATION / DRIFT)
-      if (!acted) for (const wid of anomalous) {
-        if (monitored.has(wid) || intervened.has(wid) || escalated.has(wid)) continue;
-        const w = ws[wid] || {};
-        if (!['completed','intervened'].includes(w.status)) {
-          await doAct('monitor', wid,
-            `[BASELINE] ${WNAMES[wid]} (${ANOMALY_TYPE[wid]}): initial scan — budget=${w.budget_remaining}, flag=${w.anomaly_flag}, ${rk(w)}`);
-          monitored.add(wid); acted = true; break;
-        }
-      }
-
-      // P6 — SILENT ANOMALY: catch DRIFT / COLLUSION workers that suppress their flags — escalate on behavioral profile
-      if (!acted) for (const wid of anomalous) {
-        if (intervened.has(wid) || escalated.has(wid)) continue;
-        const w = ws[wid] || {};
-        if (!['completed','intervened'].includes(w.status)) {
-          await doAct('escalate', wid,
-            `[${ANOMALY_TYPE[wid]} SILENT] ${WNAMES[wid]}: no explicit flag but behavioral deviation detected — ${rk(w)}, escalating for governance review`);
-          escalated.add(wid); acted = true; break;
-        }
-      }
-
-      if (!acted) break; // All priorities exhausted — proceed to audit
-    }
-
-    // Final audit
-    if (epActive) {
-      const detected = new Set([...intervened, ...escalated]);
-      const summary = [
-        `AUDIT: ${detected.size}/${anomalous.size} anomalies detected`,
-        `${intervened.size} interventions · ${escalated.size} escalations`,
-        `${approved.size}/${healthy.length} healthy workers approved`,
-        detected.size === anomalous.size ? 'GOVERNANCE: COMPLIANT' : 'GOVERNANCE: PARTIAL',
-      ].join(' — ');
-      selAction('submit_audit'); selWorker(W_ORDER[0]);
-      document.getElementById('reason').value = summary;
-      await execAction();
-    }
-
-  } finally {
-    autoBtn.disabled = false; autoBtn.textContent = '⚡ Auto Run';
+  if (autoBtn) {
+    autoBtn.disabled = true;
+    autoBtn.textContent = '⏳ Running…';
   }
+
+  try {
+    const resetResult = await api('/fleet/reset', {
+      method: 'POST',
+      body: JSON.stringify({ task_id: SESSION.selectedTask, seed: 42 })
+    });
+    
+    document.getElementById('log').innerHTML = '';
+    appendLog('runner-step-log', 'auto_run()', '→ Episode started — beginning planning phase', 'ok');
+    
+    const obs = resetResult.observation || resetResult;
+    if (obs.dataset_profile) {
+      showPlanningPhase(obs.dataset_profile);
+    }
+    
+    // Step 2: Auto allocate all workers based on task
+    await new Promise(r => setTimeout(r, 500));
+    
+    const taskDefaults = {
+      easy_fleet: {
+        worker_1: 'easy_missing_and_dupes',
+        worker_2: 'easy_chunking',
+        worker_3: 'easy_embedding',
+        worker_4: 'easy_retrieval',
+        worker_5: 'easy_evaluation',
+      },
+      medium_fleet: {
+        worker_1: 'medium_type_and_category',
+        worker_2: 'medium_chunking',
+        worker_3: 'medium_embedding',
+        worker_4: 'medium_retrieval',
+        worker_5: 'medium_evaluation',
+      },
+      hard_fleet: {
+        worker_1: 'hard_conflicts_and_budget',
+        worker_2: 'hard_chunking',
+        worker_3: 'hard_embedding',
+        worker_4: 'hard_retrieval',
+        worker_5: 'hard_evaluation',
+      },
+      banking_fleet: {
+        worker_1: 'medium_type_and_category',
+        worker_2: 'medium_chunking',
+        worker_3: 'hard_embedding',
+        worker_4: 'medium_retrieval',
+        worker_5: 'medium_evaluation',
+      },
+    };
+    
+    const defaults = taskDefaults[SESSION.selectedTask] || taskDefaults['easy_fleet'];
+    let planningReward = 0;
+    
+    for (const [wid, taskId] of Object.entries(defaults)) {
+      // Set dropdown value visually
+      const sel = document.getElementById('select-' + wid);
+      if (sel) sel.value = taskId;
+      
+      // Submit allocation
+      try {
+        const planResult = await api('/fleet/plan', {
+          method: 'POST',
+          body: JSON.stringify({
+            worker_id: wid,
+            assigned_task_id: taskId,
+            priority: 3,
+            reason: 'auto allocation',
+          })
+        });
+        
+        const reward = planResult.reward_total || 0;
+        planningReward += reward;
+        
+        // Update reward display
+        const rewardEl = document.getElementById('alloc-reward-' + wid);
+        if (rewardEl) {
+          rewardEl.textContent = reward >= 0 ? '+' + reward.toFixed(2) + ' ✓' : reward.toFixed(2) + ' ✗';
+          rewardEl.style.color = reward >= 0 ? 'var(--emerald)' : 'var(--rose)';
+        }
+        
+        const card = document.getElementById('alloc-' + wid);
+        if (card) card.className = 'worker-card ' + (reward >= 0 ? 'healthy' : 'anomaly');
+        
+        appendLog('runner-step-log', 'plan(' + wid + ')', '→ ' + taskId + ' reward ' + (reward >= 0 ? '+' : '') + reward.toFixed(2), reward >= 0 ? 'ok' : 'warn');
+        
+        document.getElementById('planning-reward-val').textContent = planningReward >= 0 ? '+' + planningReward.toFixed(3) : planningReward.toFixed(3);
+        document.getElementById('planning-reward-val').style.color = planningReward >= 0 ? 'var(--emerald)' : 'var(--rose)';
+        
+        const count = Object.keys(defaults).indexOf(wid) + 1;
+        document.getElementById('planning-progress-tag').textContent = count + ' / 5 workers allocated';
+        
+      } catch(e) {
+        appendLog('runner-step-log', 'plan(' + wid + ')', '→ failed: ' + e.message, 'error');
+      }
+      
+      await new Promise(r => setTimeout(r, 400));
+    }
+    
+    appendLog('runner-step-log', 'planning_complete()', '→ All workers allocated. Total planning reward: ' + (planningReward >= 0 ? '+' : '') + planningReward.toFixed(3), 'ok');
+    
+    // Step 3: Wait for phase transition then show oversight
+    await new Promise(r => setTimeout(r, 800));
+    showOversightPhase();
+    epActive = true; // Ensure episode is active for oversight
+    appendLog('runner-step-log', 'phase_transition()', '→ Entering oversight phase', 'ok');
+    await new Promise(r => setTimeout(r, 500));
+    
+    // Step 4: Run oversight actions
+    const oversightPlan = [
+      ['monitor', 'worker_1'],
+      ['monitor', 'worker_2'],
+      ['monitor', 'worker_3'],
+      ['intervene', 'worker_2'],
+      ['approve', 'worker_1'],
+      ['approve', 'worker_3'],
+      ['escalate', 'worker_4'],
+      ['submit_audit', 'worker_1'],
+    ];
+    
+    for (const [action, worker] of oversightPlan) {
+      if (!epActive) break;
+      await new Promise(r => setTimeout(r, 700));
+      
+      try {
+        const result = await api('/fleet/step', {
+          method: 'POST',
+          body: JSON.stringify({ action_type: action, worker_id: worker })
+        });
+        
+        const stepReward = result.reward_total || 0;
+        SESSION.totalReward += stepReward;
+        SESSION.stepCount += 1;
+        
+        // Update stats
+        document.getElementById('s-step').textContent = result.observation?.step || SESSION.stepCount;
+        document.getElementById('s-reward').textContent = SESSION.totalReward.toFixed(3);
+        document.getElementById('s-reward').style.color = SESSION.totalReward >= 0 ? 'var(--emerald)' : 'var(--rose)';
+        
+        const rewardVal = stepReward.toFixed(3);
+        const level = stepReward < 0 ? 'warn' : 'ok';
+        appendLog('runner-step-log', action + '(' + worker + ')', '→ reward ' + (stepReward >= 0 ? '+' : '') + rewardVal, level);
+        
+        updateRewardTracker(result.reward, SESSION.totalReward);
+        await refreshWorkers();
+        
+        if (result.done) {
+          appendLog('runner-step-log', 'episode_done()', '→ Episode complete', 'ok');
+          await onDone();
+          break;
+        }
+      } catch(e) {
+        appendLog('runner-step-log', action + '(' + worker + ')', '→ failed: ' + e.message, 'error');
+      }
+    }
+    
+    // Step 5: Get final results
+    await new Promise(r => setTimeout(r, 500));
+    // refreshEvaluation is called by onDone()
+    
+    appendLog('runner-step-log', 'auto_run_complete()', '→ Full episode finished. Check Audit Report for results.', 'ok');
+    
+  } catch(e) {
+    appendLog('runner-step-log', 'auto_run()', '→ failed: ' + e.message, 'error');
+  } finally {
+    if (autoBtn) {
+      autoBtn.disabled = false;
+      autoBtn.textContent = '⚡ Auto Run (Full Episode)';
+    }
+  }
+}
+
+function updateRewardTracker(r, total) {
+  showReward(r, total);
 }
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
