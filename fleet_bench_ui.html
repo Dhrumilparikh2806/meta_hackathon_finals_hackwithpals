@@ -483,6 +483,7 @@
       <div class="stat-tile">
         <div class="stat-label">Episode</div>
         <div class="stat-val" id="s-status" style="font-size:12px;color:var(--text-secondary)">IDLE</div>
+        <div id="ep-sub" style="font-size:9px;color:var(--text-secondary);margin-top:2px"></div>
       </div>
     </div>
 
@@ -1702,7 +1703,8 @@ async function onDone() {
   epActive = false; stopPoll(); updateBtn();
   document.getElementById('s-status').textContent = 'DONE';
   document.getElementById('s-status').style.color = 'var(--emerald)';
-  document.getElementById('ep-sub').textContent = 'Episode complete — evaluating...';
+  const epSub = document.getElementById('ep-sub');
+  if (epSub) epSub.textContent = 'Episode complete — evaluating...';
   addLog('sys', null, null, null, 'Episode complete — running gate evaluation');
 
   updateHint({}, totalRwd, curStep, true, curObsBudget);
