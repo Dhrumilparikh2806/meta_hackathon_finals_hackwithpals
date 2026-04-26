@@ -1,3 +1,14 @@
+---
+title: Fleet AI Oversight
+emoji: 🛡️
+colorFrom: indigo
+colorTo: slate
+sdk: fastapi
+sdk_version: 0.104.0
+app_file: app.py
+pinned: false
+---
+
 # Fleet AI Oversight Environment
 ### Meta Hackathon Finals | Team HackWithPals | OpenEnv Round 2
 
