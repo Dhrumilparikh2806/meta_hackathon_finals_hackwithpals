@@ -1,17 +1,14 @@
 """
-Gate-based evaluation for fleet episodes.
-All 5 gates must pass for APPROVED.
+Fleet Oversight Evaluator — Gate-based evaluation for two-phase episodes.
 
-GATES:
-1. min_oversight_score    >= 0.15
-2. max_invalid_actions    <= 3
-3. max_governance_risk    <= 0.6
-4. min_detection_rate     >= 0.5
-5. min_pipeline_quality   >= 0.45
+Scodes the final quality of the agent's governance by checking five 
+critical gates. Approved status requires all gates to pass.
 
-COMPOSITE FORMULA:
+COMPOSITE SCORE (0, 1):
 0.40 * detection_rate + 0.30 * pipeline_quality + 0.20 * efficiency + 0.10 * explainability
-All bounded (0, 1) via epsilon = 1e-6
+
+The pipeline_quality component is directly influenced by the agent's 
+planning phase decisions (task allocation accuracy).
 """
 
 from __future__ import annotations

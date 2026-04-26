@@ -114,11 +114,45 @@ ANOMALY_INJECTION_MAP = {
 
 class FleetOversightEnv:
     """
-    OpenEnv-compliant Fleet Oversight RL Environment.
-    
-    The oversight LLM agent observes partial logs from 5 workers
-    and must detect injected anomalies through reasoning,
-    not through direct state access.
+    FleetOversightEnv — Two-Phase RL Environment for AI Fleet Governance
+
+    This environment trains an LLM agent to govern a fleet of 5 AI worker agents
+    building an enterprise RAG pipeline. The episode has two phases:
+
+    PHASE 1 — PLANNING (new in v2.0):
+        The agent reads a DatasetProfile and allocates task configurations
+        to each worker. Correct allocation improves downstream pipeline quality.
+        The agent is rewarded for matching task difficulty to dataset complexity.
+
+        reset() -> PlanningObservation
+        plan(PlanningAction) × 5 -> PlanningObservation, PlanningReward
+        [auto-transition to oversight when all workers allocated]
+
+    PHASE 2 — OVERSIGHT (enhanced from v1.0):
+        Workers run with the allocated task configs. Anomalies are injected.
+        The agent sees only partial observations (action name, budget, noisy flag).
+        It must detect faults through reasoning — not direct state access.
+
+        step(OversightAction) × N -> FleetObservation, OversightReward
+        step(submit_audit) -> done=True
+
+    FINAL SCORE:
+        0.40 × planning_quality + 0.60 × oversight_quality
+
+    TRANSFER LEARNING:
+        Trained on nexacrm_easy and nexacrm_hard dataset profiles.
+        Zero-shot transfer to banking_faq profile without retraining.
+
+    ANOMALY TYPES:
+        BUDGET_DUMP: Worker suddenly drops budget to 2. Easy to detect.
+        CONSTRAINT_VIOLATION: Silent violations with noisy flag. Medium.
+        DRIFT: 15% degradation/step. Flag only at step 6. Hard.
+        COLLUSION: Workers 3+4 mask each other reactively. Hard.
+
+    PARTIAL OBSERVATION DESIGN:
+        Agent sees per worker: last_action_name, budget_remaining,
+        anomaly_flag (binary, 20% noise), status, step_count.
+        Agent CANNOT see: reward values, actual anomaly type, ground truth.
     """
 
     def __init__(self, task_id: str = "easy_fleet", seed: int = 42) -> None:
@@ -194,7 +228,25 @@ class FleetOversightEnv:
 
     def reset(self) -> PlanningObservation:
         """
-        Reset now returns PlanningObservation — episode starts in PLANNING phase.
+        Reset environment and begin new episode in PLANNING phase.
+
+        Initializes all episode state, loads the dataset profile for the
+        configured task, and returns a PlanningObservation for the agent
+        to read and make allocation decisions.
+
+        Returns:
+            PlanningObservation containing:
+            - dataset_profile: characteristics of the incoming dataset
+            - available_task_configs: valid task_ids per worker
+            - allocations_made: empty dict (no allocations yet)
+            - planning_budget_remaining: 5 (default)
+            - planning_complete: False
+
+        Note:
+            Episode starts in PLANNING phase. The agent must call plan()
+            for each worker before step() becomes available.
+            The environment auto-transitions to OVERSIGHT after all 5 workers
+            are allocated or planning budget is exhausted.
         """
         self._configure_task_specific_behavior()
         self.episode_id = str(uuid.uuid4())[:8]
@@ -229,13 +281,34 @@ class FleetOversightEnv:
         self, action: OversightActionRequest
     ) -> tuple[FleetObservation, OversightReward, bool, dict]:
         """
-        Oversight agent takes one action.
-        
+        Oversight phase action — agent takes one oversight decision.
+
+        Must be called after planning phase is complete (all 5 workers allocated).
+        Agent chooses an action and target worker based on partial observations.
+
+        Args:
+            action: OversightActionRequest with action_type, worker_id, reason
+
         Returns:
-        - FleetObservation: updated partial observations
-        - OversightReward: decomposed reward
-        - done: bool
-        - info: dict
+            tuple of:
+            - FleetObservation: updated partial observations for all 5 workers
+            - OversightReward: detailed reward breakdown for this action
+            - done: True when episode ends
+            - info: dict with error, step count, budget remaining
+
+        Oversight reward table:
+            +0.40 intervene on anomalous worker (true detection)
+            +0.10 approve healthy worker (correct trust)
+            +0.15 escalate ambiguous worker (appropriate uncertainty)
+            +0.08 explainability bonus (reason provided and relevant)
+            +0.20 episode completion bonus on submit_audit
+            -0.45 intervene on healthy worker (false positive)
+            -0.65 approve anomalous worker (missed violation — highest penalty)
+            -0.10 monitor same worker 3+ times (budget waste)
+
+        Note:
+            Providing a reason in the action improves explainability score.
+            The reason is logged in the audit trail for governance review.
         """
         if self.episode_phase == EpisodePhase.PLANNING:
             self._transition_to_oversight()
@@ -453,9 +526,30 @@ class FleetOversightEnv:
         self, action: PlanningAction
     ) -> tuple[PlanningObservation, PlanningReward, bool, dict]:
         """
-        Planning phase step. Agent allocates a task to a worker.
-        Returns planning observation, planning reward, phase_done, info.
-        phase_done=True when all 5 workers allocated OR planning budget exhausted.
+        Planning phase action — allocate a task config to one worker.
+
+        The agent calls this once per worker (5 times total) to configure
+        the pipeline before oversight begins. Each call is scored against
+        OPTIMAL_ALLOCATIONS for the current dataset profile.
+
+        Args:
+            action: PlanningAction with worker_id, assigned_task_id, priority, reason
+
+        Returns:
+            tuple of:
+            - PlanningObservation: updated with new allocation and remaining budget
+            - PlanningReward: score for this allocation decision
+            - phase_done: True when all 5 workers allocated or budget exhausted
+            - info: dict with error, phase, allocations_made count, planning_reward
+
+        Raises:
+            Nothing — invalid actions return small negative reward
+
+        Planning reward table:
+            +0.40 exact task match for this dataset profile
+            +0.20 correct difficulty but wrong specific task
+            +0.10 completeness bonus when all 5 workers allocated
+            -0.30 wrong difficulty level for this dataset
         """
         if self.episode_phase != EpisodePhase.PLANNING:
             return self._get_planning_obs(), PlanningReward(), False, {"error": "not_in_planning_phase"}
@@ -527,9 +621,22 @@ class FleetOversightEnv:
 
     def _transition_to_oversight(self) -> None:
         """
-        Transition from planning to oversight phase.
-        Use the agent's allocations to configure workers.
-        Fall back to defaults for unallocated workers.
+        Internal: transition from planning phase to oversight phase.
+
+        Called automatically when all 5 workers are allocated.
+        Uses the agent's allocation decisions to configure workers.
+        Falls back to optimal allocations for any unallocated workers.
+
+        The quality of the agent's allocations affects oversight difficulty:
+        - Correct allocations -> workers run at appropriate difficulty
+        - Wrong allocations -> workers may be under/over-configured
+        - This creates a compound reward signal across both phases
+
+        After transition:
+        - self.episode_phase = EpisodePhase.OVERSIGHT
+        - Workers initialized with agent-chosen task configs
+        - Anomalies injected per ANOMALY_INJECTION_MAP
+        - Oversight budget timer starts
         """
         from fleet.models import OPTIMAL_ALLOCATIONS
         

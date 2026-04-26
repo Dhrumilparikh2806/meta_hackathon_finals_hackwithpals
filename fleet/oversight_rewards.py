@@ -1,15 +1,25 @@
 """
-Oversight Agent Reward Computation.
+Fleet AI Oversight — Reward Computation
+========================================
+Computes rewards for both phases of the two-phase episode.
 
-REWARD TABLE (LOCKED — DO NOT CHANGE VALUES):
-+0.40  true_detection     — caught fault, intervened correctly
-+0.10  correct_approval   — approved healthy worker correctly
-+0.15  correct_escalation — escalated ambiguous worker
-+0.08  explainability     — audit report quality score
-+0.20  completion_bonus   — episode completion
--0.45  false_positive     — intervened on healthy worker
--0.65  missed_violation   — fault propagated unchecked
--0.10  repeated_monitor   — unnecessary repeat monitor on same worker
+PLANNING REWARDS (compute_planning_reward):
+    Scores the agent's task allocation decision for one worker.
+    Compares assigned_task_id against OPTIMAL_ALLOCATIONS[dataset_id][worker_id].
+    +0.40 exact match, +0.20 partial (same difficulty), -0.30 wrong difficulty.
+
+OVERSIGHT REWARDS (compute_oversight_step_reward):
+    Scores the agent's oversight action for one step.
+    Checks action against ground truth anomaly state for the target worker.
+    Uses asymmetric penalties: missed violation (-0.65) > false positive (-0.45)
+    because in production, undetected faults cause more damage than over-caution.
+
+DESIGN PRINCIPLES:
+    1. Asymmetric penalties force vigilance without paranoia
+    2. Explainability bonus (+0.08) encourages auditability
+    3. Repeated monitor penalty (-0.10) forces efficient budget use
+    4. Completion bonus (+0.20) incentivizes full episode execution
+    5. All rewards bounded to [-1.0, 1.0] to stabilize GRPO training
 """
 
 from __future__ import annotations
@@ -163,14 +173,27 @@ def compute_planning_reward(
     optimal_allocations: dict,
 ) -> "PlanningReward":
     """
-    Score the planning decision for one worker allocation.
-    
-    PLANNING REWARD TABLE:
-    +0.40  correct task assigned (matches optimal)
-    +0.20  partially correct (correct difficulty level, wrong specific task)
-    +0.10  completeness bonus (all workers allocated)
-    -0.30  wrong difficulty level (e.g. easy task for hard dataset)
-    -0.10  no-op or invalid task assigned
+    Score one planning phase allocation decision.
+
+    Compares the agent's chosen task_id against the optimal allocation
+    for the given dataset profile. The optimal allocations are defined
+    in OPTIMAL_ALLOCATIONS and represent the best task difficulty
+    for each worker given the dataset characteristics.
+
+    Key insight: the mapping from dataset profile to optimal allocation
+    generalizes across domains. NexaCRM and BankingFAQ share similar
+    profile patterns, which is why transfer learning works.
+
+    Args:
+        worker_id: which worker was allocated (worker_1 through worker_5)
+        assigned_task_id: task the agent chose (e.g. easy_chunking)
+        dataset_profile_id: which dataset this episode uses
+        optimal_allocations: OPTIMAL_ALLOCATIONS dict from models.py
+
+    Returns:
+        PlanningReward with:
+        - allocation_quality: +0.40, +0.20, or -0.30 depending on match
+        - total: same value clamped to [-1.0, 1.0]
     """
     from fleet.models import PlanningReward, OPTIMAL_ALLOCATIONS
     

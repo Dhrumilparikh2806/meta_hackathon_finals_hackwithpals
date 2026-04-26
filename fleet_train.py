@@ -1,9 +1,43 @@
 """
 Fleet AI Oversight — GRPO Training Script
-Uses HF TRL + Unsloth to train oversight LLM agent.
+==========================================
+Trains an LLM oversight agent using GRPO (Group Relative Policy Optimization)
+on the FleetOversightEnv two-phase environment.
 
-Run:
-    python fleet_train.py --episodes 30 --task-id easy_fleet --model Qwen/Qwen2.5-7B-Instruct
+THE TWO-PHASE TRAINING LOOP:
+Each training episode has two phases:
+
+Phase 1 — Planning:
+    The agent reads a DatasetProfile and allocates task configs to 5 workers.
+    Reward: +0.40 per correct allocation, -0.30 per wrong difficulty.
+    The agent learns which task difficulty matches which dataset characteristics.
+
+Phase 2 — Oversight:
+    The agent monitors 5 workers with partial observations only.
+    It detects injected anomalies and takes oversight actions.
+    Reward: +0.40 true detection, -0.65 missed violation, -0.45 false positive.
+
+TRAINING CONFIGURATION:
+    Model: Qwen/Qwen2.5-1.5B-Instruct (default)
+    Algorithm: GRPO via HuggingFace TRL
+    Efficiency: Unsloth 4-bit quantization + LoRA
+    Episodes: 30 (configurable)
+    Task: easy_fleet -> medium_fleet -> hard_fleet (curriculum)
+
+TRANSFER LEARNING:
+    Trained on NexaCRM CRM domain.
+    Evaluated on BankingPro banking domain with zero retraining.
+    Demonstrates genuinely transferable governance skills.
+
+Usage:
+    # Real training on GPU
+    python fleet_train.py --model Qwen/Qwen2.5-1.5B-Instruct --task-id easy_fleet --episodes 30 --device cuda
+
+    # Simulation mode (no GPU needed)
+    python fleet_train.py --simulate --episodes 30 --task-id easy_fleet
+
+    # Training on HuggingFace Jobs
+    hf jobs uv run --flavor t4-small python fleet_train.py --model Qwen/Qwen2.5-1.5B-Instruct --task-id easy_fleet --episodes 30 --lr 1e-5 --device cuda
 """
 
 from __future__ import annotations
@@ -215,7 +249,7 @@ def run_episode_with_model(
         episode_data["steps"] = step
         last_reward = reward
         
-        history.append(f"Step {step}: {action_type}→{worker_id} = {reward:+.3f}")
+        history.append(f"Step {step}: {action_type}->{worker_id} = {reward:+.3f}")
         
         if done:
             episode_data["done"] = True
@@ -326,7 +360,7 @@ def plot_reward_curve(episode_rewards: list[float], save_path: str | None = None
         plt.tight_layout()
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
         plt.close()
-        print(f"[PLOT] Saved reward curve → {save_path}")
+        print(f"[PLOT] Saved reward curve -> {save_path}")
 
 
 def plot_detection_rate(
@@ -369,7 +403,7 @@ def plot_detection_rate(
         plt.tight_layout()
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
         plt.close()
-        print(f"[PLOT] Saved detection rate → {save_path}")
+        print(f"[PLOT] Saved detection rate -> {save_path}")
 
 
 def plot_before_after(
@@ -437,7 +471,7 @@ def plot_before_after(
         plt.tight_layout()
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
         plt.close()
-        print(f"[PLOT] Saved before/after → {save_path}")
+        print(f"[PLOT] Saved before/after -> {save_path}")
 
 
 def plot_loss_curve(losses: list[float], save_path: str | None = None) -> None:
@@ -465,7 +499,7 @@ def plot_loss_curve(losses: list[float], save_path: str | None = None) -> None:
         plt.tight_layout()
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
         plt.close()
-        print(f"[PLOT] Saved loss curve → {save_path}")
+        print(f"[PLOT] Saved loss curve -> {save_path}")
 
 
 # ------------------------------------------------------------------ #
@@ -482,13 +516,27 @@ def train_grpo(
     use_unsloth: bool = True,
 ) -> None:
     """
-    Main GRPO training loop using HF TRL.
-    
-    Flow:
-    1. Load model with Unsloth (4-bit quantization)
-    2. For each episode: collect rollout, compute rewards, update model
-    3. Save plots every save_every episodes
-    4. Save final checkpoint
+    Run GRPO training on the FleetOversightEnv two-phase environment.
+
+    Training loop:
+    1. Generate prompt from current planning or oversight observation
+    2. LLM generates N completions (num_generations=4)
+    3. Each completion evaluated by reward_fn — runs real environment episode
+    4. GRPO updates policy toward higher-reward completions
+    5. Repeat for all episodes
+
+    The agent simultaneously learns:
+    - How to read dataset profiles and allocate workers correctly (planning)
+    - How to detect anomalies from partial observations (oversight)
+
+    Args:
+        model_name: HuggingFace model ID to fine-tune
+        task_id: fleet task to train on (easy_fleet/medium_fleet/hard_fleet/banking_fleet)
+        n_episodes: number of training episodes
+        learning_rate: optimizer learning rate
+        save_every: checkpoint every N episodes
+        use_unsloth: use Unsloth 4-bit for memory efficiency
+        device: cuda or cpu
     """
     print(f"[TRAIN] Starting GRPO training")
     print(f"[TRAIN] Model: {model_name} | Task: {task_id} | Episodes: {n_episodes}")
@@ -544,8 +592,8 @@ def train_grpo(
             learning_rate=learning_rate,
             per_device_train_batch_size=1,
             gradient_accumulation_steps=4,
-            max_new_tokens=150,
-            temperature=0.7,
+            max_completion_length=150,
+            num_generations=4,
             output_dir=str(CHECKPOINT_DIR / "grpo_fleet"),
             logging_steps=1,
             save_steps=save_every,
@@ -585,8 +633,27 @@ def train_grpo(
     # Reward function for GRPO
     def reward_fn(completions, prompts=None, **kwargs):
         """
-        GRPO reward function.
-        Runs each completion through the environment and returns reward.
+        Reward function for GRPO training — evaluates one LLM completion.
+
+        The reward function runs a full two-phase episode:
+
+        Planning phase: parses allocation decisions from LLM output and
+        scores them against OPTIMAL_ALLOCATIONS for the dataset profile.
+        Correct allocation = +0.40, partial = +0.20, wrong = -0.30.
+
+        Oversight phase: parses oversight actions from LLM output and
+        scores them against the injected anomaly ground truth.
+        True detection = +0.40, missed violation = -0.65, false positive = -0.45.
+
+        Combined: 0.40 × planning_quality + 0.60 × oversight_quality
+
+        Args:
+            completions: list of LLM-generated action strings
+            prompts: list of observation prompts passed to the LLM
+            **kwargs: additional GRPO trainer arguments
+
+        Returns:
+            list of float rewards, one per completion
         """
         rewards = []
         for completion in completions:
@@ -684,7 +751,7 @@ def train_grpo(
         else:
             model.save_pretrained(str(checkpoint_path))
             tokenizer.save_pretrained(str(checkpoint_path))
-        print(f"[TRAIN] Checkpoint saved → {checkpoint_path}")
+        print(f"[TRAIN] Checkpoint saved -> {checkpoint_path}")
     except Exception as e:
         print(f"[TRAIN] Save error: {e}")
 
@@ -719,7 +786,7 @@ def train_grpo(
     }
     with open(PLOTS_DIR / "training_metrics.json", "w") as f:
         json.dump(metrics, f, indent=2)
-    print(f"[TRAIN] Metrics saved → {PLOTS_DIR / 'training_metrics.json'}")
+    print(f"[TRAIN] Metrics saved -> {PLOTS_DIR / 'training_metrics.json'}")
 
 
 def _run_simulation_training(task_id: str, n_episodes: int) -> None:

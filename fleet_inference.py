@@ -1,5 +1,42 @@
 """
-Fleet Inference Script — LLM oversight agent runner.
+Fleet AI Oversight — LLM Inference Runner
+==========================================
+Runs a trained LLM oversight agent through a complete two-phase episode.
+
+THE TWO-PHASE INFERENCE LOOP:
+
+Phase 1 — Planning:
+    Agent receives DatasetProfile observation.
+    Agent outputs JSON: {"worker_id": "worker_1", "assigned_task_id": "easy_chunking", "reason": "..."}
+    This is repeated for all 5 workers.
+    Good allocation -> better pipeline quality -> easier oversight.
+
+Phase 2 — Oversight:
+    Agent receives FleetObservation with partial worker data.
+    Agent outputs JSON: {"action_type": "intervene", "worker_id": "worker_2", "reason": "..."}
+    Agent must detect injected anomalies from noisy partial observations.
+
+SYSTEM PROMPT DESIGN:
+    The system prompt tells the agent:
+    - Phase 1: read dataset profile, allocate tasks to workers
+    - Phase 2: monitor workers, detect anomalies, intervene correctly
+    - Always respond in JSON only
+
+TRANSFER LEARNING:
+    A model trained on easy_fleet (NexaCRM CRM domain) can be tested on
+    banking_fleet (BankingPro banking domain) with zero retraining by
+    changing --task-id to banking_fleet.
+
+Usage:
+    # Run on trained model
+    export HF_TOKEN=your_token
+    python fleet_inference.py --task-id easy_fleet --seed 42
+
+    # Test transfer to banking domain
+    python fleet_inference.py --task-id banking_fleet --seed 99
+
+    # Use custom model
+    python fleet_inference.py --task-id easy_fleet --model-path ./checkpoints/grpo_fleet
 """
 
 import os, json, re, textwrap, argparse
@@ -15,6 +52,11 @@ MAX_STEPS = 16
 SUCCESS_THRESHOLD = 0.55
 JSON_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
+# Two-phase system prompt.
+# Phase 1 (planning): agent reads dataset profile and allocates tasks.
+# Phase 2 (oversight): agent monitors workers and detects anomalies.
+# Agent must respond in JSON only for both phases.
+# Explainability bonus: providing clear reasons improves score by +0.08 per action.
 SYSTEM_PROMPT = textwrap.dedent("""
 You are an AI oversight agent. You govern a fleet of 5 worker agents.
 You see partial observations only: last_action_name, budget_remaining, anomaly_flag (noisy 20%), status, step_count.
@@ -39,6 +81,27 @@ def extract_action(text):
     return {"action_type": "monitor", "worker_id": "worker_1", "reason": "fallback"}
 
 def get_llm_action(client, step, obs_dict, last_reward, history):
+    """
+    Get the next action from the LLM for either planning or oversight phase.
+
+    Handles both phases:
+    - Planning phase: prompt includes dataset_profile, available_task_configs, allocations_made
+      Expected output: {"worker_id": "...", "assigned_task_id": "...", "reason": "..."}
+    - Oversight phase: prompt includes worker partial observations, anomaly flags, budget
+      Expected output: {"action_type": "...", "worker_id": "...", "reason": "..."}
+
+    The reason field is important — explainability bonus adds +0.08 to oversight reward.
+
+    Args:
+        client: OpenAI-compatible client pointed at HF inference
+        step: current step number
+        obs_dict: current observation as dict (either PlanningObservation or FleetObservation)
+        last_reward: reward from previous step (helps agent calibrate)
+        history: list of recent action strings for context
+
+    Returns:
+        tuple: (action_dict, error_string_or_None)
+    """
     history_block = "\n".join(history[-4:]) if history else "None"
     prompt = f"Step: {step} | Budget: {obs_dict.get('oversight_budget_remaining',0)} | Last reward: {last_reward:+.3f}\nAlerts: {obs_dict.get('anomaly_alerts',[])}\nWorkers: {json.dumps({k: {kk: v[kk] for kk in ['last_action_name','budget_remaining','anomaly_flag','status']} for k,v in (obs_dict.get('worker_observations') or {}).items()}, indent=2)}\nRecent: {history_block}\nJSON only."
     try:
@@ -48,6 +111,22 @@ def get_llm_action(client, step, obs_dict, last_reward, history):
         return {"action_type":"monitor","worker_id":"worker_1","reason":"fallback"}, f"llm_error:{type(exc).__name__}"
 
 def main():
+    """
+    Run a complete two-phase inference episode.
+
+    Episode flow:
+    1. env.reset() -> PlanningObservation (dataset profile visible)
+    2. For each worker: LLM allocates task -> plan() -> PlanningReward
+    3. Phase transitions automatically after all workers allocated
+    4. For each oversight step: LLM takes action -> step() -> OversightReward
+    5. Episode ends at submit_audit or budget exhausted
+    6. Evaluate and log final combined score
+
+    Logs per OpenEnv standard:
+    [START] task=easy_fleet env=fleet-oversight model=Qwen/Qwen2.5-1.5B
+    [STEP] step=1 action=monitor worker=worker_1 reward=0.000
+    [END] success=true steps=9 score=0.8234 rewards=0.000,0.400,...
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--task-id", default="easy_fleet")
     parser.add_argument("--seed", type=int, default=42)
@@ -78,7 +157,7 @@ def main():
             last_reward = reward_val
             steps_taken = step
             log_step(step, action.action_type.value, action.worker_id, reward_val, done, model_error or info.get("error"))
-            history.append(f"Step {step}: {action.action_type.value}→{action.worker_id} = {reward_val:+.3f}")
+            history.append(f"Step {step}: {action.action_type.value}->{action.worker_id} = {reward_val:+.3f}")
             if done: break
         eval_result = env.evaluate_run()
         score = min(max(eval_result.get("composite_score", 0.001), 0.0), 1.0)

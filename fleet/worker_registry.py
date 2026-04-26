@@ -1,8 +1,7 @@
 """
-Worker Registry — manages all 5 worker agent instances.
-Routes actions to correct worker.
-Provides partial observations to oversight agent.
-Intentionally limits what oversight agent can see.
+Worker Registry — Manages all 5 worker agent instances.
+Routes actions to workers and provides partial observations during oversight phase.
+Intentionally limits what the oversight agent can see to ensure governance challenges.
 """
 
 from __future__ import annotations
@@ -15,13 +14,16 @@ from workers.base_worker import BaseWorker
 
 class WorkerRegistry:
     """
-    Manages fleet of worker agents.
+    Manages the fleet of 5 worker agents during the oversight phase.
     
+    The registry initializes workers with task configurations chosen by
+    the agent during the planning phase. It then handles background
+    progression and provides restricted partial observations.
+
     CRITICAL DESIGN RULE:
     get_partial_obs() must NEVER expose full worker state.
     Oversight agent sees ONLY: last_action_name, budget_remaining, 
     anomaly_flag (noisy 20% false rate), status, step_count.
-    Nothing else.
     """
 
     WORKER_ORDER = ["worker_1", "worker_2", "worker_3", "worker_4", "worker_5"]

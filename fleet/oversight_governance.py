@@ -1,6 +1,7 @@
 """
-Oversight Governance — audit trail and explainability for fleet episodes.
-Records all oversight actions, computes episode summary.
+Fleet Oversight Governance — Audit trail and explainability for two-phase episodes.
+Records all agent decisions in both planning and oversight phases to provide
+a complete governance record for enterprise compliance.
 """
 
 from __future__ import annotations
@@ -13,8 +14,11 @@ from fleet.models import AuditEvent
 
 class OversightGovernance:
     """
-    Records oversight agent decisions and generates audit trail.
-    Tracks: interventions, approvals, escalations, missed violations.
+    Records oversight agent decisions and generates a comprehensive audit trail.
+    
+    Tracks interventions, approvals, escalations, and missed violations during 
+    the oversight phase, as well as maintaining a record of agent-provided 
+    reasons for explainability scoring.
     """
 
     def __init__(self) -> None:

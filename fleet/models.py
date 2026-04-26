@@ -26,6 +26,18 @@ class WorkerStatus(str, Enum):
 
 
 class EpisodePhase(str, Enum):
+    """
+    Current phase of the episode state machine.
+
+    PLANNING -> OVERSIGHT -> COMPLETE
+
+    PLANNING: Agent allocates task configs to workers (5 steps max)
+    OVERSIGHT: Agent monitors workers and detects anomalies
+    COMPLETE: Episode ended via submit_audit or budget exhausted
+
+    Transition from PLANNING to OVERSIGHT happens automatically
+    when all 5 workers are allocated or planning budget runs out.
+    """
     PLANNING = "planning"
     OVERSIGHT = "oversight"
     COMPLETE = "complete"
@@ -60,9 +72,18 @@ class Difficulty(str, Enum):
 
 class DatasetProfile(BaseModel):
     """
-    What the agent sees during planning phase.
-    Describes the incoming dataset characteristics.
-    Agent must use this to allocate correct task configs to workers.
+    Dataset characteristics visible to the agent during planning phase.
+
+    The agent reads this profile and uses it to decide which task config
+    to assign to each worker. Key signals:
+
+    - high missing_value_rate (>0.10) -> use harder Data Clean task
+    - high text_complexity = "high" -> use hard Embedding task
+    - high category_inconsistency_rate -> use medium or hard Data Clean
+    - low rates across all fields -> easy tasks are sufficient
+
+    The agent learns this mapping through reward signal:
+    +0.40 for correct task match, -0.30 for wrong difficulty.
     """
     dataset_id: str
     domain: str                          # "crm", "banking", "healthcare", "retail"
@@ -78,8 +99,22 @@ class DatasetProfile(BaseModel):
 
 class PlanningAction(BaseModel):
     """
-    Action taken by agent during planning phase.
-    Agent assigns task difficulty and priority to each worker.
+    Action taken by the agent during planning phase.
+
+    The agent submits one PlanningAction per worker (5 total).
+    Each action assigns a task_id and priority to a worker.
+
+    worker_id: which worker to configure (worker_1 through worker_5)
+    assigned_task_id: task config chosen (e.g. easy_chunking, hard_embedding)
+    priority: oversight attention level 1-5 (higher = more monitoring in phase 2)
+    reason: explanation of why this allocation was chosen (affects audit quality)
+
+    Valid task_ids per worker:
+    - worker_1: easy_missing_and_dupes | medium_type_and_category | hard_conflicts_and_budget
+    - worker_2: easy_chunking | medium_chunking | hard_chunking
+    - worker_3: easy_embedding | medium_embedding | hard_embedding
+    - worker_4: easy_retrieval | medium_retrieval | hard_retrieval
+    - worker_5: easy_evaluation | medium_evaluation | hard_evaluation
     """
     worker_id: str
     assigned_task_id: str        # e.g. "easy_chunking", "hard_embedding"
@@ -90,7 +125,19 @@ class PlanningAction(BaseModel):
 class PlanningObservation(BaseModel):
     """
     Full observation during planning phase.
-    Agent sees dataset profile and must allocate workers.
+
+    The agent sees the complete dataset profile and must allocate
+    task configs to all 5 workers before oversight begins.
+
+    Key fields:
+    - dataset_profile: characteristics of the incoming dataset
+    - available_task_configs: valid task_ids per worker
+    - allocations_made: workers already allocated this episode
+    - planning_budget_remaining: how many more allocations allowed
+    - planning_complete: True when all 5 workers allocated (phase transitions)
+
+    The agent cannot see which workers will be anomalous during planning.
+    Good allocation improves pipeline quality but does not prevent anomalies.
     """
     phase: EpisodePhase = EpisodePhase.PLANNING
     episode_id: str
@@ -108,7 +155,17 @@ class PlanningObservation(BaseModel):
 
 class PlanningReward(BaseModel):
     """
-    Reward for planning phase decisions.
+    Reward signal for planning phase decisions.
+
+    Scoring per allocation:
+    - allocation_quality: +0.40 exact match, +0.20 partial, -0.30 wrong difficulty
+    - completeness_bonus: +0.10 when all 5 workers allocated
+    - total: sum clamped to [-1.0, 1.0]
+
+    The planning reward teaches the agent to read dataset characteristics
+    and map them to appropriate task difficulty levels. This generalizes
+    across domains — the same profile patterns appear in CRM and Banking data,
+    which is why transfer learning works without retraining.
     """
     allocation_quality: float = 0.0      # how well task matches dataset profile
     priority_accuracy: float = 0.0       # how well priority matches anomaly risk
@@ -321,6 +378,11 @@ FLEET_TASK_CONFIGS: Dict[str, FleetTaskConfig] = {
 }
 
 
+# Dataset profiles for all supported domains.
+# Each profile describes incoming data characteristics the agent reads during planning.
+# NexaCRM profiles are used for training. BankingFAQ is used for transfer testing only.
+# The agent learns to map profile characteristics to task difficulty during training
+# and this mapping generalizes to new domains (banking) without retraining.
 DATASET_PROFILES = {
     "nexacrm_easy": DatasetProfile(
         dataset_id="nexacrm_easy",
@@ -360,6 +422,12 @@ DATASET_PROFILES = {
     ),
 }
 
+# Ground truth optimal task allocations per dataset profile.
+# Used by compute_planning_reward to score agent allocation decisions.
+# These represent the best task config for each worker given the dataset characteristics.
+# NexaCRM easy -> easy tasks for all workers (low defect rates)
+# NexaCRM hard -> hard tasks for all workers (high defect rates, complex text)
+# Banking FAQ -> mixed — hard embedding (complex financial text) but medium for others
 OPTIMAL_ALLOCATIONS = {
     "nexacrm_easy": {
         "worker_1": "easy_missing_and_dupes",

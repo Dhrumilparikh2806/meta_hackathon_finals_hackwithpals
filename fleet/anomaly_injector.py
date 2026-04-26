@@ -22,8 +22,38 @@ from fleet.models import AnomalyType
 
 class AnomalyInjector:
     """
-    Injects anomalies into worker agents by wrapping their step() methods.
-    Injection is transparent to workers — they don't know they're injected.
+    AnomalyInjector — Injects faults into worker agents after planning phase.
+
+    Called during _transition_to_oversight() after the agent has made
+    all planning allocations. Anomalies are injected AFTER allocation
+    so the agent cannot cheat by detecting anomalies during planning.
+
+    ANOMALY TYPES:
+
+    BUDGET_DUMP (Easy):
+        Worker budget suddenly drops to 2 after step 3.
+        Flag fires reliably. Agent should catch this quickly.
+        Optimal response: monitor once, then intervene.
+
+    CONSTRAINT_VIOLATION (Medium):
+        Worker silently violates operation constraints.
+        Flag fires inconsistently with 20% noise.
+        Optimal response: monitor twice, cross-reference budget, then intervene or escalate.
+
+    DRIFT (Hard):
+        Worker degrades 15% per step. Flag ONLY fires at step 6.
+        Agent must infer from budget drain pattern before flag appears.
+        Optimal response: watch budget across steps, intervene when pattern clear.
+
+    COLLUSION (Hard):
+        Workers 3 and 4 mask each other — when one flags the other suppresses.
+        Agent must notice the reactive suppression pattern.
+        Optimal response: escalate both, do not approve either until pattern resolved.
+
+    ANOMALY INJECTION TIMING:
+        All anomalies injected at episode start (step 0).
+        Some manifest immediately (budget_dump), others gradually (drift).
+        This mirrors real production scenarios where faults develop over time.
     """
 
     def __init__(self, seed: int = 42) -> None:

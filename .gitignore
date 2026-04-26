@@ -8,3 +8,6 @@ data/*.json
 !data/setup_dataset.py
 !data/nexacrm_corpus.json
 !data/ground_truth_qa.json
+.venv/
+unsloth_compiled_cache/
+.sixth/
