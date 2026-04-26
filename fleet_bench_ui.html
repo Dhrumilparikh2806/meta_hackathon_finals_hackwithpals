@@ -1102,6 +1102,7 @@ async function startEpisode() {
     });
     
     document.getElementById('log').innerHTML = '';
+    document.getElementById('eval-panel').style.display = 'none';
     appendLog('runner-step-log', 'fleet_reset()', `→ episode initialized · task: ${taskId}`, 'ok');
     appendLog('runner-step-log', 'phase()', '→ Phase 1: PLANNING — allocate tasks to workers', 'ok');
     
@@ -1639,6 +1640,10 @@ window.onload = () => {
   setInterval(refreshHealthDashboard, 5000);
   checkPipeline();
   document.getElementById('base-url-val').textContent = window.location.origin;
+  
+  // Set default level to easy
+  document.getElementById('task-sel').value = 'easy_fleet';
+  SESSION.selectedTask = 'easy_fleet';
 };
 
 async function execAction() {
@@ -1906,6 +1911,7 @@ async function autoRunEpisode() {
     });
     
     document.getElementById('log').innerHTML = '';
+    document.getElementById('eval-panel').style.display = 'none';
     appendLog('runner-step-log', 'auto_run()', '→ Episode started — beginning planning phase', 'ok');
     
     const obs = resetResult.observation || resetResult;
