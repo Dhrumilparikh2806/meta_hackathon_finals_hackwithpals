@@ -1,10 +1,15 @@
 {
-  "mode": "real",
+  "mode": "simulation",
   "n_episodes": 30,
   "task_id": "easy_fleet",
+  "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
   "baseline_detection_rate": 0.28,
   "final_detection_rate": 0.6950478546592515,
   "improvement": 0.4150478546592514,
+  "baseline_reward": -0.8,
+  "baseline_mean_reward": -0.8,
+  "final_reward": 0.7487318774433647,
+  "final_mean_reward": 0.7487318774433647,
   "episode_rewards": [
     -0.8288180659155857,
     -0.5996032549802274,

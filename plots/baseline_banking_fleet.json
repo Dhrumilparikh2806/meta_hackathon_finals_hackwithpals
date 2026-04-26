@@ -1,0 +1,35 @@
+{
+  "task_id": "banking_fleet",
+  "n_episodes": 10,
+  "agent": "random",
+  "mean_detection_rate": 0.0,
+  "std_detection_rate": 0.0,
+  "mean_total_reward": -0.9249999999999998,
+  "std_total_reward": 0.8721381771256203,
+  "mean_fp_rate": 0.7,
+  "approved_rate": 0.0,
+  "detection_rates": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "total_rewards": [
+    -2.2499999999999996,
+    0.2,
+    0.0,
+    -1.8499999999999999,
+    -1.8999999999999997,
+    -1.1500000000000001,
+    0.2,
+    -1.45,
+    -0.6000000000000001,
+    -0.45
+  ]
+}
