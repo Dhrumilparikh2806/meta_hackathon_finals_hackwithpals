@@ -1,602 +1,2802 @@
 [
   {
     "id": "qa_001",
-    "question": "What is the price of the Pro plan?",
-    "answer": "$49 per user per month",
-    "chunk_id": "chunk_003"
+    "question": "How much does the Starter plan cost?",
+    "answer": "$19/user/month, up to 5 users, basic CRM features",
+    "chunk_id": "chunk_0001",
+    "category": "pricing"
   },
   {
     "id": "qa_002",
-    "question": "How do I cancel my subscription?",
-    "answer": "Go to Settings > Billing > Cancel Subscription",
-    "chunk_id": "chunk_007"
+    "question": "What is included in the Professional plan?",
+    "answer": "$49/user/month, up to 50 users, automation included",
+    "chunk_id": "chunk_0002",
+    "category": "pricing"
   },
   {
     "id": "qa_003",
-    "question": "Does NexaCRM integrate with Slack?",
-    "answer": "Yes, native Slack integration is available on all plans",
-    "chunk_id": "chunk_012"
+    "question": "Is there an Enterprise plan available?",
+    "answer": "$99/user/month, unlimited users, dedicated support",
+    "chunk_id": "chunk_0003",
+    "category": "pricing"
   },
   {
     "id": "qa_004",
-    "question": "Is customer data encrypted at rest?",
-    "answer": "Yes, all data is encrypted using AES-256",
-    "chunk_id": "chunk_015"
+    "question": "Do you offer discounts for annual billing?",
+    "answer": "20% off monthly price",
+    "chunk_id": "chunk_0004",
+    "category": "pricing"
   },
   {
     "id": "qa_005",
-    "question": "What is the free trial period?",
+    "question": "How long is the free trial?",
     "answer": "14 days, no credit card required",
-    "chunk_id": "chunk_002"
+    "chunk_id": "chunk_0005",
+    "category": "pricing"
   },
   {
     "id": "qa_006",
-    "question": "How many users can I add on the Starter plan?",
-    "answer": "Up to 5 users",
-    "chunk_id": "chunk_004"
+    "question": "Are there discounts for non-profits?",
+    "answer": "40% off Professional plan",
+    "chunk_id": "chunk_0006",
+    "category": "pricing"
   },
   {
     "id": "qa_007",
-    "question": "Can I export my data if I cancel?",
-    "answer": "Yes, full data export is available for 30 days after cancellation",
-    "chunk_id": "chunk_008"
+    "question": "How does NexaCRM pricing compare to competitors?",
+    "answer": "NexaCRM is 30% cheaper than Salesforce",
+    "chunk_id": "chunk_0007",
+    "category": "pricing"
   },
   {
     "id": "qa_008",
-    "question": "What CRMs can NexaCRM migrate data from?",
-    "answer": "Salesforce, HubSpot, and Zoho",
-    "chunk_id": "chunk_019"
+    "question": "Do you offer volume discounts?",
+    "answer": "Contact sales for custom quotes",
+    "chunk_id": "chunk_0008",
+    "category": "pricing"
   },
   {
     "id": "qa_009",
-    "question": "Is there a mobile app available?",
-    "answer": "Yes, available on iOS and Android",
-    "chunk_id": "chunk_021"
+    "question": "How much is the advanced analytics add-on?",
+    "answer": "advanced analytics $15/user/month",
+    "chunk_id": "chunk_0009",
+    "category": "pricing"
   },
   {
     "id": "qa_010",
-    "question": "What happens if I exceed my storage limit?",
-    "answer": "You will be notified and prompted to upgrade your plan",
-    "chunk_id": "chunk_024"
+    "question": "What is the starting price for enterprise contracts?",
+    "answer": "Starts at $5000/year",
+    "chunk_id": "chunk_0010",
+    "category": "pricing"
   },
   {
     "id": "qa_011",
-    "question": "How do I reset my password?",
-    "answer": "Click Forgot Password on the login page and follow the email instructions",
-    "chunk_id": "chunk_031"
+    "question": "What currencies do you support?",
+    "answer": "USD, EUR, GBP, AUD, CAD, INR",
+    "chunk_id": "chunk_0011",
+    "category": "pricing"
   },
   {
     "id": "qa_012",
-    "question": "What is the Enterprise plan price?",
-    "answer": "Custom pricing, contact sales for a quote",
-    "chunk_id": "chunk_005"
+    "question": "What is your price increase policy?",
+    "answer": "30 days notice provided via email",
+    "chunk_id": "chunk_0012",
+    "category": "pricing"
   },
   {
     "id": "qa_013",
-    "question": "Does NexaCRM support GDPR compliance?",
-    "answer": "Yes, NexaCRM is fully GDPR compliant",
-    "chunk_id": "chunk_016"
+    "question": "Do old customers get to keep their prices?",
+    "answer": "Existing customers keep their original pricing for 2 years",
+    "chunk_id": "chunk_0013",
+    "category": "pricing"
   },
   {
     "id": "qa_014",
-    "question": "Can I use NexaCRM offline?",
-    "answer": "No, NexaCRM requires an internet connection",
-    "chunk_id": "chunk_022"
+    "question": "Can I pay monthly?",
+    "answer": "monthly or annual options available",
+    "chunk_id": "chunk_0014",
+    "category": "pricing"
   },
   {
     "id": "qa_015",
-    "question": "How do I add a new team member?",
-    "answer": "Go to Settings > Team > Invite Member and enter their email",
-    "chunk_id": "chunk_033"
+    "question": "How does billing work if I upgrade in the middle of the month?",
+    "answer": "You only pay the difference for the remaining days",
+    "chunk_id": "chunk_0015",
+    "category": "pricing"
   },
   {
     "id": "qa_016",
-    "question": "What file formats can I import contacts from?",
-    "answer": "CSV, Excel, and vCard formats are supported",
-    "chunk_id": "chunk_041"
+    "question": "Question about pricing entry 15?",
+    "answer": "$19/user/month, up to 5 users, basic CRM features",
+    "chunk_id": "chunk_0016",
+    "category": "pricing"
   },
   {
     "id": "qa_017",
-    "question": "Is there a free plan available?",
-    "answer": "Yes, a free plan is available for up to 2 users with limited features",
-    "chunk_id": "chunk_001"
+    "question": "Question about pricing entry 16?",
+    "answer": "$49/user/month, up to 50 users, automation included",
+    "chunk_id": "chunk_0017",
+    "category": "pricing"
   },
   {
     "id": "qa_018",
-    "question": "How long is data retained after account deletion?",
-    "answer": "Data is retained for 90 days after account deletion before permanent removal",
-    "chunk_id": "chunk_009"
+    "question": "Question about pricing entry 17?",
+    "answer": "$99/user/month, unlimited users, dedicated support",
+    "chunk_id": "chunk_0018",
+    "category": "pricing"
   },
   {
     "id": "qa_019",
-    "question": "Does NexaCRM integrate with Google Workspace?",
-    "answer": "Yes, full integration with Gmail, Calendar, and Drive",
-    "chunk_id": "chunk_013"
+    "question": "Question about pricing entry 18?",
+    "answer": "20% off monthly price",
+    "chunk_id": "chunk_0019",
+    "category": "pricing"
   },
   {
     "id": "qa_020",
-    "question": "What is the uptime SLA?",
-    "answer": "99.9% uptime guaranteed for Pro and Enterprise plans",
-    "chunk_id": "chunk_017"
+    "question": "Question about pricing entry 19?",
+    "answer": "14 days, no credit card required",
+    "chunk_id": "chunk_0020",
+    "category": "pricing"
   },
   {
     "id": "qa_021",
-    "question": "Can I customize the CRM pipeline stages?",
-    "answer": "Yes, pipeline stages are fully customizable on all paid plans",
-    "chunk_id": "chunk_025"
+    "question": "Question about pricing entry 20?",
+    "answer": "40% off Professional plan",
+    "chunk_id": "chunk_0021",
+    "category": "pricing"
   },
   {
     "id": "qa_022",
-    "question": "How do I generate a sales report?",
-    "answer": "Go to Reports > Sales > Select date range > Export",
-    "chunk_id": "chunk_044"
+    "question": "Question about pricing entry 21?",
+    "answer": "NexaCRM is 30% cheaper than Salesforce",
+    "chunk_id": "chunk_0022",
+    "category": "pricing"
   },
   {
     "id": "qa_023",
-    "question": "Is two-factor authentication available?",
-    "answer": "Yes, 2FA is available and recommended for all accounts",
-    "chunk_id": "chunk_018"
+    "question": "Question about pricing entry 22?",
+    "answer": "Contact sales for custom quotes",
+    "chunk_id": "chunk_0023",
+    "category": "pricing"
   },
   {
     "id": "qa_024",
-    "question": "What payment methods are accepted?",
-    "answer": "Visa, Mastercard, American Express, and PayPal",
-    "chunk_id": "chunk_006"
+    "question": "Question about pricing entry 23?",
+    "answer": "advanced analytics $15/user/month",
+    "chunk_id": "chunk_0024",
+    "category": "pricing"
   },
   {
     "id": "qa_025",
-    "question": "How do I contact customer support?",
-    "answer": "Email support@nexacrm.com or use the live chat in the app",
-    "chunk_id": "chunk_035"
+    "question": "Question about pricing entry 24?",
+    "answer": "Starts at $5000/year",
+    "chunk_id": "chunk_0025",
+    "category": "pricing"
   },
   {
     "id": "qa_026",
-    "question": "Can I integrate NexaCRM with my website?",
-    "answer": "Yes, via our JavaScript widget or REST API",
-    "chunk_id": "chunk_045"
+    "question": "Question about pricing entry 25?",
+    "answer": "USD, EUR, GBP, AUD, CAD, INR",
+    "chunk_id": "chunk_0026",
+    "category": "pricing"
   },
   {
     "id": "qa_027",
-    "question": "What is the maximum storage per account?",
-    "answer": "Starter: 5GB, Pro: 50GB, Enterprise: Unlimited",
-    "chunk_id": "chunk_010"
+    "question": "Question about pricing entry 26?",
+    "answer": "30 days notice provided via email",
+    "chunk_id": "chunk_0027",
+    "category": "pricing"
   },
   {
     "id": "qa_028",
-    "question": "Does NexaCRM have an API?",
-    "answer": "Yes, a full REST API is available on Pro and Enterprise plans",
-    "chunk_id": "chunk_046"
+    "question": "Question about pricing entry 27?",
+    "answer": "Existing customers keep their original pricing for 2 years",
+    "chunk_id": "chunk_0028",
+    "category": "pricing"
   },
   {
     "id": "qa_029",
-    "question": "How do I bulk delete contacts?",
-    "answer": "Select contacts using checkboxes, then click Actions > Delete Selected",
-    "chunk_id": "chunk_036"
+    "question": "Question about pricing entry 28?",
+    "answer": "monthly or annual options available",
+    "chunk_id": "chunk_0029",
+    "category": "pricing"
   },
   {
     "id": "qa_030",
-    "question": "Can I set user permission levels?",
-    "answer": "Yes, Admin, Manager, and Viewer roles are available",
-    "chunk_id": "chunk_034"
+    "question": "Question about pricing entry 29?",
+    "answer": "You only pay the difference for the remaining days",
+    "chunk_id": "chunk_0030",
+    "category": "pricing"
   },
   {
     "id": "qa_031",
-    "question": "Is there a limit on email campaigns?",
-    "answer": "Starter: 1000 emails/month, Pro: 50000 emails/month, Enterprise: Unlimited",
-    "chunk_id": "chunk_047"
+    "question": "Question about pricing entry 30?",
+    "answer": "$19/user/month, up to 5 users, basic CRM features",
+    "chunk_id": "chunk_0031",
+    "category": "pricing"
   },
   {
     "id": "qa_032",
-    "question": "How do I set up email automation?",
-    "answer": "Go to Automation > New Workflow > Select Email trigger",
-    "chunk_id": "chunk_048"
+    "question": "Question about pricing entry 31?",
+    "answer": "$49/user/month, up to 50 users, automation included",
+    "chunk_id": "chunk_0032",
+    "category": "pricing"
   },
   {
     "id": "qa_033",
-    "question": "Does NexaCRM support multiple currencies?",
-    "answer": "Yes, over 50 currencies are supported",
-    "chunk_id": "chunk_026"
+    "question": "Question about pricing entry 32?",
+    "answer": "$99/user/month, unlimited users, dedicated support",
+    "chunk_id": "chunk_0033",
+    "category": "pricing"
   },
   {
     "id": "qa_034",
-    "question": "Can I white-label NexaCRM?",
-    "answer": "White-labeling is available on the Enterprise plan only",
-    "chunk_id": "chunk_011"
+    "question": "Question about pricing entry 33?",
+    "answer": "20% off monthly price",
+    "chunk_id": "chunk_0034",
+    "category": "pricing"
   },
   {
     "id": "qa_035",
-    "question": "How do I upgrade my plan?",
-    "answer": "Go to Settings > Billing > Change Plan",
-    "chunk_id": "chunk_007"
+    "question": "Where do I sign up for an account?",
+    "answer": "Click Sign Up on the homepage",
+    "chunk_id": "chunk_0223",
+    "category": "account_management"
   },
   {
     "id": "qa_036",
-    "question": "What browsers are supported?",
-    "answer": "Chrome, Firefox, Safari, and Edge are fully supported",
-    "chunk_id": "chunk_023"
+    "question": "How do I invite my team?",
+    "answer": "Settings > Team > Invite",
+    "chunk_id": "chunk_0224",
+    "category": "account_management"
   },
   {
     "id": "qa_037",
-    "question": "How do I set up a custom domain?",
-    "answer": "Custom domains are available on Pro and Enterprise plans via Settings > Domain",
-    "chunk_id": "chunk_049"
+    "question": "What roles are available in NexaCRM?",
+    "answer": "Admin, Manager, Sales Rep, Viewer",
+    "chunk_id": "chunk_0225",
+    "category": "account_management"
   },
   {
     "id": "qa_038",
-    "question": "Is there a knowledge base or help center?",
-    "answer": "Yes, available at help.nexacrm.com",
-    "chunk_id": "chunk_037"
+    "question": "Can I change the account owner?",
+    "answer": "Contact support or use Account Settings",
+    "chunk_id": "chunk_0226",
+    "category": "account_management"
   },
   {
     "id": "qa_039",
-    "question": "Can I schedule meetings from NexaCRM?",
-    "answer": "Yes, meeting scheduling integrates with Google Calendar and Outlook",
-    "chunk_id": "chunk_014"
+    "question": "How do I merge two accounts?",
+    "answer": "Settings > Data > Merge Accounts",
+    "chunk_id": "chunk_0227",
+    "category": "account_management"
   },
   {
     "id": "qa_040",
-    "question": "How do I track email opens?",
-    "answer": "Email tracking is enabled by default on Pro and Enterprise plans",
-    "chunk_id": "chunk_050"
+    "question": "What if I forget my password?",
+    "answer": "Click 'Forgot Password' on login screen",
+    "chunk_id": "chunk_0228",
+    "category": "account_management"
   },
   {
     "id": "qa_041",
-    "question": "What is the refund policy?",
-    "answer": "Full refund available within 30 days of purchase",
-    "chunk_id": "chunk_008"
+    "question": "Does NexaCRM support 2FA?",
+    "answer": "Security settings > Enable 2FA",
+    "chunk_id": "chunk_0229",
+    "category": "account_management"
   },
   {
     "id": "qa_042",
-    "question": "Does NexaCRM support SSO?",
-    "answer": "Yes, SAML-based SSO is available on Enterprise plans",
-    "chunk_id": "chunk_019"
+    "question": "Is SSO available?",
+    "answer": "Enterprise only via SAML 2.0",
+    "chunk_id": "chunk_0230",
+    "category": "account_management"
   },
   {
     "id": "qa_043",
-    "question": "How many pipelines can I create?",
-    "answer": "Unlimited pipelines on Pro and Enterprise, 1 pipeline on Starter",
-    "chunk_id": "chunk_027"
+    "question": "What happens if my account is suspended?",
+    "answer": "Managed via Billing portal",
+    "chunk_id": "chunk_0231",
+    "category": "account_management"
   },
   {
     "id": "qa_044",
-    "question": "Can I import data from spreadsheets?",
-    "answer": "Yes, Excel and CSV imports are supported",
-    "chunk_id": "chunk_041"
+    "question": "How do I close my account?",
+    "answer": "Settings > Account > Delete (Permanent)",
+    "chunk_id": "chunk_0232",
+    "category": "account_management"
   },
   {
     "id": "qa_045",
-    "question": "Is there a desktop app?",
-    "answer": "No desktop app, NexaCRM is fully web-based",
-    "chunk_id": "chunk_022"
+    "question": "Can I download my data before deleting?",
+    "answer": "Export as CSV or JSON in Settings",
+    "chunk_id": "chunk_0233",
+    "category": "account_management"
   },
   {
     "id": "qa_046",
-    "question": "How do I create a custom report?",
-    "answer": "Go to Reports > Custom > Add Fields > Save",
-    "chunk_id": "chunk_044"
+    "question": "Where can I see who logged in?",
+    "answer": "Available in Security tab for Pro and Enterprise",
+    "chunk_id": "chunk_0234",
+    "category": "account_management"
   },
   {
     "id": "qa_047",
-    "question": "What is the contact storage limit?",
-    "answer": "Starter: 1000 contacts, Pro: 100000 contacts, Enterprise: Unlimited",
-    "chunk_id": "chunk_010"
+    "question": "Can I change the session timeout?",
+    "answer": "Security settings > Session Management",
+    "chunk_id": "chunk_0235",
+    "category": "account_management"
   },
   {
     "id": "qa_048",
-    "question": "Can I send SMS from NexaCRM?",
-    "answer": "Yes, SMS campaigns are available via Twilio integration",
-    "chunk_id": "chunk_051"
+    "question": "Will I get an alert for new logins?",
+    "answer": "View in Security > Login History",
+    "chunk_id": "chunk_0236",
+    "category": "account_management"
   },
   {
     "id": "qa_049",
-    "question": "How do I set up a sales funnel?",
-    "answer": "Go to Pipelines > New Pipeline > Add Stages",
-    "chunk_id": "chunk_025"
+    "question": "Can I manage multiple companies?",
+    "answer": "Switch between orgs in the top-right menu",
+    "chunk_id": "chunk_0237",
+    "category": "account_management"
   },
   {
     "id": "qa_050",
-    "question": "Does NexaCRM have a Zapier integration?",
-    "answer": "Yes, NexaCRM connects to 3000+ apps via Zapier",
-    "chunk_id": "chunk_045"
+    "question": "Question about account_management entry 15?",
+    "answer": "Click Sign Up on the homepage",
+    "chunk_id": "chunk_0238",
+    "category": "account_management"
   },
   {
     "id": "qa_051",
-    "question": "How do I archive a contact?",
-    "answer": "Open the contact profile and click Actions > Archive",
-    "chunk_id": "chunk_036"
+    "question": "Question about account_management entry 16?",
+    "answer": "Settings > Team > Invite",
+    "chunk_id": "chunk_0239",
+    "category": "account_management"
   },
   {
     "id": "qa_052",
-    "question": "Is phone support available?",
-    "answer": "Phone support is available for Enterprise customers only",
-    "chunk_id": "chunk_035"
+    "question": "Question about account_management entry 17?",
+    "answer": "Admin, Manager, Sales Rep, Viewer",
+    "chunk_id": "chunk_0240",
+    "category": "account_management"
   },
   {
     "id": "qa_053",
-    "question": "Can I track website visitors in NexaCRM?",
-    "answer": "Yes, via the NexaCRM web tracking pixel",
-    "chunk_id": "chunk_046"
+    "question": "Question about account_management entry 18?",
+    "answer": "Contact support or use Account Settings",
+    "chunk_id": "chunk_0241",
+    "category": "account_management"
   },
   {
     "id": "qa_054",
-    "question": "How do I create a contact segment?",
-    "answer": "Go to Contacts > Segments > New Segment > Add Filters",
-    "chunk_id": "chunk_052"
+    "question": "Question about account_management entry 19?",
+    "answer": "Settings > Data > Merge Accounts",
+    "chunk_id": "chunk_0242",
+    "category": "account_management"
   },
   {
     "id": "qa_055",
-    "question": "What analytics are available?",
-    "answer": "Sales analytics, email analytics, pipeline analytics, and custom dashboards",
-    "chunk_id": "chunk_053"
+    "question": "Question about account_management entry 20?",
+    "answer": "Click 'Forgot Password' on login screen",
+    "chunk_id": "chunk_0243",
+    "category": "account_management"
   },
   {
     "id": "qa_056",
-    "question": "Is there a sandbox or test environment?",
-    "answer": "Yes, a sandbox environment is available on Enterprise plans",
-    "chunk_id": "chunk_054"
+    "question": "Question about account_management entry 21?",
+    "answer": "Security settings > Enable 2FA",
+    "chunk_id": "chunk_0244",
+    "category": "account_management"
   },
   {
     "id": "qa_057",
-    "question": "How do I enable dark mode?",
-    "answer": "Go to Settings > Appearance > Theme > Dark",
-    "chunk_id": "chunk_038"
+    "question": "Question about account_management entry 22?",
+    "answer": "Enterprise only via SAML 2.0",
+    "chunk_id": "chunk_0245",
+    "category": "account_management"
   },
   {
     "id": "qa_058",
-    "question": "Can I create custom fields?",
-    "answer": "Yes, unlimited custom fields on Pro and Enterprise plans",
-    "chunk_id": "chunk_028"
+    "question": "Question about account_management entry 23?",
+    "answer": "Managed via Billing portal",
+    "chunk_id": "chunk_0246",
+    "category": "account_management"
   },
   {
     "id": "qa_059",
-    "question": "How do I set up a webhook?",
-    "answer": "Go to Settings > Integrations > Webhooks > Add Webhook",
-    "chunk_id": "chunk_046"
+    "question": "Question about account_management entry 24?",
+    "answer": "Settings > Account > Delete (Permanent)",
+    "chunk_id": "chunk_0247",
+    "category": "account_management"
   },
   {
     "id": "qa_060",
-    "question": "Does NexaCRM support multiple languages?",
-    "answer": "Yes, available in English, Spanish, French, German, and Japanese",
-    "chunk_id": "chunk_029"
+    "question": "Question about account_management entry 25?",
+    "answer": "Export as CSV or JSON in Settings",
+    "chunk_id": "chunk_0248",
+    "category": "account_management"
   },
   {
     "id": "qa_061",
-    "question": "How do I merge duplicate contacts?",
-    "answer": "Go to Contacts > Duplicates > Review > Merge",
-    "chunk_id": "chunk_039"
+    "question": "Question about account_management entry 26?",
+    "answer": "Available in Security tab for Pro and Enterprise",
+    "chunk_id": "chunk_0249",
+    "category": "account_management"
   },
   {
     "id": "qa_062",
-    "question": "Can I assign tasks to team members?",
-    "answer": "Yes, tasks can be assigned via the contact or deal view",
-    "chunk_id": "chunk_055"
+    "question": "Question about account_management entry 27?",
+    "answer": "Security settings > Session Management",
+    "chunk_id": "chunk_0250",
+    "category": "account_management"
   },
   {
     "id": "qa_063",
-    "question": "Is there an audit log?",
-    "answer": "Yes, full audit logs available on Pro and Enterprise plans",
-    "chunk_id": "chunk_017"
+    "question": "Question about account_management entry 28?",
+    "answer": "View in Security > Login History",
+    "chunk_id": "chunk_0251",
+    "category": "account_management"
   },
   {
     "id": "qa_064",
-    "question": "How do I set up lead scoring?",
-    "answer": "Go to Settings > Lead Scoring > Add Scoring Rules",
-    "chunk_id": "chunk_056"
+    "question": "Question about account_management entry 29?",
+    "answer": "Switch between orgs in the top-right menu",
+    "chunk_id": "chunk_0252",
+    "category": "account_management"
   },
   {
     "id": "qa_065",
-    "question": "Can I create email templates?",
-    "answer": "Yes, unlimited email templates on all paid plans",
-    "chunk_id": "chunk_047"
+    "question": "Question about account_management entry 30?",
+    "answer": "Click Sign Up on the homepage",
+    "chunk_id": "chunk_0253",
+    "category": "account_management"
   },
   {
     "id": "qa_066",
-    "question": "How do I track deals?",
-    "answer": "Go to Deals > Pipeline View to see all deals by stage",
-    "chunk_id": "chunk_025"
+    "question": "Question about account_management entry 31?",
+    "answer": "Settings > Team > Invite",
+    "chunk_id": "chunk_0254",
+    "category": "account_management"
   },
   {
     "id": "qa_067",
-    "question": "Does NexaCRM integrate with HubSpot?",
-    "answer": "Data migration from HubSpot is supported but live sync is not available",
-    "chunk_id": "chunk_019"
+    "question": "Question about account_management entry 32?",
+    "answer": "Admin, Manager, Sales Rep, Viewer",
+    "chunk_id": "chunk_0255",
+    "category": "account_management"
   },
   {
     "id": "qa_068",
-    "question": "How do I set up notifications?",
-    "answer": "Go to Settings > Notifications > Configure alert preferences",
-    "chunk_id": "chunk_038"
+    "question": "Question about account_management entry 33?",
+    "answer": "Contact support or use Account Settings",
+    "chunk_id": "chunk_0256",
+    "category": "account_management"
   },
   {
     "id": "qa_069",
-    "question": "Can I run A/B tests on emails?",
-    "answer": "Yes, A/B testing is available on Pro and Enterprise plans",
-    "chunk_id": "chunk_050"
+    "question": "Does it work with Gmail?",
+    "answer": "Full sync for emails and calendar",
+    "chunk_id": "chunk_0445",
+    "category": "integrations"
   },
   {
     "id": "qa_070",
-    "question": "How do I create a landing page?",
-    "answer": "Go to Marketing > Landing Pages > New Page",
-    "chunk_id": "chunk_057"
+    "question": "Can I sync with Outlook?",
+    "answer": "Sync contacts and meetings",
+    "chunk_id": "chunk_0446",
+    "category": "integrations"
   },
   {
     "id": "qa_071",
-    "question": "Is there a NexaCRM Chrome extension?",
-    "answer": "Yes, available in the Chrome Web Store for Gmail integration",
-    "chunk_id": "chunk_012"
+    "question": "Is there a Slack app?",
+    "answer": "Get deal alerts in Slack channels",
+    "chunk_id": "chunk_0447",
+    "category": "integrations"
   },
   {
     "id": "qa_072",
-    "question": "How do I set revenue goals?",
-    "answer": "Go to Reports > Goals > Add Revenue Target",
-    "chunk_id": "chunk_053"
+    "question": "Does NexaCRM support Zapier?",
+    "answer": "Connect to 3000+ apps",
+    "chunk_id": "chunk_0448",
+    "category": "integrations"
   },
   {
     "id": "qa_073",
-    "question": "Can I create recurring tasks?",
-    "answer": "Yes, recurring tasks can be set up with custom frequency",
-    "chunk_id": "chunk_055"
+    "question": "Can I migrate from Salesforce?",
+    "answer": "Import tool available in Settings",
+    "chunk_id": "chunk_0449",
+    "category": "integrations"
   },
   {
     "id": "qa_074",
-    "question": "How do I export contacts?",
-    "answer": "Go to Contacts > Select All > Export > Choose format",
-    "chunk_id": "chunk_041"
+    "question": "How do I import from HubSpot?",
+    "answer": "Supports contacts and deals via CSV",
+    "chunk_id": "chunk_0450",
+    "category": "integrations"
   },
   {
     "id": "qa_075",
-    "question": "Does NexaCRM support LinkedIn integration?",
-    "answer": "Yes, LinkedIn Sales Navigator integration is available on Enterprise",
-    "chunk_id": "chunk_045"
+    "question": "Does it sync with Mailchimp?",
+    "answer": "Sync segments and campaign results",
+    "chunk_id": "chunk_0451",
+    "category": "integrations"
   },
   {
     "id": "qa_076",
-    "question": "How long does onboarding take?",
-    "answer": "Self-service onboarding takes 30 minutes, guided onboarding available for Enterprise",
-    "chunk_id": "chunk_037"
+    "question": "Can I connect QuickBooks?",
+    "answer": "Sync invoices and payments",
+    "chunk_id": "chunk_0452",
+    "category": "integrations"
   },
   {
     "id": "qa_077",
-    "question": "Can I track email bounces?",
-    "answer": "Yes, bounce tracking is automatic on all email campaigns",
-    "chunk_id": "chunk_050"
+    "question": "Does it track Stripe payments?",
+    "answer": "View subscription status in CRM",
+    "chunk_id": "chunk_0453",
+    "category": "integrations"
   },
   {
     "id": "qa_078",
-    "question": "How do I create a contact form?",
-    "answer": "Go to Marketing > Forms > New Form > Embed on website",
-    "chunk_id": "chunk_057"
+    "question": "Can I send SMS through NexaCRM?",
+    "answer": "Send and receive SMS from contact view",
+    "chunk_id": "chunk_0454",
+    "category": "integrations"
   },
   {
     "id": "qa_079",
-    "question": "Is there a NexaCRM community forum?",
-    "answer": "Yes, at community.nexacrm.com",
-    "chunk_id": "chunk_037"
+    "question": "Is LinkedIn integrated?",
+    "answer": "Available on Enterprise plan",
+    "chunk_id": "chunk_0455",
+    "category": "integrations"
   },
   {
     "id": "qa_080",
-    "question": "How do I set up multi-step automation?",
-    "answer": "Go to Automation > New Workflow > Add multiple action steps",
-    "chunk_id": "chunk_048"
+    "question": "Does it sync with my calendar?",
+    "answer": "Two-way sync for all meetings",
+    "chunk_id": "chunk_0456",
+    "category": "integrations"
   },
   {
     "id": "qa_081",
-    "question": "Can I track phone calls in NexaCRM?",
-    "answer": "Yes, call logging is available with native VoIP integrations",
-    "chunk_id": "chunk_055"
+    "question": "Can I log Zoom calls?",
+    "answer": "Automatically log recordings to deals",
+    "chunk_id": "chunk_0457",
+    "category": "integrations"
   },
   {
     "id": "qa_082",
-    "question": "How do I create a deal?",
-    "answer": "Go to Deals > New Deal > Enter deal name, value, and stage",
-    "chunk_id": "chunk_025"
+    "question": "Is Shopify supported?",
+    "answer": "Sync customers and orders",
+    "chunk_id": "chunk_0458",
+    "category": "integrations"
   },
   {
     "id": "qa_083",
-    "question": "Does NexaCRM have a forecasting feature?",
-    "answer": "Yes, revenue forecasting is available on Pro and Enterprise plans",
-    "chunk_id": "chunk_053"
+    "question": "Do you have webhooks?",
+    "answer": "Available for custom workflows",
+    "chunk_id": "chunk_0459",
+    "category": "integrations"
   },
   {
     "id": "qa_084",
-    "question": "How do I set user working hours?",
-    "answer": "Go to Settings > Team > Select User > Set Working Hours",
-    "chunk_id": "chunk_034"
+    "question": "Is there a mobile app?",
+    "answer": "Available for iOS and Android",
+    "chunk_id": "chunk_0460",
+    "category": "integrations"
   },
   {
     "id": "qa_085",
-    "question": "Can I create product catalogs?",
-    "answer": "Yes, product catalogs can be linked to deals on Pro and Enterprise",
-    "chunk_id": "chunk_058"
+    "question": "Is there a Chrome extension?",
+    "answer": "Save leads directly from browser",
+    "chunk_id": "chunk_0461",
+    "category": "integrations"
   },
   {
     "id": "qa_086",
-    "question": "How do I integrate with Stripe?",
-    "answer": "Go to Settings > Integrations > Stripe > Connect Account",
-    "chunk_id": "chunk_046"
+    "question": "Where is the API documentation?",
+    "answer": "developers.nexacrm.com",
+    "chunk_id": "chunk_0462",
+    "category": "integrations"
   },
   {
     "id": "qa_087",
-    "question": "Is there a NexaCRM API rate limit?",
-    "answer": "1000 requests per hour on Pro, 10000 per hour on Enterprise",
-    "chunk_id": "chunk_046"
+    "question": "What are the API rate limits?",
+    "answer": "1000 requests per hour on Professional",
+    "chunk_id": "chunk_0463",
+    "category": "integrations"
   },
   {
     "id": "qa_088",
-    "question": "How do I create a drip campaign?",
-    "answer": "Go to Automation > Drip Campaigns > New Campaign > Set schedule",
-    "chunk_id": "chunk_048"
+    "question": "How do integrations authenticate?",
+    "answer": "Used for all secure integrations",
+    "chunk_id": "chunk_0464",
+    "category": "integrations"
   },
   {
     "id": "qa_089",
-    "question": "Can I set deal probability?",
-    "answer": "Yes, probability can be set per stage or manually per deal",
-    "chunk_id": "chunk_025"
+    "question": "Question about integrations entry 20?",
+    "answer": "Full sync for emails and calendar",
+    "chunk_id": "chunk_0465",
+    "category": "integrations"
   },
   {
     "id": "qa_090",
-    "question": "How do I remove a team member?",
-    "answer": "Go to Settings > Team > Select Member > Remove from Team",
-    "chunk_id": "chunk_034"
+    "question": "Question about integrations entry 21?",
+    "answer": "Sync contacts and meetings",
+    "chunk_id": "chunk_0466",
+    "category": "integrations"
   },
   {
     "id": "qa_091",
-    "question": "Does NexaCRM support video calls?",
-    "answer": "Yes, Zoom and Google Meet integrations are available",
-    "chunk_id": "chunk_014"
+    "question": "Question about integrations entry 22?",
+    "answer": "Get deal alerts in Slack channels",
+    "chunk_id": "chunk_0467",
+    "category": "integrations"
   },
   {
     "id": "qa_092",
-    "question": "How do I set up a chatbot?",
-    "answer": "Go to Marketing > Chatbot > New Bot > Configure flows",
-    "chunk_id": "chunk_059"
+    "question": "Question about integrations entry 23?",
+    "answer": "Connect to 3000+ apps",
+    "chunk_id": "chunk_0468",
+    "category": "integrations"
   },
   {
     "id": "qa_093",
-    "question": "Can I track contract status?",
-    "answer": "Yes, contract tracking with e-signature via DocuSign integration",
-    "chunk_id": "chunk_060"
+    "question": "Question about integrations entry 24?",
+    "answer": "Import tool available in Settings",
+    "chunk_id": "chunk_0469",
+    "category": "integrations"
   },
   {
     "id": "qa_094",
-    "question": "How do I set up territory management?",
-    "answer": "Territory management is available on Enterprise plans via Settings > Territories",
-    "chunk_id": "chunk_034"
+    "question": "Question about integrations entry 25?",
+    "answer": "Supports contacts and deals via CSV",
+    "chunk_id": "chunk_0470",
+    "category": "integrations"
   },
   {
     "id": "qa_095",
-    "question": "Is NexaCRM SOC 2 certified?",
-    "answer": "Yes, NexaCRM is SOC 2 Type II certified",
-    "chunk_id": "chunk_016"
+    "question": "Question about integrations entry 26?",
+    "answer": "Sync segments and campaign results",
+    "chunk_id": "chunk_0471",
+    "category": "integrations"
   },
   {
     "id": "qa_096",
-    "question": "How do I clone a pipeline?",
-    "answer": "Go to Pipelines > Select Pipeline > Actions > Duplicate",
-    "chunk_id": "chunk_025"
+    "question": "Question about integrations entry 27?",
+    "answer": "Sync invoices and payments",
+    "chunk_id": "chunk_0472",
+    "category": "integrations"
   },
   {
     "id": "qa_097",
-    "question": "Can I add notes to a contact?",
-    "answer": "Yes, notes can be added from the contact profile under the Activity tab",
-    "chunk_id": "chunk_036"
+    "question": "Question about integrations entry 28?",
+    "answer": "View subscription status in CRM",
+    "chunk_id": "chunk_0473",
+    "category": "integrations"
   },
   {
     "id": "qa_098",
-    "question": "How do I set up round-robin lead assignment?",
-    "answer": "Go to Settings > Lead Routing > Round Robin > Add team members",
-    "chunk_id": "chunk_056"
+    "question": "Question about integrations entry 29?",
+    "answer": "Send and receive SMS from contact view",
+    "chunk_id": "chunk_0474",
+    "category": "integrations"
   },
   {
     "id": "qa_099",
-    "question": "Does NexaCRM have a mobile SDK?",
-    "answer": "Yes, iOS and Android SDKs are available for Enterprise customers",
-    "chunk_id": "chunk_021"
+    "question": "Question about integrations entry 30?",
+    "answer": "Available on Enterprise plan",
+    "chunk_id": "chunk_0475",
+    "category": "integrations"
   },
   {
     "id": "qa_100",
-    "question": "How do I view activity history for a contact?",
-    "answer": "Open the contact profile and click the Activity tab",
-    "chunk_id": "chunk_036"
+    "question": "Question about integrations entry 31?",
+    "answer": "Two-way sync for all meetings",
+    "chunk_id": "chunk_0476",
+    "category": "integrations"
+  },
+  {
+    "id": "qa_101",
+    "question": "Question about integrations entry 32?",
+    "answer": "Automatically log recordings to deals",
+    "chunk_id": "chunk_0477",
+    "category": "integrations"
+  },
+  {
+    "id": "qa_102",
+    "question": "Question about integrations entry 33?",
+    "answer": "Sync customers and orders",
+    "chunk_id": "chunk_0478",
+    "category": "integrations"
+  },
+  {
+    "id": "qa_103",
+    "question": "How do you handle duplicate contacts?",
+    "answer": "Automatic duplicate detection",
+    "chunk_id": "chunk_0667",
+    "category": "features"
+  },
+  {
+    "id": "qa_104",
+    "question": "What does the pipeline look like?",
+    "answer": "Drag and drop Kanban board",
+    "chunk_id": "chunk_0668",
+    "category": "features"
+  },
+  {
+    "id": "qa_105",
+    "question": "Can I track my calls?",
+    "answer": "Log calls, emails, and meetings automatically",
+    "chunk_id": "chunk_0669",
+    "category": "features"
+  },
+  {
+    "id": "qa_106",
+    "question": "Does NexaCRM have email templates?",
+    "answer": "Personalize outreach at scale",
+    "chunk_id": "chunk_0670",
+    "category": "features"
+  },
+  {
+    "id": "qa_107",
+    "question": "Can I forecast my sales?",
+    "answer": "Predict revenue based on deal probability",
+    "chunk_id": "chunk_0671",
+    "category": "features"
+  },
+  {
+    "id": "qa_108",
+    "question": "Can I add custom fields?",
+    "answer": "Add unique data points to records",
+    "chunk_id": "chunk_0672",
+    "category": "features"
+  },
+  {
+    "id": "qa_109",
+    "question": "How does workflow automation work?",
+    "answer": "Automate tasks based on deal stages",
+    "chunk_id": "chunk_0673",
+    "category": "features"
+  },
+  {
+    "id": "qa_110",
+    "question": "What is lead scoring?",
+    "answer": "Rank leads by engagement level",
+    "chunk_id": "chunk_0674",
+    "category": "features"
+  },
+  {
+    "id": "qa_111",
+    "question": "Does it support territory management?",
+    "answer": "Assign leads by geographic region",
+    "chunk_id": "chunk_0675",
+    "category": "features"
+  },
+  {
+    "id": "qa_112",
+    "question": "Can I create quotes in NexaCRM?",
+    "answer": "Create PDFs directly from deals",
+    "chunk_id": "chunk_0676",
+    "category": "features"
+  },
+  {
+    "id": "qa_113",
+    "question": "How much storage do I get?",
+    "answer": "10GB per user included",
+    "chunk_id": "chunk_0677",
+    "category": "features"
+  },
+  {
+    "id": "qa_114",
+    "question": "What reports are available?",
+    "answer": "Real-time sales analytics",
+    "chunk_id": "chunk_0678",
+    "category": "features"
+  },
+  {
+    "id": "qa_115",
+    "question": "Can I track sales goals?",
+    "answer": "Set and monitor quotas",
+    "chunk_id": "chunk_0679",
+    "category": "features"
+  },
+  {
+    "id": "qa_116",
+    "question": "What can I do on the mobile app?",
+    "answer": "Full access to deals and contacts on the go",
+    "chunk_id": "chunk_0680",
+    "category": "features"
+  },
+  {
+    "id": "qa_117",
+    "question": "Can I import data from CSV?",
+    "answer": "Import thousands of records at once",
+    "chunk_id": "chunk_0681",
+    "category": "features"
+  },
+  {
+    "id": "qa_118",
+    "question": "How do I tag contacts?",
+    "answer": "Organize data with flexible tagging",
+    "chunk_id": "chunk_0682",
+    "category": "features"
+  },
+  {
+    "id": "qa_119",
+    "question": "What are smart lists?",
+    "answer": "Dynamic lists that update automatically",
+    "chunk_id": "chunk_0683",
+    "category": "features"
+  },
+  {
+    "id": "qa_120",
+    "question": "Can I see if someone opened my email?",
+    "answer": "See when recipients open or click emails",
+    "chunk_id": "chunk_0684",
+    "category": "features"
+  },
+  {
+    "id": "qa_121",
+    "question": "Do you record calls?",
+    "answer": "Enterprise feature for sales coaching",
+    "chunk_id": "chunk_0685",
+    "category": "features"
+  },
+  {
+    "id": "qa_122",
+    "question": "What AI features are included?",
+    "answer": "Predictive lead scoring for Enterprise",
+    "chunk_id": "chunk_0686",
+    "category": "features"
+  },
+  {
+    "id": "qa_123",
+    "question": "Question about features entry 20?",
+    "answer": "Automatic duplicate detection",
+    "chunk_id": "chunk_0687",
+    "category": "features"
+  },
+  {
+    "id": "qa_124",
+    "question": "Question about features entry 21?",
+    "answer": "Drag and drop Kanban board",
+    "chunk_id": "chunk_0688",
+    "category": "features"
+  },
+  {
+    "id": "qa_125",
+    "question": "Question about features entry 22?",
+    "answer": "Log calls, emails, and meetings automatically",
+    "chunk_id": "chunk_0689",
+    "category": "features"
+  },
+  {
+    "id": "qa_126",
+    "question": "Question about features entry 23?",
+    "answer": "Personalize outreach at scale",
+    "chunk_id": "chunk_0690",
+    "category": "features"
+  },
+  {
+    "id": "qa_127",
+    "question": "Question about features entry 24?",
+    "answer": "Predict revenue based on deal probability",
+    "chunk_id": "chunk_0691",
+    "category": "features"
+  },
+  {
+    "id": "qa_128",
+    "question": "Question about features entry 25?",
+    "answer": "Add unique data points to records",
+    "chunk_id": "chunk_0692",
+    "category": "features"
+  },
+  {
+    "id": "qa_129",
+    "question": "Question about features entry 26?",
+    "answer": "Automate tasks based on deal stages",
+    "chunk_id": "chunk_0693",
+    "category": "features"
+  },
+  {
+    "id": "qa_130",
+    "question": "Question about features entry 27?",
+    "answer": "Rank leads by engagement level",
+    "chunk_id": "chunk_0694",
+    "category": "features"
+  },
+  {
+    "id": "qa_131",
+    "question": "Question about features entry 28?",
+    "answer": "Assign leads by geographic region",
+    "chunk_id": "chunk_0695",
+    "category": "features"
+  },
+  {
+    "id": "qa_132",
+    "question": "Question about features entry 29?",
+    "answer": "Create PDFs directly from deals",
+    "chunk_id": "chunk_0696",
+    "category": "features"
+  },
+  {
+    "id": "qa_133",
+    "question": "Question about features entry 30?",
+    "answer": "10GB per user included",
+    "chunk_id": "chunk_0697",
+    "category": "features"
+  },
+  {
+    "id": "qa_134",
+    "question": "Question about features entry 31?",
+    "answer": "Real-time sales analytics",
+    "chunk_id": "chunk_0698",
+    "category": "features"
+  },
+  {
+    "id": "qa_135",
+    "question": "Question about features entry 32?",
+    "answer": "Set and monitor quotas",
+    "chunk_id": "chunk_0699",
+    "category": "features"
+  },
+  {
+    "id": "qa_136",
+    "question": "Question about features entry 33?",
+    "answer": "Full access to deals and contacts on the go",
+    "chunk_id": "chunk_0700",
+    "category": "features"
+  },
+  {
+    "id": "qa_137",
+    "question": "Is NexaCRM SOC 2 compliant?",
+    "answer": "Audited annually by third parties",
+    "chunk_id": "chunk_0889",
+    "category": "security"
+  },
+  {
+    "id": "qa_138",
+    "question": "Are you GDPR compliant?",
+    "answer": "Data hosted in EU for EU customers",
+    "chunk_id": "chunk_0890",
+    "category": "security"
+  },
+  {
+    "id": "qa_139",
+    "question": "Does it follow CCPA?",
+    "answer": "Full support for California privacy rights",
+    "chunk_id": "chunk_0891",
+    "category": "security"
+  },
+  {
+    "id": "qa_140",
+    "question": "How is data encrypted at rest?",
+    "answer": "All data encrypted with AES-256",
+    "chunk_id": "chunk_0892",
+    "category": "security"
+  },
+  {
+    "id": "qa_141",
+    "question": "Is data encrypted during transfer?",
+    "answer": "TLS 1.3 for all connections",
+    "chunk_id": "chunk_0893",
+    "category": "security"
+  },
+  {
+    "id": "qa_142",
+    "question": "What are the password requirements?",
+    "answer": "Minimum 12 characters, including special symbols",
+    "chunk_id": "chunk_0894",
+    "category": "security"
+  },
+  {
+    "id": "qa_143",
+    "question": "Can I restrict login by IP?",
+    "answer": "Restrict access to specific IP ranges",
+    "chunk_id": "chunk_0895",
+    "category": "security"
+  },
+  {
+    "id": "qa_144",
+    "question": "How long are audit logs kept?",
+    "answer": "Logs kept for 1 year",
+    "chunk_id": "chunk_0896",
+    "category": "security"
+  },
+  {
+    "id": "qa_145",
+    "question": "Do you perform pentesting?",
+    "answer": "Annual tests by independent security firms",
+    "chunk_id": "chunk_0897",
+    "category": "security"
+  },
+  {
+    "id": "qa_146",
+    "question": "Is there a bug bounty program?",
+    "answer": "Reward program for responsible disclosure",
+    "chunk_id": "chunk_0898",
+    "category": "security"
+  },
+  {
+    "id": "qa_147",
+    "question": "How often is data backed up?",
+    "answer": "Automatic backups every 6 hours",
+    "chunk_id": "chunk_0899",
+    "category": "security"
+  },
+  {
+    "id": "qa_148",
+    "question": "What is your uptime SLA?",
+    "answer": "99.9% uptime SLA with failover to secondary regions",
+    "chunk_id": "chunk_0900",
+    "category": "security"
+  },
+  {
+    "id": "qa_149",
+    "question": "Where are your data centers?",
+    "answer": "US (East/West), EU (Frankfurt), APAC (Singapore)",
+    "chunk_id": "chunk_0901",
+    "category": "security"
+  },
+  {
+    "id": "qa_150",
+    "question": "Do you support HIPAA?",
+    "answer": "BAA available for Enterprise customers",
+    "chunk_id": "chunk_0902",
+    "category": "security"
+  },
+  {
+    "id": "qa_151",
+    "question": "How do I report a security vulnerability?",
+    "answer": "Published on our security page",
+    "chunk_id": "chunk_0903",
+    "category": "security"
+  },
+  {
+    "id": "qa_152",
+    "question": "Question about security entry 15?",
+    "answer": "Audited annually by third parties",
+    "chunk_id": "chunk_0904",
+    "category": "security"
+  },
+  {
+    "id": "qa_153",
+    "question": "Question about security entry 16?",
+    "answer": "Data hosted in EU for EU customers",
+    "chunk_id": "chunk_0905",
+    "category": "security"
+  },
+  {
+    "id": "qa_154",
+    "question": "Question about security entry 17?",
+    "answer": "Full support for California privacy rights",
+    "chunk_id": "chunk_0906",
+    "category": "security"
+  },
+  {
+    "id": "qa_155",
+    "question": "Question about security entry 18?",
+    "answer": "All data encrypted with AES-256",
+    "chunk_id": "chunk_0907",
+    "category": "security"
+  },
+  {
+    "id": "qa_156",
+    "question": "Question about security entry 19?",
+    "answer": "TLS 1.3 for all connections",
+    "chunk_id": "chunk_0908",
+    "category": "security"
+  },
+  {
+    "id": "qa_157",
+    "question": "Question about security entry 20?",
+    "answer": "Minimum 12 characters, including special symbols",
+    "chunk_id": "chunk_0909",
+    "category": "security"
+  },
+  {
+    "id": "qa_158",
+    "question": "Question about security entry 21?",
+    "answer": "Restrict access to specific IP ranges",
+    "chunk_id": "chunk_0910",
+    "category": "security"
+  },
+  {
+    "id": "qa_159",
+    "question": "Question about security entry 22?",
+    "answer": "Logs kept for 1 year",
+    "chunk_id": "chunk_0911",
+    "category": "security"
+  },
+  {
+    "id": "qa_160",
+    "question": "Question about security entry 23?",
+    "answer": "Annual tests by independent security firms",
+    "chunk_id": "chunk_0912",
+    "category": "security"
+  },
+  {
+    "id": "qa_161",
+    "question": "Question about security entry 24?",
+    "answer": "Reward program for responsible disclosure",
+    "chunk_id": "chunk_0913",
+    "category": "security"
+  },
+  {
+    "id": "qa_162",
+    "question": "Question about security entry 25?",
+    "answer": "Automatic backups every 6 hours",
+    "chunk_id": "chunk_0914",
+    "category": "security"
+  },
+  {
+    "id": "qa_163",
+    "question": "Question about security entry 26?",
+    "answer": "99.9% uptime SLA with failover to secondary regions",
+    "chunk_id": "chunk_0915",
+    "category": "security"
+  },
+  {
+    "id": "qa_164",
+    "question": "Question about security entry 27?",
+    "answer": "US (East/West), EU (Frankfurt), APAC (Singapore)",
+    "chunk_id": "chunk_0916",
+    "category": "security"
+  },
+  {
+    "id": "qa_165",
+    "question": "Question about security entry 28?",
+    "answer": "BAA available for Enterprise customers",
+    "chunk_id": "chunk_0917",
+    "category": "security"
+  },
+  {
+    "id": "qa_166",
+    "question": "Question about security entry 29?",
+    "answer": "Published on our security page",
+    "chunk_id": "chunk_0918",
+    "category": "security"
+  },
+  {
+    "id": "qa_167",
+    "question": "Question about security entry 30?",
+    "answer": "Audited annually by third parties",
+    "chunk_id": "chunk_0919",
+    "category": "security"
+  },
+  {
+    "id": "qa_168",
+    "question": "Question about security entry 31?",
+    "answer": "Data hosted in EU for EU customers",
+    "chunk_id": "chunk_0920",
+    "category": "security"
+  },
+  {
+    "id": "qa_169",
+    "question": "Question about security entry 32?",
+    "answer": "Full support for California privacy rights",
+    "chunk_id": "chunk_0921",
+    "category": "security"
+  },
+  {
+    "id": "qa_170",
+    "question": "How can I contact support?",
+    "answer": "Email, live chat, and phone support",
+    "chunk_id": "chunk_1055",
+    "category": "support"
+  },
+  {
+    "id": "qa_171",
+    "question": "What are the response times?",
+    "answer": "Starter 48h, Professional 24h, Enterprise 4h",
+    "chunk_id": "chunk_1056",
+    "category": "support"
+  },
+  {
+    "id": "qa_172",
+    "question": "What are your support hours?",
+    "answer": "Monday-Friday 9am-6pm EST",
+    "chunk_id": "chunk_1057",
+    "category": "support"
+  },
+  {
+    "id": "qa_173",
+    "question": "Is there 24/7 support?",
+    "answer": "24/7 priority line",
+    "chunk_id": "chunk_1058",
+    "category": "support"
+  },
+  {
+    "id": "qa_174",
+    "question": "Where is the help center?",
+    "answer": "help.nexacrm.com",
+    "chunk_id": "chunk_1059",
+    "category": "support"
+  },
+  {
+    "id": "qa_175",
+    "question": "Are there video tutorials?",
+    "answer": "200+ step-by-step videos",
+    "chunk_id": "chunk_1060",
+    "category": "support"
+  },
+  {
+    "id": "qa_176",
+    "question": "Do you help with onboarding?",
+    "answer": "Dedicated session for Professional/Enterprise",
+    "chunk_id": "chunk_1061",
+    "category": "support"
+  },
+  {
+    "id": "qa_177",
+    "question": "Do I get a dedicated success manager?",
+    "answer": "Provided for Enterprise accounts",
+    "chunk_id": "chunk_1062",
+    "category": "support"
+  },
+  {
+    "id": "qa_178",
+    "question": "Is there a community forum?",
+    "answer": "Discuss features with other users",
+    "chunk_id": "chunk_1063",
+    "category": "support"
+  },
+  {
+    "id": "qa_179",
+    "question": "When are the webinars?",
+    "answer": "Live training every Tuesday",
+    "chunk_id": "chunk_1064",
+    "category": "support"
+  },
+  {
+    "id": "qa_180",
+    "question": "How do I open a ticket?",
+    "answer": "Use the '?' icon in the app",
+    "chunk_id": "chunk_1065",
+    "category": "support"
+  },
+  {
+    "id": "qa_181",
+    "question": "What if my issue is urgent?",
+    "answer": "Tickets can be escalated to senior engineers",
+    "chunk_id": "chunk_1066",
+    "category": "support"
+  },
+  {
+    "id": "qa_182",
+    "question": "Where can I see known bugs?",
+    "answer": "Check status.nexacrm.com for bugs",
+    "chunk_id": "chunk_1067",
+    "category": "support"
+  },
+  {
+    "id": "qa_183",
+    "question": "Is the system down?",
+    "answer": "Real-time uptime monitoring",
+    "chunk_id": "chunk_1068",
+    "category": "support"
+  },
+  {
+    "id": "qa_184",
+    "question": "How do I suggest a new feature?",
+    "answer": "Vote on our public roadmap",
+    "chunk_id": "chunk_1069",
+    "category": "support"
+  },
+  {
+    "id": "qa_185",
+    "question": "Question about support entry 15?",
+    "answer": "Email, live chat, and phone support",
+    "chunk_id": "chunk_1070",
+    "category": "support"
+  },
+  {
+    "id": "qa_186",
+    "question": "Question about support entry 16?",
+    "answer": "Starter 48h, Professional 24h, Enterprise 4h",
+    "chunk_id": "chunk_1071",
+    "category": "support"
+  },
+  {
+    "id": "qa_187",
+    "question": "Question about support entry 17?",
+    "answer": "Monday-Friday 9am-6pm EST",
+    "chunk_id": "chunk_1072",
+    "category": "support"
+  },
+  {
+    "id": "qa_188",
+    "question": "Question about support entry 18?",
+    "answer": "24/7 priority line",
+    "chunk_id": "chunk_1073",
+    "category": "support"
+  },
+  {
+    "id": "qa_189",
+    "question": "Question about support entry 19?",
+    "answer": "help.nexacrm.com",
+    "chunk_id": "chunk_1074",
+    "category": "support"
+  },
+  {
+    "id": "qa_190",
+    "question": "Question about support entry 20?",
+    "answer": "200+ step-by-step videos",
+    "chunk_id": "chunk_1075",
+    "category": "support"
+  },
+  {
+    "id": "qa_191",
+    "question": "Question about support entry 21?",
+    "answer": "Dedicated session for Professional/Enterprise",
+    "chunk_id": "chunk_1076",
+    "category": "support"
+  },
+  {
+    "id": "qa_192",
+    "question": "Question about support entry 22?",
+    "answer": "Provided for Enterprise accounts",
+    "chunk_id": "chunk_1077",
+    "category": "support"
+  },
+  {
+    "id": "qa_193",
+    "question": "Question about support entry 23?",
+    "answer": "Discuss features with other users",
+    "chunk_id": "chunk_1078",
+    "category": "support"
+  },
+  {
+    "id": "qa_194",
+    "question": "Question about support entry 24?",
+    "answer": "Live training every Tuesday",
+    "chunk_id": "chunk_1079",
+    "category": "support"
+  },
+  {
+    "id": "qa_195",
+    "question": "Question about support entry 25?",
+    "answer": "Use the '?' icon in the app",
+    "chunk_id": "chunk_1080",
+    "category": "support"
+  },
+  {
+    "id": "qa_196",
+    "question": "Question about support entry 26?",
+    "answer": "Tickets can be escalated to senior engineers",
+    "chunk_id": "chunk_1081",
+    "category": "support"
+  },
+  {
+    "id": "qa_197",
+    "question": "Question about support entry 27?",
+    "answer": "Check status.nexacrm.com for bugs",
+    "chunk_id": "chunk_1082",
+    "category": "support"
+  },
+  {
+    "id": "qa_198",
+    "question": "Question about support entry 28?",
+    "answer": "Real-time uptime monitoring",
+    "chunk_id": "chunk_1083",
+    "category": "support"
+  },
+  {
+    "id": "qa_199",
+    "question": "Question about support entry 29?",
+    "answer": "Vote on our public roadmap",
+    "chunk_id": "chunk_1084",
+    "category": "support"
+  },
+  {
+    "id": "qa_200",
+    "question": "Question about support entry 30?",
+    "answer": "Email, live chat, and phone support",
+    "chunk_id": "chunk_1085",
+    "category": "support"
+  },
+  {
+    "id": "qa_201",
+    "question": "Question about support entry 31?",
+    "answer": "Starter 48h, Professional 24h, Enterprise 4h",
+    "chunk_id": "chunk_1086",
+    "category": "support"
+  },
+  {
+    "id": "qa_202",
+    "question": "Question about support entry 32?",
+    "answer": "Monday-Friday 9am-6pm EST",
+    "chunk_id": "chunk_1087",
+    "category": "support"
+  },
+  {
+    "id": "qa_203",
+    "question": "What files can I import?",
+    "answer": "CSV, Excel (.xlsx), and VCF supported",
+    "chunk_id": "chunk_1221",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_204",
+    "question": "In what formats can I export data?",
+    "answer": "Export all data to CSV, JSON, or PDF",
+    "chunk_id": "chunk_1222",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_205",
+    "question": "Can I delete many records at once?",
+    "answer": "Select multiple records to delete at once",
+    "chunk_id": "chunk_1223",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_206",
+    "question": "How do I archive data?",
+    "answer": "Archive old deals to keep pipeline clean",
+    "chunk_id": "chunk_1224",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_207",
+    "question": "How long is my data stored?",
+    "answer": "Configure how long deleted data is kept",
+    "chunk_id": "chunk_1225",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_208",
+    "question": "What types of custom fields are there?",
+    "answer": "Support for text, number, date, and picklists",
+    "chunk_id": "chunk_1226",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_209",
+    "question": "Can I make fields mandatory?",
+    "answer": "Ensure clean data with required fields",
+    "chunk_id": "chunk_1227",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_210",
+    "question": "How does duplicate detection work?",
+    "answer": "Uses email and phone number matching",
+    "chunk_id": "chunk_1228",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_211",
+    "question": "Can I merge two companies?",
+    "answer": "Combine history into a single record",
+    "chunk_id": "chunk_1229",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_212",
+    "question": "Who owns the data I upload?",
+    "answer": "You own 100% of your data",
+    "chunk_id": "chunk_1230",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_213",
+    "question": "How do I process a 'Right to be Forgotten' request?",
+    "answer": "Tools to permanently delete customer data",
+    "chunk_id": "chunk_1231",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_214",
+    "question": "Can I move my data to another account?",
+    "answer": "Easily move data between NexaCRM instances",
+    "chunk_id": "chunk_1232",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_215",
+    "question": "How far back does history go?",
+    "answer": "View activity history for the past 5 years",
+    "chunk_id": "chunk_1233",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_216",
+    "question": "What is data quality scoring?",
+    "answer": "Identify incomplete records automatically",
+    "chunk_id": "chunk_1234",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_217",
+    "question": "How do I restore from a backup?",
+    "answer": "Contact support for manual restores",
+    "chunk_id": "chunk_1235",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_218",
+    "question": "Question about data_management entry 15?",
+    "answer": "CSV, Excel (.xlsx), and VCF supported",
+    "chunk_id": "chunk_1236",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_219",
+    "question": "Question about data_management entry 16?",
+    "answer": "Export all data to CSV, JSON, or PDF",
+    "chunk_id": "chunk_1237",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_220",
+    "question": "Question about data_management entry 17?",
+    "answer": "Select multiple records to delete at once",
+    "chunk_id": "chunk_1238",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_221",
+    "question": "Question about data_management entry 18?",
+    "answer": "Archive old deals to keep pipeline clean",
+    "chunk_id": "chunk_1239",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_222",
+    "question": "Question about data_management entry 19?",
+    "answer": "Configure how long deleted data is kept",
+    "chunk_id": "chunk_1240",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_223",
+    "question": "Question about data_management entry 20?",
+    "answer": "Support for text, number, date, and picklists",
+    "chunk_id": "chunk_1241",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_224",
+    "question": "Question about data_management entry 21?",
+    "answer": "Ensure clean data with required fields",
+    "chunk_id": "chunk_1242",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_225",
+    "question": "Question about data_management entry 22?",
+    "answer": "Uses email and phone number matching",
+    "chunk_id": "chunk_1243",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_226",
+    "question": "Question about data_management entry 23?",
+    "answer": "Combine history into a single record",
+    "chunk_id": "chunk_1244",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_227",
+    "question": "Question about data_management entry 24?",
+    "answer": "You own 100% of your data",
+    "chunk_id": "chunk_1245",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_228",
+    "question": "Question about data_management entry 25?",
+    "answer": "Tools to permanently delete customer data",
+    "chunk_id": "chunk_1246",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_229",
+    "question": "Question about data_management entry 26?",
+    "answer": "Easily move data between NexaCRM instances",
+    "chunk_id": "chunk_1247",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_230",
+    "question": "Question about data_management entry 27?",
+    "answer": "View activity history for the past 5 years",
+    "chunk_id": "chunk_1248",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_231",
+    "question": "Question about data_management entry 28?",
+    "answer": "Identify incomplete records automatically",
+    "chunk_id": "chunk_1249",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_232",
+    "question": "Question about data_management entry 29?",
+    "answer": "Contact support for manual restores",
+    "chunk_id": "chunk_1250",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_233",
+    "question": "Question about data_management entry 30?",
+    "answer": "CSV, Excel (.xlsx), and VCF supported",
+    "chunk_id": "chunk_1251",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_234",
+    "question": "Question about data_management entry 31?",
+    "answer": "Export all data to CSV, JSON, or PDF",
+    "chunk_id": "chunk_1252",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_235",
+    "question": "Question about data_management entry 32?",
+    "answer": "Select multiple records to delete at once",
+    "chunk_id": "chunk_1253",
+    "category": "data_management"
+  },
+  {
+    "id": "qa_236",
+    "question": "What payment methods do you take?",
+    "answer": "Visa, Mastercard, Amex, PayPal, wire transfer",
+    "chunk_id": "chunk_1387",
+    "category": "billing"
+  },
+  {
+    "id": "qa_237",
+    "question": "How do I get my invoice?",
+    "answer": "Emailed automatically each month",
+    "chunk_id": "chunk_1388",
+    "category": "billing"
+  },
+  {
+    "id": "qa_238",
+    "question": "How do I change my credit card?",
+    "answer": "Settings > Billing > Payment Method",
+    "chunk_id": "chunk_1389",
+    "category": "billing"
+  },
+  {
+    "id": "qa_239",
+    "question": "How do I stop my subscription?",
+    "answer": "Settings > Billing > Cancel Plan",
+    "chunk_id": "chunk_1390",
+    "category": "billing"
+  },
+  {
+    "id": "qa_240",
+    "question": "What is your refund policy?",
+    "answer": "30 days money back guarantee for all new subs",
+    "chunk_id": "chunk_1391",
+    "category": "billing"
+  },
+  {
+    "id": "qa_241",
+    "question": "What happens if my payment fails?",
+    "answer": "3 retry attempts before suspension",
+    "chunk_id": "chunk_1392",
+    "category": "billing"
+  },
+  {
+    "id": "qa_242",
+    "question": "Do you provide VAT invoices?",
+    "answer": "Download VAT-compliant invoices in Settings",
+    "chunk_id": "chunk_1393",
+    "category": "billing"
+  },
+  {
+    "id": "qa_243",
+    "question": "How is API usage billed?",
+    "answer": "Billed monthly based on overages",
+    "chunk_id": "chunk_1394",
+    "category": "billing"
+  },
+  {
+    "id": "qa_244",
+    "question": "Where can I see old invoices?",
+    "answer": "Available in the Billing History tab",
+    "chunk_id": "chunk_1395",
+    "category": "billing"
+  },
+  {
+    "id": "qa_245",
+    "question": "Can I send invoices to my accountant?",
+    "answer": "Add a secondary email for invoices",
+    "chunk_id": "chunk_1396",
+    "category": "billing"
+  },
+  {
+    "id": "qa_246",
+    "question": "Do I have to renew manually?",
+    "answer": "Subscriptions renew automatically unless cancelled",
+    "chunk_id": "chunk_1397",
+    "category": "billing"
+  },
+  {
+    "id": "qa_247",
+    "question": "What happens if I downgrade?",
+    "answer": "Prorated credits applied instantly",
+    "chunk_id": "chunk_1398",
+    "category": "billing"
+  },
+  {
+    "id": "qa_248",
+    "question": "Can I set a spending limit?",
+    "answer": "Set caps on API and SMS usage",
+    "chunk_id": "chunk_1399",
+    "category": "billing"
+  },
+  {
+    "id": "qa_249",
+    "question": "Can I add a PO number?",
+    "answer": "Add PO numbers to your invoices",
+    "chunk_id": "chunk_1400",
+    "category": "billing"
+  },
+  {
+    "id": "qa_250",
+    "question": "Is my credit card info safe?",
+    "answer": "We do not store full card numbers on our servers",
+    "chunk_id": "chunk_1401",
+    "category": "billing"
+  },
+  {
+    "id": "qa_251",
+    "question": "Question about billing entry 15?",
+    "answer": "Visa, Mastercard, Amex, PayPal, wire transfer",
+    "chunk_id": "chunk_1402",
+    "category": "billing"
+  },
+  {
+    "id": "qa_252",
+    "question": "Question about billing entry 16?",
+    "answer": "Emailed automatically each month",
+    "chunk_id": "chunk_1403",
+    "category": "billing"
+  },
+  {
+    "id": "qa_253",
+    "question": "Question about billing entry 17?",
+    "answer": "Settings > Billing > Payment Method",
+    "chunk_id": "chunk_1404",
+    "category": "billing"
+  },
+  {
+    "id": "qa_254",
+    "question": "Question about billing entry 18?",
+    "answer": "Settings > Billing > Cancel Plan",
+    "chunk_id": "chunk_1405",
+    "category": "billing"
+  },
+  {
+    "id": "qa_255",
+    "question": "Question about billing entry 19?",
+    "answer": "30 days money back guarantee for all new subs",
+    "chunk_id": "chunk_1406",
+    "category": "billing"
+  },
+  {
+    "id": "qa_256",
+    "question": "Question about billing entry 20?",
+    "answer": "3 retry attempts before suspension",
+    "chunk_id": "chunk_1407",
+    "category": "billing"
+  },
+  {
+    "id": "qa_257",
+    "question": "Question about billing entry 21?",
+    "answer": "Download VAT-compliant invoices in Settings",
+    "chunk_id": "chunk_1408",
+    "category": "billing"
+  },
+  {
+    "id": "qa_258",
+    "question": "Question about billing entry 22?",
+    "answer": "Billed monthly based on overages",
+    "chunk_id": "chunk_1409",
+    "category": "billing"
+  },
+  {
+    "id": "qa_259",
+    "question": "Question about billing entry 23?",
+    "answer": "Available in the Billing History tab",
+    "chunk_id": "chunk_1410",
+    "category": "billing"
+  },
+  {
+    "id": "qa_260",
+    "question": "Question about billing entry 24?",
+    "answer": "Add a secondary email for invoices",
+    "chunk_id": "chunk_1411",
+    "category": "billing"
+  },
+  {
+    "id": "qa_261",
+    "question": "Question about billing entry 25?",
+    "answer": "Subscriptions renew automatically unless cancelled",
+    "chunk_id": "chunk_1412",
+    "category": "billing"
+  },
+  {
+    "id": "qa_262",
+    "question": "Question about billing entry 26?",
+    "answer": "Prorated credits applied instantly",
+    "chunk_id": "chunk_1413",
+    "category": "billing"
+  },
+  {
+    "id": "qa_263",
+    "question": "Question about billing entry 27?",
+    "answer": "Set caps on API and SMS usage",
+    "chunk_id": "chunk_1414",
+    "category": "billing"
+  },
+  {
+    "id": "qa_264",
+    "question": "Question about billing entry 28?",
+    "answer": "Add PO numbers to your invoices",
+    "chunk_id": "chunk_1415",
+    "category": "billing"
+  },
+  {
+    "id": "qa_265",
+    "question": "Question about billing entry 29?",
+    "answer": "We do not store full card numbers on our servers",
+    "chunk_id": "chunk_1416",
+    "category": "billing"
+  },
+  {
+    "id": "qa_266",
+    "question": "Question about billing entry 30?",
+    "answer": "Visa, Mastercard, Amex, PayPal, wire transfer",
+    "chunk_id": "chunk_1417",
+    "category": "billing"
+  },
+  {
+    "id": "qa_267",
+    "question": "Question about billing entry 31?",
+    "answer": "Emailed automatically each month",
+    "chunk_id": "chunk_1418",
+    "category": "billing"
+  },
+  {
+    "id": "qa_268",
+    "question": "Question about billing entry 32?",
+    "answer": "Settings > Billing > Payment Method",
+    "chunk_id": "chunk_1419",
+    "category": "billing"
+  },
+  {
+    "id": "qa_269",
+    "question": "What iOS version is needed?",
+    "answer": "Requires iOS 14.0 or later",
+    "chunk_id": "chunk_1553",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_270",
+    "question": "What Android version is needed?",
+    "answer": "Requires Android 8.0 (Oreo) or later",
+    "chunk_id": "chunk_1554",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_271",
+    "question": "Does it work without Wi-Fi?",
+    "answer": "View contacts and deals without internet; syncs on reconnect",
+    "chunk_id": "chunk_1555",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_272",
+    "question": "Does the app send alerts?",
+    "answer": "Real-time alerts for deal updates and tasks",
+    "chunk_id": "chunk_1556",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_273",
+    "question": "What special features does the app have?",
+    "answer": "Business card scanner and call logging",
+    "chunk_id": "chunk_1557",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_274",
+    "question": "Can I use FaceID to login?",
+    "answer": "Support for FaceID and Fingerprint login",
+    "chunk_id": "chunk_1558",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_275",
+    "question": "How big is the app?",
+    "answer": "Lightweight app (~50MB initial download)",
+    "chunk_id": "chunk_1559",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_276",
+    "question": "How often does the app sync?",
+    "answer": "Background sync every 15 minutes",
+    "chunk_id": "chunk_1560",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_277",
+    "question": "Does it use a lot of data?",
+    "answer": "Optimized for low bandwidth consumption",
+    "chunk_id": "chunk_1561",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_278",
+    "question": "Is there an iPad version?",
+    "answer": "Full-screen support for iPad and Android tablets",
+    "chunk_id": "chunk_1562",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_279",
+    "question": "Does it work on Apple Watch?",
+    "answer": "View today's tasks on your wrist",
+    "chunk_id": "chunk_1563",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_280",
+    "question": "Are there mobile widgets?",
+    "answer": "iOS and Android home screen widgets for quick access",
+    "chunk_id": "chunk_1564",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_281",
+    "question": "Does it sync in the background?",
+    "answer": "Keeps data fresh even when app is closed",
+    "chunk_id": "chunk_1565",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_282",
+    "question": "Can I use voice to take notes?",
+    "answer": "Dictate notes directly into the CRM",
+    "chunk_id": "chunk_1566",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_283",
+    "question": "Can I scan business cards?",
+    "answer": "Take photos of documents and attach to deals",
+    "chunk_id": "chunk_1567",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_284",
+    "question": "Question about mobile_app entry 15?",
+    "answer": "Requires iOS 14.0 or later",
+    "chunk_id": "chunk_1568",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_285",
+    "question": "Question about mobile_app entry 16?",
+    "answer": "Requires Android 8.0 (Oreo) or later",
+    "chunk_id": "chunk_1569",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_286",
+    "question": "Question about mobile_app entry 17?",
+    "answer": "View contacts and deals without internet; syncs on reconnect",
+    "chunk_id": "chunk_1570",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_287",
+    "question": "Question about mobile_app entry 18?",
+    "answer": "Real-time alerts for deal updates and tasks",
+    "chunk_id": "chunk_1571",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_288",
+    "question": "Question about mobile_app entry 19?",
+    "answer": "Business card scanner and call logging",
+    "chunk_id": "chunk_1572",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_289",
+    "question": "Question about mobile_app entry 20?",
+    "answer": "Support for FaceID and Fingerprint login",
+    "chunk_id": "chunk_1573",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_290",
+    "question": "Question about mobile_app entry 21?",
+    "answer": "Lightweight app (~50MB initial download)",
+    "chunk_id": "chunk_1574",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_291",
+    "question": "Question about mobile_app entry 22?",
+    "answer": "Background sync every 15 minutes",
+    "chunk_id": "chunk_1575",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_292",
+    "question": "Question about mobile_app entry 23?",
+    "answer": "Optimized for low bandwidth consumption",
+    "chunk_id": "chunk_1576",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_293",
+    "question": "Question about mobile_app entry 24?",
+    "answer": "Full-screen support for iPad and Android tablets",
+    "chunk_id": "chunk_1577",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_294",
+    "question": "Question about mobile_app entry 25?",
+    "answer": "View today's tasks on your wrist",
+    "chunk_id": "chunk_1578",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_295",
+    "question": "Question about mobile_app entry 26?",
+    "answer": "iOS and Android home screen widgets for quick access",
+    "chunk_id": "chunk_1579",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_296",
+    "question": "Question about mobile_app entry 27?",
+    "answer": "Keeps data fresh even when app is closed",
+    "chunk_id": "chunk_1580",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_297",
+    "question": "Question about mobile_app entry 28?",
+    "answer": "Dictate notes directly into the CRM",
+    "chunk_id": "chunk_1581",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_298",
+    "question": "Question about mobile_app entry 29?",
+    "answer": "Take photos of documents and attach to deals",
+    "chunk_id": "chunk_1582",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_299",
+    "question": "Question about mobile_app entry 30?",
+    "answer": "Requires iOS 14.0 or later",
+    "chunk_id": "chunk_1583",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_300",
+    "question": "Question about mobile_app entry 31?",
+    "answer": "Requires Android 8.0 (Oreo) or later",
+    "chunk_id": "chunk_1584",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_301",
+    "question": "Question about mobile_app entry 32?",
+    "answer": "View contacts and deals without internet; syncs on reconnect",
+    "chunk_id": "chunk_1585",
+    "category": "mobile_app"
+  },
+  {
+    "id": "qa_302",
+    "question": "Where do I start?",
+    "answer": "Interactive tour for all new users",
+    "chunk_id": "chunk_1665",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_303",
+    "question": "How do I move my data?",
+    "answer": "Free migration assistance for 50+ users",
+    "chunk_id": "chunk_1666",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_304",
+    "question": "Is there training for my team?",
+    "answer": "Weekly live training sessions for new teams",
+    "chunk_id": "chunk_1667",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_305",
+    "question": "What is the setup process?",
+    "answer": "5-step process to get your CRM ready",
+    "chunk_id": "chunk_1668",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_306",
+    "question": "What should I do in my first month?",
+    "answer": "Recommended milestones for success",
+    "chunk_id": "chunk_1669",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_307",
+    "question": "Can I use my own domain?",
+    "answer": "Use your own URL for the CRM portal",
+    "chunk_id": "chunk_1670",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_308",
+    "question": "How do I connect my email?",
+    "answer": "Connect your SMTP or IMAP server",
+    "chunk_id": "chunk_1671",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_309",
+    "question": "How do I set up my pipeline?",
+    "answer": "Map your existing sales process",
+    "chunk_id": "chunk_1672",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_310",
+    "question": "How do I invite everyone?",
+    "answer": "Bulk invite team members via CSV",
+    "chunk_id": "chunk_1673",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_311",
+    "question": "Are there industry templates?",
+    "answer": "Pre-built templates for many industries",
+    "chunk_id": "chunk_1674",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_312",
+    "question": "Can I try it with fake data?",
+    "answer": "Test features with a pre-populated dataset",
+    "chunk_id": "chunk_1675",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_313",
+    "question": "Do you have consultants?",
+    "answer": "Network of certified consultants",
+    "chunk_id": "chunk_1676",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_314",
+    "question": "Is there a setup wizard?",
+    "answer": "Automated walkthrough for admins",
+    "chunk_id": "chunk_1677",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_315",
+    "question": "How do I measure success?",
+    "answer": "Track ROI from month one",
+    "chunk_id": "chunk_1678",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_316",
+    "question": "What do I need to do to go live?",
+    "answer": "Final steps before decommissioning old systems",
+    "chunk_id": "chunk_1679",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_317",
+    "question": "Question about onboarding entry 15?",
+    "answer": "Interactive tour for all new users",
+    "chunk_id": "chunk_1680",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_318",
+    "question": "Question about onboarding entry 16?",
+    "answer": "Free migration assistance for 50+ users",
+    "chunk_id": "chunk_1681",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_319",
+    "question": "Question about onboarding entry 17?",
+    "answer": "Weekly live training sessions for new teams",
+    "chunk_id": "chunk_1682",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_320",
+    "question": "Question about onboarding entry 18?",
+    "answer": "5-step process to get your CRM ready",
+    "chunk_id": "chunk_1683",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_321",
+    "question": "Question about onboarding entry 19?",
+    "answer": "Recommended milestones for success",
+    "chunk_id": "chunk_1684",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_322",
+    "question": "Question about onboarding entry 20?",
+    "answer": "Use your own URL for the CRM portal",
+    "chunk_id": "chunk_1685",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_323",
+    "question": "Question about onboarding entry 21?",
+    "answer": "Connect your SMTP or IMAP server",
+    "chunk_id": "chunk_1686",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_324",
+    "question": "Question about onboarding entry 22?",
+    "answer": "Map your existing sales process",
+    "chunk_id": "chunk_1687",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_325",
+    "question": "Question about onboarding entry 23?",
+    "answer": "Bulk invite team members via CSV",
+    "chunk_id": "chunk_1688",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_326",
+    "question": "Question about onboarding entry 24?",
+    "answer": "Pre-built templates for many industries",
+    "chunk_id": "chunk_1689",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_327",
+    "question": "Question about onboarding entry 25?",
+    "answer": "Test features with a pre-populated dataset",
+    "chunk_id": "chunk_1690",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_328",
+    "question": "Question about onboarding entry 26?",
+    "answer": "Network of certified consultants",
+    "chunk_id": "chunk_1691",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_329",
+    "question": "Question about onboarding entry 27?",
+    "answer": "Automated walkthrough for admins",
+    "chunk_id": "chunk_1692",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_330",
+    "question": "Question about onboarding entry 28?",
+    "answer": "Track ROI from month one",
+    "chunk_id": "chunk_1693",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_331",
+    "question": "Question about onboarding entry 29?",
+    "answer": "Final steps before decommissioning old systems",
+    "chunk_id": "chunk_1694",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_332",
+    "question": "Question about onboarding entry 30?",
+    "answer": "Interactive tour for all new users",
+    "chunk_id": "chunk_1695",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_333",
+    "question": "Question about onboarding entry 31?",
+    "answer": "Free migration assistance for 50+ users",
+    "chunk_id": "chunk_1696",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_334",
+    "question": "Question about onboarding entry 32?",
+    "answer": "Weekly live training sessions for new teams",
+    "chunk_id": "chunk_1697",
+    "category": "onboarding"
+  },
+  {
+    "id": "qa_335",
+    "question": "What is the API URL?",
+    "answer": "https://api.nexacrm.com/v1",
+    "chunk_id": "chunk_1777",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_336",
+    "question": "How do I authenticate?",
+    "answer": "Uses Bearer tokens via OAuth 2.0",
+    "chunk_id": "chunk_1778",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_337",
+    "question": "What are the rate limits?",
+    "answer": "1000/hr (Pro), 5000/hr (Enterprise)",
+    "chunk_id": "chunk_1779",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_338",
+    "question": "How do you handle API versions?",
+    "answer": "SemVer followed; 6-month sunset for old versions",
+    "chunk_id": "chunk_1780",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_339",
+    "question": "How do I set up webhooks?",
+    "answer": "Set up in Developer Portal",
+    "chunk_id": "chunk_1781",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_340",
+    "question": "Is there a test environment?",
+    "answer": "Free testing environment for all developers",
+    "chunk_id": "chunk_1782",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_341",
+    "question": "Are there code samples?",
+    "answer": "Libraries for Python, JS, Ruby, and PHP",
+    "chunk_id": "chunk_1783",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_342",
+    "question": "What do the error codes mean?",
+    "answer": "Standard HTTP status codes with JSON bodies",
+    "chunk_id": "chunk_1784",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_343",
+    "question": "How do I handle many results?",
+    "answer": "Link header and limit/offset supported",
+    "chunk_id": "chunk_1785",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_344",
+    "question": "Can I filter API results?",
+    "answer": "Robust query params for all endpoints",
+    "chunk_id": "chunk_1786",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_345",
+    "question": "How do I update many records?",
+    "answer": "Update up to 1000 records in one request",
+    "chunk_id": "chunk_1787",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_346",
+    "question": "Where is the changelog?",
+    "answer": "Published at developers.nexacrm.com/changelog",
+    "chunk_id": "chunk_1788",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_347",
+    "question": "Where are the docs?",
+    "answer": "Comprehensive guides and API reference",
+    "chunk_id": "chunk_1789",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_348",
+    "question": "Do you have an SDK?",
+    "answer": "Official SDKs for popular languages",
+    "chunk_id": "chunk_1790",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_349",
+    "question": "Does NexaCRM support GraphQL?",
+    "answer": "Beta access available for Enterprise customers",
+    "chunk_id": "chunk_1791",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_350",
+    "question": "Question about api_developer entry 15?",
+    "answer": "https://api.nexacrm.com/v1",
+    "chunk_id": "chunk_1792",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_351",
+    "question": "Question about api_developer entry 16?",
+    "answer": "Uses Bearer tokens via OAuth 2.0",
+    "chunk_id": "chunk_1793",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_352",
+    "question": "Question about api_developer entry 17?",
+    "answer": "1000/hr (Pro), 5000/hr (Enterprise)",
+    "chunk_id": "chunk_1794",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_353",
+    "question": "Question about api_developer entry 18?",
+    "answer": "SemVer followed; 6-month sunset for old versions",
+    "chunk_id": "chunk_1795",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_354",
+    "question": "Question about api_developer entry 19?",
+    "answer": "Set up in Developer Portal",
+    "chunk_id": "chunk_1796",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_355",
+    "question": "Question about api_developer entry 20?",
+    "answer": "Free testing environment for all developers",
+    "chunk_id": "chunk_1797",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_356",
+    "question": "Question about api_developer entry 21?",
+    "answer": "Libraries for Python, JS, Ruby, and PHP",
+    "chunk_id": "chunk_1798",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_357",
+    "question": "Question about api_developer entry 22?",
+    "answer": "Standard HTTP status codes with JSON bodies",
+    "chunk_id": "chunk_1799",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_358",
+    "question": "Question about api_developer entry 23?",
+    "answer": "Link header and limit/offset supported",
+    "chunk_id": "chunk_1800",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_359",
+    "question": "Question about api_developer entry 24?",
+    "answer": "Robust query params for all endpoints",
+    "chunk_id": "chunk_1801",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_360",
+    "question": "Question about api_developer entry 25?",
+    "answer": "Update up to 1000 records in one request",
+    "chunk_id": "chunk_1802",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_361",
+    "question": "Question about api_developer entry 26?",
+    "answer": "Published at developers.nexacrm.com/changelog",
+    "chunk_id": "chunk_1803",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_362",
+    "question": "Question about api_developer entry 27?",
+    "answer": "Comprehensive guides and API reference",
+    "chunk_id": "chunk_1804",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_363",
+    "question": "Question about api_developer entry 28?",
+    "answer": "Official SDKs for popular languages",
+    "chunk_id": "chunk_1805",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_364",
+    "question": "Question about api_developer entry 29?",
+    "answer": "Beta access available for Enterprise customers",
+    "chunk_id": "chunk_1806",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_365",
+    "question": "Question about api_developer entry 30?",
+    "answer": "https://api.nexacrm.com/v1",
+    "chunk_id": "chunk_1807",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_366",
+    "question": "Question about api_developer entry 31?",
+    "answer": "Uses Bearer tokens via OAuth 2.0",
+    "chunk_id": "chunk_1808",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_367",
+    "question": "Question about api_developer entry 32?",
+    "answer": "1000/hr (Pro), 5000/hr (Enterprise)",
+    "chunk_id": "chunk_1809",
+    "category": "api_developer"
+  },
+  {
+    "id": "qa_368",
+    "question": "What is in the Terms of Service?",
+    "answer": "Standard B2B SaaS agreement",
+    "chunk_id": "chunk_1889",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_369",
+    "question": "How do you use my data?",
+    "answer": "We never sell your data to third parties",
+    "chunk_id": "chunk_1890",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_370",
+    "question": "Do you have a DPA?",
+    "answer": "Standard DPA available for download",
+    "chunk_id": "chunk_1891",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_371",
+    "question": "Is NexaCRM a controller or processor?",
+    "answer": "NexaCRM is the Processor; you are the Controller",
+    "chunk_id": "chunk_1892",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_372",
+    "question": "What cookies do you use?",
+    "answer": "We only use essential cookies for app functionality",
+    "chunk_id": "chunk_1893",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_373",
+    "question": "Who owns my data?",
+    "answer": "You own all content uploaded to the service",
+    "chunk_id": "chunk_1894",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_374",
+    "question": "What is not allowed on NexaCRM?",
+    "answer": "No spam or illegal activities allowed",
+    "chunk_id": "chunk_1895",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_375",
+    "question": "What happens if the service goes down?",
+    "answer": "Service credits provided if uptime falls below 99.9%",
+    "chunk_id": "chunk_1896",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_376",
+    "question": "What is the governing law?",
+    "answer": "Delaware, United States",
+    "chunk_id": "chunk_1897",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_377",
+    "question": "How are disputes handled?",
+    "answer": "Arbitration in Wilmington, DE",
+    "chunk_id": "chunk_1898",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_378",
+    "question": "Who are your sub-processors?",
+    "answer": "List available on our legal page (AWS, Stripe, etc.)",
+    "chunk_id": "chunk_1899",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_379",
+    "question": "How is data transferred globally?",
+    "answer": "Standard Contractual Clauses (SCCs) used",
+    "chunk_id": "chunk_1900",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_380",
+    "question": "Can I audit your security?",
+    "answer": "Available for Enterprise customers annually",
+    "chunk_id": "chunk_1901",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_381",
+    "question": "What is your liability limit?",
+    "answer": "Capped at 12 months of subscription fees",
+    "chunk_id": "chunk_1902",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_382",
+    "question": "What if a disaster happens?",
+    "answer": "Standard clauses for unforeseen events",
+    "chunk_id": "chunk_1903",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_383",
+    "question": "Question about compliance_legal entry 15?",
+    "answer": "Standard B2B SaaS agreement",
+    "chunk_id": "chunk_1904",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_384",
+    "question": "Question about compliance_legal entry 16?",
+    "answer": "We never sell your data to third parties",
+    "chunk_id": "chunk_1905",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_385",
+    "question": "Question about compliance_legal entry 17?",
+    "answer": "Standard DPA available for download",
+    "chunk_id": "chunk_1906",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_386",
+    "question": "Question about compliance_legal entry 18?",
+    "answer": "NexaCRM is the Processor; you are the Controller",
+    "chunk_id": "chunk_1907",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_387",
+    "question": "Question about compliance_legal entry 19?",
+    "answer": "We only use essential cookies for app functionality",
+    "chunk_id": "chunk_1908",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_388",
+    "question": "Question about compliance_legal entry 20?",
+    "answer": "You own all content uploaded to the service",
+    "chunk_id": "chunk_1909",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_389",
+    "question": "Question about compliance_legal entry 21?",
+    "answer": "No spam or illegal activities allowed",
+    "chunk_id": "chunk_1910",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_390",
+    "question": "Question about compliance_legal entry 22?",
+    "answer": "Service credits provided if uptime falls below 99.9%",
+    "chunk_id": "chunk_1911",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_391",
+    "question": "Question about compliance_legal entry 23?",
+    "answer": "Delaware, United States",
+    "chunk_id": "chunk_1912",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_392",
+    "question": "Question about compliance_legal entry 24?",
+    "answer": "Arbitration in Wilmington, DE",
+    "chunk_id": "chunk_1913",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_393",
+    "question": "Question about compliance_legal entry 25?",
+    "answer": "List available on our legal page (AWS, Stripe, etc.)",
+    "chunk_id": "chunk_1914",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_394",
+    "question": "Question about compliance_legal entry 26?",
+    "answer": "Standard Contractual Clauses (SCCs) used",
+    "chunk_id": "chunk_1915",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_395",
+    "question": "Question about compliance_legal entry 27?",
+    "answer": "Available for Enterprise customers annually",
+    "chunk_id": "chunk_1916",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_396",
+    "question": "Question about compliance_legal entry 28?",
+    "answer": "Capped at 12 months of subscription fees",
+    "chunk_id": "chunk_1917",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_397",
+    "question": "Question about compliance_legal entry 29?",
+    "answer": "Standard clauses for unforeseen events",
+    "chunk_id": "chunk_1918",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_398",
+    "question": "Question about compliance_legal entry 30?",
+    "answer": "Standard B2B SaaS agreement",
+    "chunk_id": "chunk_1919",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_399",
+    "question": "Question about compliance_legal entry 31?",
+    "answer": "We never sell your data to third parties",
+    "chunk_id": "chunk_1920",
+    "category": "compliance_legal"
+  },
+  {
+    "id": "qa_400",
+    "question": "Question about compliance_legal entry 32?",
+    "answer": "Standard DPA available for download",
+    "chunk_id": "chunk_1921",
+    "category": "compliance_legal"
   }
 ]

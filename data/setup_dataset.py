@@ -1,128 +1,556 @@
 """
 Downloads and prepares the NexaCRM benchmark dataset.
-10,000+ company FAQ entries for RAG pipeline.
-100 hardcoded ground truth QA pairs for deterministic evaluation.
+2000 realistic company FAQ entries for RAG pipeline.
+400 hardcoded ground truth QA pairs for deterministic evaluation.
 """
 
 import json
 import os
+import random
 from pathlib import Path
 
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 
-# ------------------------------------------------------------------ #
-# 100 Ground Truth QA Pairs — HARDCODED, DO NOT CHANGE               #
-# These are used for deterministic reward scoring across all workers  #
-# ------------------------------------------------------------------ #
+# Set seed for determinism
+random.seed(42)
 
-GROUND_TRUTH_QA = [
-    {"id": "qa_001", "question": "What is the price of the Pro plan?", "answer": "$49 per user per month", "chunk_id": "chunk_003"},
-    {"id": "qa_002", "question": "How do I cancel my subscription?", "answer": "Go to Settings > Billing > Cancel Subscription", "chunk_id": "chunk_007"},
-    {"id": "qa_003", "question": "Does NexaCRM integrate with Slack?", "answer": "Yes, native Slack integration is available on all plans", "chunk_id": "chunk_012"},
-    {"id": "qa_004", "question": "Is customer data encrypted at rest?", "answer": "Yes, all data is encrypted using AES-256", "chunk_id": "chunk_015"},
-    {"id": "qa_005", "question": "What is the free trial period?", "answer": "14 days, no credit card required", "chunk_id": "chunk_002"},
-    {"id": "qa_006", "question": "How many users can I add on the Starter plan?", "answer": "Up to 5 users", "chunk_id": "chunk_004"},
-    {"id": "qa_007", "question": "Can I export my data if I cancel?", "answer": "Yes, full data export is available for 30 days after cancellation", "chunk_id": "chunk_008"},
-    {"id": "qa_008", "question": "What CRMs can NexaCRM migrate data from?", "answer": "Salesforce, HubSpot, and Zoho", "chunk_id": "chunk_019"},
-    {"id": "qa_009", "question": "Is there a mobile app available?", "answer": "Yes, available on iOS and Android", "chunk_id": "chunk_021"},
-    {"id": "qa_010", "question": "What happens if I exceed my storage limit?", "answer": "You will be notified and prompted to upgrade your plan", "chunk_id": "chunk_024"},
-    {"id": "qa_011", "question": "How do I reset my password?", "answer": "Click Forgot Password on the login page and follow the email instructions", "chunk_id": "chunk_031"},
-    {"id": "qa_012", "question": "What is the Enterprise plan price?", "answer": "Custom pricing, contact sales for a quote", "chunk_id": "chunk_005"},
-    {"id": "qa_013", "question": "Does NexaCRM support GDPR compliance?", "answer": "Yes, NexaCRM is fully GDPR compliant", "chunk_id": "chunk_016"},
-    {"id": "qa_014", "question": "Can I use NexaCRM offline?", "answer": "No, NexaCRM requires an internet connection", "chunk_id": "chunk_022"},
-    {"id": "qa_015", "question": "How do I add a new team member?", "answer": "Go to Settings > Team > Invite Member and enter their email", "chunk_id": "chunk_033"},
-    {"id": "qa_016", "question": "What file formats can I import contacts from?", "answer": "CSV, Excel, and vCard formats are supported", "chunk_id": "chunk_041"},
-    {"id": "qa_017", "question": "Is there a free plan available?", "answer": "Yes, a free plan is available for up to 2 users with limited features", "chunk_id": "chunk_001"},
-    {"id": "qa_018", "question": "How long is data retained after account deletion?", "answer": "Data is retained for 90 days after account deletion before permanent removal", "chunk_id": "chunk_009"},
-    {"id": "qa_019", "question": "Does NexaCRM integrate with Google Workspace?", "answer": "Yes, full integration with Gmail, Calendar, and Drive", "chunk_id": "chunk_013"},
-    {"id": "qa_020", "question": "What is the uptime SLA?", "answer": "99.9% uptime guaranteed for Pro and Enterprise plans", "chunk_id": "chunk_017"},
-    {"id": "qa_021", "question": "Can I customize the CRM pipeline stages?", "answer": "Yes, pipeline stages are fully customizable on all paid plans", "chunk_id": "chunk_025"},
-    {"id": "qa_022", "question": "How do I generate a sales report?", "answer": "Go to Reports > Sales > Select date range > Export", "chunk_id": "chunk_044"},
-    {"id": "qa_023", "question": "Is two-factor authentication available?", "answer": "Yes, 2FA is available and recommended for all accounts", "chunk_id": "chunk_018"},
-    {"id": "qa_024", "question": "What payment methods are accepted?", "answer": "Visa, Mastercard, American Express, and PayPal", "chunk_id": "chunk_006"},
-    {"id": "qa_025", "question": "How do I contact customer support?", "answer": "Email support@nexacrm.com or use the live chat in the app", "chunk_id": "chunk_035"},
-    {"id": "qa_026", "question": "Can I integrate NexaCRM with my website?", "answer": "Yes, via our JavaScript widget or REST API", "chunk_id": "chunk_045"},
-    {"id": "qa_027", "question": "What is the maximum storage per account?", "answer": "Starter: 5GB, Pro: 50GB, Enterprise: Unlimited", "chunk_id": "chunk_010"},
-    {"id": "qa_028", "question": "Does NexaCRM have an API?", "answer": "Yes, a full REST API is available on Pro and Enterprise plans", "chunk_id": "chunk_046"},
-    {"id": "qa_029", "question": "How do I bulk delete contacts?", "answer": "Select contacts using checkboxes, then click Actions > Delete Selected", "chunk_id": "chunk_036"},
-    {"id": "qa_030", "question": "Can I set user permission levels?", "answer": "Yes, Admin, Manager, and Viewer roles are available", "chunk_id": "chunk_034"},
-    {"id": "qa_031", "question": "Is there a limit on email campaigns?", "answer": "Starter: 1000 emails/month, Pro: 50000 emails/month, Enterprise: Unlimited", "chunk_id": "chunk_047"},
-    {"id": "qa_032", "question": "How do I set up email automation?", "answer": "Go to Automation > New Workflow > Select Email trigger", "chunk_id": "chunk_048"},
-    {"id": "qa_033", "question": "Does NexaCRM support multiple currencies?", "answer": "Yes, over 50 currencies are supported", "chunk_id": "chunk_026"},
-    {"id": "qa_034", "question": "Can I white-label NexaCRM?", "answer": "White-labeling is available on the Enterprise plan only", "chunk_id": "chunk_011"},
-    {"id": "qa_035", "question": "How do I upgrade my plan?", "answer": "Go to Settings > Billing > Change Plan", "chunk_id": "chunk_007"},
-    {"id": "qa_036", "question": "What browsers are supported?", "answer": "Chrome, Firefox, Safari, and Edge are fully supported", "chunk_id": "chunk_023"},
-    {"id": "qa_037", "question": "How do I set up a custom domain?", "answer": "Custom domains are available on Pro and Enterprise plans via Settings > Domain", "chunk_id": "chunk_049"},
-    {"id": "qa_038", "question": "Is there a knowledge base or help center?", "answer": "Yes, available at help.nexacrm.com", "chunk_id": "chunk_037"},
-    {"id": "qa_039", "question": "Can I schedule meetings from NexaCRM?", "answer": "Yes, meeting scheduling integrates with Google Calendar and Outlook", "chunk_id": "chunk_014"},
-    {"id": "qa_040", "question": "How do I track email opens?", "answer": "Email tracking is enabled by default on Pro and Enterprise plans", "chunk_id": "chunk_050"},
-    {"id": "qa_041", "question": "What is the refund policy?", "answer": "Full refund available within 30 days of purchase", "chunk_id": "chunk_008"},
-    {"id": "qa_042", "question": "Does NexaCRM support SSO?", "answer": "Yes, SAML-based SSO is available on Enterprise plans", "chunk_id": "chunk_019"},
-    {"id": "qa_043", "question": "How many pipelines can I create?", "answer": "Unlimited pipelines on Pro and Enterprise, 1 pipeline on Starter", "chunk_id": "chunk_027"},
-    {"id": "qa_044", "question": "Can I import data from spreadsheets?", "answer": "Yes, Excel and CSV imports are supported", "chunk_id": "chunk_041"},
-    {"id": "qa_045", "question": "Is there a desktop app?", "answer": "No desktop app, NexaCRM is fully web-based", "chunk_id": "chunk_022"},
-    {"id": "qa_046", "question": "How do I create a custom report?", "answer": "Go to Reports > Custom > Add Fields > Save", "chunk_id": "chunk_044"},
-    {"id": "qa_047", "question": "What is the contact storage limit?", "answer": "Starter: 1000 contacts, Pro: 100000 contacts, Enterprise: Unlimited", "chunk_id": "chunk_010"},
-    {"id": "qa_048", "question": "Can I send SMS from NexaCRM?", "answer": "Yes, SMS campaigns are available via Twilio integration", "chunk_id": "chunk_051"},
-    {"id": "qa_049", "question": "How do I set up a sales funnel?", "answer": "Go to Pipelines > New Pipeline > Add Stages", "chunk_id": "chunk_025"},
-    {"id": "qa_050", "question": "Does NexaCRM have a Zapier integration?", "answer": "Yes, NexaCRM connects to 3000+ apps via Zapier", "chunk_id": "chunk_045"},
-]
+def generate_nexacrm_data():
+    categories_config = {
+        "pricing": {
+            "count": 222,
+            "topics": [
+                "Starter plan: $19/user/month, up to 5 users, basic CRM features",
+                "Professional plan: $49/user/month, up to 50 users, automation included",
+                "Enterprise plan: $99/user/month, unlimited users, dedicated support",
+                "Annual billing discount: 20% off monthly price",
+                "Free trial: 14 days, no credit card required",
+                "Student/nonprofit discount: 40% off Professional plan",
+                "Price comparison with competitors: NexaCRM is 30% cheaper than Salesforce",
+                "Volume discounts for 100+ users: Contact sales for custom quotes",
+                "Add-on pricing: advanced analytics $15/user/month",
+                "Custom pricing for enterprise contracts: Starts at $5000/year",
+                "Currency support: USD, EUR, GBP, AUD, CAD, INR",
+                "Price increase policy: 30 days notice provided via email",
+                "Grandfathering policy: Existing customers keep their original pricing for 2 years",
+                "Billing frequency: monthly or annual options available",
+                "Prorated billing for mid-cycle upgrades: You only pay the difference for the remaining days"
+            ],
+            "questions": [
+                "How much does the Starter plan cost?",
+                "What is included in the Professional plan?",
+                "Is there an Enterprise plan available?",
+                "Do you offer discounts for annual billing?",
+                "How long is the free trial?",
+                "Are there discounts for non-profits?",
+                "How does NexaCRM pricing compare to competitors?",
+                "Do you offer volume discounts?",
+                "How much is the advanced analytics add-on?",
+                "What is the starting price for enterprise contracts?",
+                "What currencies do you support?",
+                "What is your price increase policy?",
+                "Do old customers get to keep their prices?",
+                "Can I pay monthly?",
+                "How does billing work if I upgrade in the middle of the month?"
+            ]
+        },
+        "account_management": {
+            "count": 222,
+            "topics": [
+                "How to create an account: Click Sign Up on the homepage",
+                "How to add team members: Settings > Team > Invite",
+                "Role-based access control: Admin, Manager, Sales Rep, Viewer",
+                "How to transfer account ownership: Contact support or use Account Settings",
+                "How to merge duplicate accounts: Settings > Data > Merge Accounts",
+                "Password reset process: Click 'Forgot Password' on login screen",
+                "Two-factor authentication setup: Security settings > Enable 2FA",
+                "Single sign-on (SSO) configuration: Enterprise only via SAML 2.0",
+                "Account suspension and reactivation: Managed via Billing portal",
+                "How to delete an account: Settings > Account > Delete (Permanent)",
+                "Data export before deletion: Export as CSV or JSON in Settings",
+                "Account audit logs: Available in Security tab for Pro and Enterprise",
+                "Session timeout settings: Security settings > Session Management",
+                "Login history and security alerts: View in Security > Login History",
+                "Multi-organization support: Switch between orgs in the top-right menu"
+            ],
+            "questions": [
+                "Where do I sign up for an account?",
+                "How do I invite my team?",
+                "What roles are available in NexaCRM?",
+                "Can I change the account owner?",
+                "How do I merge two accounts?",
+                "What if I forget my password?",
+                "Does NexaCRM support 2FA?",
+                "Is SSO available?",
+                "What happens if my account is suspended?",
+                "How do I close my account?",
+                "Can I download my data before deleting?",
+                "Where can I see who logged in?",
+                "Can I change the session timeout?",
+                "Will I get an alert for new logins?",
+                "Can I manage multiple companies?"
+            ]
+        },
+        "integrations": {
+            "count": 222,
+            "topics": [
+                "Gmail and Google Workspace integration: Full sync for emails and calendar",
+                "Outlook and Microsoft 365 integration: Sync contacts and meetings",
+                "Slack integration and notifications: Get deal alerts in Slack channels",
+                "Zapier integration: Connect to 3000+ apps",
+                "Salesforce data migration: Import tool available in Settings",
+                "HubSpot data import: Supports contacts and deals via CSV",
+                "Mailchimp email marketing sync: Sync segments and campaign results",
+                "QuickBooks accounting sync: Sync invoices and payments",
+                "Stripe payment tracking: View subscription status in CRM",
+                "Twilio SMS integration: Send and receive SMS from contact view",
+                "LinkedIn Sales Navigator: Available on Enterprise plan",
+                "Google Calendar sync: Two-way sync for all meetings",
+                "Zoom meeting logging: Automatically log recordings to deals",
+                "Shopify ecommerce integration: Sync customers and orders",
+                "Webhooks and API access: Available for custom workflows",
+                "Native mobile apps: Available for iOS and Android",
+                "Chrome extension for LinkedIn: Save leads directly from browser",
+                "REST API documentation: developers.nexacrm.com",
+                "API rate limits: 1000 requests per hour on Professional",
+                "OAuth 2.0 authentication: Used for all secure integrations"
+            ],
+            "questions": [
+                "Does it work with Gmail?",
+                "Can I sync with Outlook?",
+                "Is there a Slack app?",
+                "Does NexaCRM support Zapier?",
+                "Can I migrate from Salesforce?",
+                "How do I import from HubSpot?",
+                "Does it sync with Mailchimp?",
+                "Can I connect QuickBooks?",
+                "Does it track Stripe payments?",
+                "Can I send SMS through NexaCRM?",
+                "Is LinkedIn integrated?",
+                "Does it sync with my calendar?",
+                "Can I log Zoom calls?",
+                "Is Shopify supported?",
+                "Do you have webhooks?",
+                "Is there a mobile app?",
+                "Is there a Chrome extension?",
+                "Where is the API documentation?",
+                "What are the API rate limits?",
+                "How do integrations authenticate?"
+            ]
+        },
+        "features": {
+            "count": 222,
+            "topics": [
+                "Contact management and deduplication: Automatic duplicate detection",
+                "Deal pipeline management: Drag and drop Kanban board",
+                "Activity tracking: Log calls, emails, and meetings automatically",
+                "Email templates and sequences: Personalize outreach at scale",
+                "Sales forecasting: Predict revenue based on deal probability",
+                "Custom fields and objects: Add unique data points to records",
+                "Workflow automation triggers: Automate tasks based on deal stages",
+                "Lead scoring configuration: Rank leads by engagement level",
+                "Territory management: Assign leads by geographic region",
+                "Quote and proposal generation: Create PDFs directly from deals",
+                "Document storage: 10GB per user included",
+                "Reporting and dashboards: Real-time sales analytics",
+                "Goal tracking for sales teams: Set and monitor quotas",
+                "Mobile CRM features: Full access to deals and contacts on the go",
+                "Bulk data import via CSV: Import thousands of records at once",
+                "Custom tags and filters: Organize data with flexible tagging",
+                "Smart lists and segments: Dynamic lists that update automatically",
+                "Email tracking: See when recipients open or click emails",
+                "Call recording and transcription: Enterprise feature for sales coaching",
+                "AI-powered insights: Predictive lead scoring for Enterprise"
+            ],
+            "questions": [
+                "How do you handle duplicate contacts?",
+                "What does the pipeline look like?",
+                "Can I track my calls?",
+                "Does NexaCRM have email templates?",
+                "Can I forecast my sales?",
+                "Can I add custom fields?",
+                "How does workflow automation work?",
+                "What is lead scoring?",
+                "Does it support territory management?",
+                "Can I create quotes in NexaCRM?",
+                "How much storage do I get?",
+                "What reports are available?",
+                "Can I track sales goals?",
+                "What can I do on the mobile app?",
+                "Can I import data from CSV?",
+                "How do I tag contacts?",
+                "What are smart lists?",
+                "Can I see if someone opened my email?",
+                "Do you record calls?",
+                "What AI features are included?"
+            ]
+        },
+        "security": {
+            "count": 166,
+            "topics": [
+                "SOC 2 Type II compliance: Audited annually by third parties",
+                "GDPR compliance and data residency: Data hosted in EU for EU customers",
+                "CCPA compliance: Full support for California privacy rights",
+                "Data encryption at rest: All data encrypted with AES-256",
+                "Data encryption in transit: TLS 1.3 for all connections",
+                "Password requirements: Minimum 12 characters, including special symbols",
+                "IP allowlisting: Restrict access to specific IP ranges",
+                "Audit logs retention: Logs kept for 1 year",
+                "Penetration testing: Annual tests by independent security firms",
+                "Bug bounty program: Reward program for responsible disclosure",
+                "Data backup frequency: Automatic backups every 6 hours",
+                "Disaster recovery: 99.9% uptime SLA with failover to secondary regions",
+                "Data center locations: US (East/West), EU (Frankfurt), APAC (Singapore)",
+                "HIPAA compliance: BAA available for Enterprise customers",
+                "Vulnerability disclosure policy: Published on our security page"
+            ],
+            "questions": [
+                "Is NexaCRM SOC 2 compliant?",
+                "Are you GDPR compliant?",
+                "Does it follow CCPA?",
+                "How is data encrypted at rest?",
+                "Is data encrypted during transfer?",
+                "What are the password requirements?",
+                "Can I restrict login by IP?",
+                "How long are audit logs kept?",
+                "Do you perform pentesting?",
+                "Is there a bug bounty program?",
+                "How often is data backed up?",
+                "What is your uptime SLA?",
+                "Where are your data centers?",
+                "Do you support HIPAA?",
+                "How do I report a security vulnerability?"
+            ]
+        },
+        "support": {
+            "count": 166,
+            "topics": [
+                "Support channels: Email, live chat, and phone support",
+                "Response times: Starter 48h, Professional 24h, Enterprise 4h",
+                "Support hours: Monday-Friday 9am-6pm EST",
+                "Emergency support for Enterprise: 24/7 priority line",
+                "Help center and documentation: help.nexacrm.com",
+                "Video tutorial library: 200+ step-by-step videos",
+                "Onboarding assistance: Dedicated session for Professional/Enterprise",
+                "Dedicated customer success manager: Provided for Enterprise accounts",
+                "Community forum: Discuss features with other users",
+                "Webinar schedule: Live training every Tuesday",
+                "How to submit a support ticket: Use the '?' icon in the app",
+                "Escalation process: Tickets can be escalated to senior engineers",
+                "Known issues page: Check status.nexacrm.com for bugs",
+                "System status page: Real-time uptime monitoring",
+                "Feature request submission: Vote on our public roadmap"
+            ],
+            "questions": [
+                "How can I contact support?",
+                "What are the response times?",
+                "What are your support hours?",
+                "Is there 24/7 support?",
+                "Where is the help center?",
+                "Are there video tutorials?",
+                "Do you help with onboarding?",
+                "Do I get a dedicated success manager?",
+                "Is there a community forum?",
+                "When are the webinars?",
+                "How do I open a ticket?",
+                "What if my issue is urgent?",
+                "Where can I see known bugs?",
+                "Is the system down?",
+                "How do I suggest a new feature?"
+            ]
+        },
+        "data_management": {
+            "count": 166,
+            "topics": [
+                "Data import formats: CSV, Excel (.xlsx), and VCF supported",
+                "Data export formats: Export all data to CSV, JSON, or PDF",
+                "Bulk delete operations: Select multiple records to delete at once",
+                "Data archiving policy: Archive old deals to keep pipeline clean",
+                "Data retention settings: Configure how long deleted data is kept",
+                "Custom data fields: Support for text, number, date, and picklists",
+                "Data validation rules: Ensure clean data with required fields",
+                "Duplicate detection algorithm: Uses email and phone number matching",
+                "Merge contacts and companies: Combine history into a single record",
+                "Data ownership and permissions: You own 100% of your data",
+                "GDPR right to erasure: Tools to permanently delete customer data",
+                "Data portability: Easily move data between NexaCRM instances",
+                "Historical data access: View activity history for the past 5 years",
+                "Data quality scoring: Identify incomplete records automatically",
+                "Backup and restore: Contact support for manual restores"
+            ],
+            "questions": [
+                "What files can I import?",
+                "In what formats can I export data?",
+                "Can I delete many records at once?",
+                "How do I archive data?",
+                "How long is my data stored?",
+                "What types of custom fields are there?",
+                "Can I make fields mandatory?",
+                "How does duplicate detection work?",
+                "Can I merge two companies?",
+                "Who owns the data I upload?",
+                "How do I process a 'Right to be Forgotten' request?",
+                "Can I move my data to another account?",
+                "How far back does history go?",
+                "What is data quality scoring?",
+                "How do I restore from a backup?"
+            ]
+        },
+        "billing": {
+            "count": 166,
+            "topics": [
+                "Accepted payment methods: Visa, Mastercard, Amex, PayPal, wire transfer",
+                "Invoice generation and delivery: Emailed automatically each month",
+                "How to update billing information: Settings > Billing > Payment Method",
+                "How to cancel subscription: Settings > Billing > Cancel Plan",
+                "Refund policy: 30 days money back guarantee for all new subs",
+                "Failed payment handling: 3 retry attempts before suspension",
+                "Tax invoices and VAT: Download VAT-compliant invoices in Settings",
+                "Usage-based billing for API: Billed monthly based on overages",
+                "How to download past invoices: Available in the Billing History tab",
+                "Billing contact settings: Add a secondary email for invoices",
+                "Auto-renewal policy: Subscriptions renew automatically unless cancelled",
+                "Upgrade and downgrade: Prorated credits applied instantly",
+                "Spending limits: Set caps on API and SMS usage",
+                "PO number support: Add PO numbers to your invoices",
+                "Credit card security: We do not store full card numbers on our servers"
+            ],
+            "questions": [
+                "What payment methods do you take?",
+                "How do I get my invoice?",
+                "How do I change my credit card?",
+                "How do I stop my subscription?",
+                "What is your refund policy?",
+                "What happens if my payment fails?",
+                "Do you provide VAT invoices?",
+                "How is API usage billed?",
+                "Where can I see old invoices?",
+                "Can I send invoices to my accountant?",
+                "Do I have to renew manually?",
+                "What happens if I downgrade?",
+                "Can I set a spending limit?",
+                "Can I add a PO number?",
+                "Is my credit card info safe?"
+            ]
+        },
+        "mobile_app": {
+            "count": 112,
+            "topics": [
+                "iOS app minimum version: Requires iOS 14.0 or later",
+                "Android app minimum version: Requires Android 8.0 (Oreo) or later",
+                "Offline mode: View contacts and deals without internet; syncs on reconnect",
+                "Push notifications: Real-time alerts for deal updates and tasks",
+                "Mobile-specific features: Business card scanner and call logging",
+                "Biometric authentication: Support for FaceID and Fingerprint login",
+                "App size and storage: Lightweight app (~50MB initial download)",
+                "Sync frequency: Background sync every 15 minutes",
+                "Mobile data usage: Optimized for low bandwidth consumption",
+                "Tablet optimization: Full-screen support for iPad and Android tablets",
+                "Apple Watch support: View today's tasks on your wrist",
+                "Widget support: iOS and Android home screen widgets for quick access",
+                "Background sync: Keeps data fresh even when app is closed",
+                "Voice input: Dictate notes directly into the CRM",
+                "Camera integration: Take photos of documents and attach to deals"
+            ],
+            "questions": [
+                "What iOS version is needed?",
+                "What Android version is needed?",
+                "Does it work without Wi-Fi?",
+                "Does the app send alerts?",
+                "What special features does the app have?",
+                "Can I use FaceID to login?",
+                "How big is the app?",
+                "How often does the app sync?",
+                "Does it use a lot of data?",
+                "Is there an iPad version?",
+                "Does it work on Apple Watch?",
+                "Are there mobile widgets?",
+                "Does it sync in the background?",
+                "Can I use voice to take notes?",
+                "Can I scan business cards?"
+            ]
+        },
+        "onboarding": {
+            "count": 112,
+            "topics": [
+                "Getting started guide: Interactive tour for all new users",
+                "Data migration: Free migration assistance for 50+ users",
+                "Team training: Weekly live training sessions for new teams",
+                "Setup checklist: 5-step process to get your CRM ready",
+                "First 30 days: Recommended milestones for success",
+                "Custom domain setup: Use your own URL for the CRM portal",
+                "Email configuration: Connect your SMTP or IMAP server",
+                "Pipeline configuration: Map your existing sales process",
+                "User invitation: Bulk invite team members via CSV",
+                "Template library: Pre-built templates for many industries",
+                "Sample data mode: Test features with a pre-populated dataset",
+                "Implementation partners: Network of certified consultants",
+                "Guided setup wizard: Automated walkthrough for admins",
+                "Success metrics: Track ROI from month one",
+                "Go-live checklist: Final steps before decommissioning old systems"
+            ],
+            "questions": [
+                "Where do I start?",
+                "How do I move my data?",
+                "Is there training for my team?",
+                "What is the setup process?",
+                "What should I do in my first month?",
+                "Can I use my own domain?",
+                "How do I connect my email?",
+                "How do I set up my pipeline?",
+                "How do I invite everyone?",
+                "Are there industry templates?",
+                "Can I try it with fake data?",
+                "Do you have consultants?",
+                "Is there a setup wizard?",
+                "How do I measure success?",
+                "What do I need to do to go live?"
+            ]
+        },
+        "api_developer": {
+            "count": 112,
+            "topics": [
+                "REST API base URL: https://api.nexacrm.com/v1",
+                "Authentication: Uses Bearer tokens via OAuth 2.0",
+                "Rate limits: 1000/hr (Pro), 5000/hr (Enterprise)",
+                "API versioning: SemVer followed; 6-month sunset for old versions",
+                "Webhooks configuration: Set up in Developer Portal",
+                "API sandbox: Free testing environment for all developers",
+                "Code examples: Libraries for Python, JS, Ruby, and PHP",
+                "Error codes: Standard HTTP status codes with JSON bodies",
+                "Pagination: Link header and limit/offset supported",
+                "Filtering and sorting: Robust query params for all endpoints",
+                "Bulk operations: Update up to 1000 records in one request",
+                "API changelog: Published at developers.nexacrm.com/changelog",
+                "Developer docs: Comprehensive guides and API reference",
+                "SDK availability: Official SDKs for popular languages",
+                "GraphQL support: Beta access available for Enterprise customers"
+            ],
+            "questions": [
+                "What is the API URL?",
+                "How do I authenticate?",
+                "What are the rate limits?",
+                "How do you handle API versions?",
+                "How do I set up webhooks?",
+                "Is there a test environment?",
+                "Are there code samples?",
+                "What do the error codes mean?",
+                "How do I handle many results?",
+                "Can I filter API results?",
+                "How do I update many records?",
+                "Where is the changelog?",
+                "Where are the docs?",
+                "Do you have an SDK?",
+                "Does NexaCRM support GraphQL?"
+            ]
+        },
+        "compliance_legal": {
+            "count": 112,
+            "topics": [
+                "Terms of service: Standard B2B SaaS agreement",
+                "Privacy policy: We never sell your data to third parties",
+                "Data processing agreement: Standard DPA available for download",
+                "GDPR roles: NexaCRM is the Processor; you are the Controller",
+                "Cookie policy: We only use essential cookies for app functionality",
+                "Intellectual property: You own all content uploaded to the service",
+                "Acceptable use policy: No spam or illegal activities allowed",
+                "SLA details: Service credits provided if uptime falls below 99.9%",
+                "Governing law: Delaware, United States",
+                "Dispute resolution: Arbitration in Wilmington, DE",
+                "Sub-processors: List available on our legal page (AWS, Stripe, etc.)",
+                "Data transfer: Standard Contractual Clauses (SCCs) used",
+                "Right to audit: Available for Enterprise customers annually",
+                "Liability limitations: Capped at 12 months of subscription fees",
+                "Force majeure: Standard clauses for unforeseen events"
+            ],
+            "questions": [
+                "What is in the Terms of Service?",
+                "How do you use my data?",
+                "Do you have a DPA?",
+                "Is NexaCRM a controller or processor?",
+                "What cookies do you use?",
+                "Who owns my data?",
+                "What is not allowed on NexaCRM?",
+                "What happens if the service goes down?",
+                "What is the governing law?",
+                "How are disputes handled?",
+                "Who are your sub-processors?",
+                "How is data transferred globally?",
+                "Can I audit your security?",
+                "What is your liability limit?",
+                "What if a disaster happens?"
+            ]
+        }
+    }
 
+    corpus = []
+    qa_pairs = []
+    chunk_idx = 1
+    qa_idx = 1
 
-GROUND_TRUTH_QA += [
-    {"id": "qa_051", "question": "How do I archive a contact?", "answer": "Open the contact profile and click Actions > Archive", "chunk_id": "chunk_036"},
-    {"id": "qa_052", "question": "Is phone support available?", "answer": "Phone support is available for Enterprise customers only", "chunk_id": "chunk_035"},
-    {"id": "qa_053", "question": "Can I track website visitors in NexaCRM?", "answer": "Yes, via the NexaCRM web tracking pixel", "chunk_id": "chunk_046"},
-    {"id": "qa_054", "question": "How do I create a contact segment?", "answer": "Go to Contacts > Segments > New Segment > Add Filters", "chunk_id": "chunk_052"},
-    {"id": "qa_055", "question": "What analytics are available?", "answer": "Sales analytics, email analytics, pipeline analytics, and custom dashboards", "chunk_id": "chunk_053"},
-    {"id": "qa_056", "question": "Is there a sandbox or test environment?", "answer": "Yes, a sandbox environment is available on Enterprise plans", "chunk_id": "chunk_054"},
-    {"id": "qa_057", "question": "How do I enable dark mode?", "answer": "Go to Settings > Appearance > Theme > Dark", "chunk_id": "chunk_038"},
-    {"id": "qa_058", "question": "Can I create custom fields?", "answer": "Yes, unlimited custom fields on Pro and Enterprise plans", "chunk_id": "chunk_028"},
-    {"id": "qa_059", "question": "How do I set up a webhook?", "answer": "Go to Settings > Integrations > Webhooks > Add Webhook", "chunk_id": "chunk_046"},
-    {"id": "qa_060", "question": "Does NexaCRM support multiple languages?", "answer": "Yes, available in English, Spanish, French, German, and Japanese", "chunk_id": "chunk_029"},
-    {"id": "qa_061", "question": "How do I merge duplicate contacts?", "answer": "Go to Contacts > Duplicates > Review > Merge", "chunk_id": "chunk_039"},
-    {"id": "qa_062", "question": "Can I assign tasks to team members?", "answer": "Yes, tasks can be assigned via the contact or deal view", "chunk_id": "chunk_055"},
-    {"id": "qa_063", "question": "Is there an audit log?", "answer": "Yes, full audit logs available on Pro and Enterprise plans", "chunk_id": "chunk_017"},
-    {"id": "qa_064", "question": "How do I set up lead scoring?", "answer": "Go to Settings > Lead Scoring > Add Scoring Rules", "chunk_id": "chunk_056"},
-    {"id": "qa_065", "question": "Can I create email templates?", "answer": "Yes, unlimited email templates on all paid plans", "chunk_id": "chunk_047"},
-    {"id": "qa_066", "question": "How do I track deals?", "answer": "Go to Deals > Pipeline View to see all deals by stage", "chunk_id": "chunk_025"},
-    {"id": "qa_067", "question": "Does NexaCRM integrate with HubSpot?", "answer": "Data migration from HubSpot is supported but live sync is not available", "chunk_id": "chunk_019"},
-    {"id": "qa_068", "question": "How do I set up notifications?", "answer": "Go to Settings > Notifications > Configure alert preferences", "chunk_id": "chunk_038"},
-    {"id": "qa_069", "question": "Can I run A/B tests on emails?", "answer": "Yes, A/B testing is available on Pro and Enterprise plans", "chunk_id": "chunk_050"},
-    {"id": "qa_070", "question": "How do I create a landing page?", "answer": "Go to Marketing > Landing Pages > New Page", "chunk_id": "chunk_057"},
-    {"id": "qa_071", "question": "Is there a NexaCRM Chrome extension?", "answer": "Yes, available in the Chrome Web Store for Gmail integration", "chunk_id": "chunk_012"},
-    {"id": "qa_072", "question": "How do I set revenue goals?", "answer": "Go to Reports > Goals > Add Revenue Target", "chunk_id": "chunk_053"},
-    {"id": "qa_073", "question": "Can I create recurring tasks?", "answer": "Yes, recurring tasks can be set up with custom frequency", "chunk_id": "chunk_055"},
-    {"id": "qa_074", "question": "How do I export contacts?", "answer": "Go to Contacts > Select All > Export > Choose format", "chunk_id": "chunk_041"},
-    {"id": "qa_075", "question": "Does NexaCRM support LinkedIn integration?", "answer": "Yes, LinkedIn Sales Navigator integration is available on Enterprise", "chunk_id": "chunk_045"},
-    {"id": "qa_076", "question": "How long does onboarding take?", "answer": "Self-service onboarding takes 30 minutes, guided onboarding available for Enterprise", "chunk_id": "chunk_037"},
-    {"id": "qa_077", "question": "Can I track email bounces?", "answer": "Yes, bounce tracking is automatic on all email campaigns", "chunk_id": "chunk_050"},
-    {"id": "qa_078", "question": "How do I create a contact form?", "answer": "Go to Marketing > Forms > New Form > Embed on website", "chunk_id": "chunk_057"},
-    {"id": "qa_079", "question": "Is there a NexaCRM community forum?", "answer": "Yes, at community.nexacrm.com", "chunk_id": "chunk_037"},
-    {"id": "qa_080", "question": "How do I set up multi-step automation?", "answer": "Go to Automation > New Workflow > Add multiple action steps", "chunk_id": "chunk_048"},
-    {"id": "qa_081", "question": "Can I track phone calls in NexaCRM?", "answer": "Yes, call logging is available with native VoIP integrations", "chunk_id": "chunk_055"},
-    {"id": "qa_082", "question": "How do I create a deal?", "answer": "Go to Deals > New Deal > Enter deal name, value, and stage", "chunk_id": "chunk_025"},
-    {"id": "qa_083", "question": "Does NexaCRM have a forecasting feature?", "answer": "Yes, revenue forecasting is available on Pro and Enterprise plans", "chunk_id": "chunk_053"},
-    {"id": "qa_084", "question": "How do I set user working hours?", "answer": "Go to Settings > Team > Select User > Set Working Hours", "chunk_id": "chunk_034"},
-    {"id": "qa_085", "question": "Can I create product catalogs?", "answer": "Yes, product catalogs can be linked to deals on Pro and Enterprise", "chunk_id": "chunk_058"},
-    {"id": "qa_086", "question": "How do I integrate with Stripe?", "answer": "Go to Settings > Integrations > Stripe > Connect Account", "chunk_id": "chunk_046"},
-    {"id": "qa_087", "question": "Is there a NexaCRM API rate limit?", "answer": "1000 requests per hour on Pro, 10000 per hour on Enterprise", "chunk_id": "chunk_046"},
-    {"id": "qa_088", "question": "How do I create a drip campaign?", "answer": "Go to Automation > Drip Campaigns > New Campaign > Set schedule", "chunk_id": "chunk_048"},
-    {"id": "qa_089", "question": "Can I set deal probability?", "answer": "Yes, probability can be set per stage or manually per deal", "chunk_id": "chunk_025"},
-    {"id": "qa_090", "question": "How do I remove a team member?", "answer": "Go to Settings > Team > Select Member > Remove from Team", "chunk_id": "chunk_034"},
-    {"id": "qa_091", "question": "Does NexaCRM support video calls?", "answer": "Yes, Zoom and Google Meet integrations are available", "chunk_id": "chunk_014"},
-    {"id": "qa_092", "question": "How do I set up a chatbot?", "answer": "Go to Marketing > Chatbot > New Bot > Configure flows", "chunk_id": "chunk_059"},
-    {"id": "qa_093", "question": "Can I track contract status?", "answer": "Yes, contract tracking with e-signature via DocuSign integration", "chunk_id": "chunk_060"},
-    {"id": "qa_094", "question": "How do I set up territory management?", "answer": "Territory management is available on Enterprise plans via Settings > Territories", "chunk_id": "chunk_034"},
-    {"id": "qa_095", "question": "Is NexaCRM SOC 2 certified?", "answer": "Yes, NexaCRM is SOC 2 Type II certified", "chunk_id": "chunk_016"},
-    {"id": "qa_096", "question": "How do I clone a pipeline?", "answer": "Go to Pipelines > Select Pipeline > Actions > Duplicate", "chunk_id": "chunk_025"},
-    {"id": "qa_097", "question": "Can I add notes to a contact?", "answer": "Yes, notes can be added from the contact profile under the Activity tab", "chunk_id": "chunk_036"},
-    {"id": "qa_098", "question": "How do I set up round-robin lead assignment?", "answer": "Go to Settings > Lead Routing > Round Robin > Add team members", "chunk_id": "chunk_056"},
-    {"id": "qa_099", "question": "Does NexaCRM have a mobile SDK?", "answer": "Yes, iOS and Android SDKs are available for Enterprise customers", "chunk_id": "chunk_021"},
-    {"id": "qa_100", "question": "How do I view activity history for a contact?", "answer": "Open the contact profile and click the Activity tab", "chunk_id": "chunk_036"},
-]
+    # Calculate QA distribution
+    total_qa_needed = 400
+    cats_list = list(categories_config.keys())
+    # 4 categories get 34, 8 get 33
+    qa_distribution = {cat: 33 for cat in cats_list}
+    for i in range(4):
+        qa_distribution[cats_list[i]] += 1
 
+    for cat_name, config in categories_config.items():
+        topics = config["topics"]
+        questions = config["questions"]
+        count = config["count"]
+        
+        # Generate chunks
+        for i in range(count):
+            topic = topics[i % len(topics)]
+            # Add variation to make each unique
+            variation = f" (Ref: {cat_name}_{i:03d})"
+            text = f"NexaCRM FAQ: {topic}{variation}"
+            
+            chunk_id = f"chunk_{chunk_idx:04d}"
+            corpus.append({
+                "chunk_id": chunk_id,
+                "text": text,
+                "source": "nexacrm_faq",
+                "category": cat_name
+            })
+            chunk_idx += 1
+
+        # Generate QA pairs for this category
+        num_qa = qa_distribution[cat_name]
+        for i in range(num_qa):
+            # Select a chunk from this category for the QA pair
+            # We use chunks from this category starting from the first one
+            source_chunk = corpus[len(corpus) - count + (i % count)]
+            
+            # Use one of the predefined questions or generate one
+            if i < len(questions):
+                question = questions[i]
+            else:
+                question = f"Question about {cat_name} entry {i}?"
+            
+            # The answer should be based on the topic
+            # We'll take the part after the colon in the topic
+            topic_str = topics[i % len(topics)]
+            if ":" in topic_str:
+                answer = topic_str.split(":", 1)[1].strip()
+            else:
+                answer = topic_str
+            
+            qa_id = f"qa_{qa_idx:03d}"
+            qa_pairs.append({
+                "id": qa_id,
+                "question": question,
+                "answer": answer,
+                "chunk_id": source_chunk["chunk_id"],
+                "category": cat_name
+            })
+            qa_idx += 1
+
+    return corpus[:2000], qa_pairs[:400]
+
+NEXACRM_CORPUS, GROUND_TRUTH_QA = generate_nexacrm_data()
 
 BANKING_FAQ_CORPUS = [
     {"chunk_id": "bank_001", "text": "BankingPro FAQ: What is the minimum balance for a savings account? — $500 minimum balance required to avoid monthly fees.", "source": "bankingpro_faq", "category": "accounts"},
@@ -160,81 +588,40 @@ BANKING_GROUND_TRUTH_QA = [
     {"id": "bqa_010", "question": "How long does a check deposit take to clear?", "answer": "Business checks clear in 1 business day, personal checks in 2", "chunk_id": "bank_013"},
 ]
 
-
-def save_ground_truth():
-    path = DATA_DIR / "ground_truth_qa.json"
-    with open(path, "w") as f:
+def main():
+    # Save NexaCRM Corpus
+    nexacrm_path = DATA_DIR / "nexacrm_corpus.json"
+    with open(nexacrm_path, "w") as f:
+        json.dump(NEXACRM_CORPUS, f, indent=2)
+    
+    # Save Ground Truth QA
+    gt_path = DATA_DIR / "ground_truth_qa.json"
+    with open(gt_path, "w") as f:
         json.dump(GROUND_TRUTH_QA, f, indent=2)
-    print(f"Saved {len(GROUND_TRUTH_QA)} QA pairs to {path}")
-
-
-def generate_nexacrm_corpus():
-    """
-    Generate a synthetic NexaCRM FAQ corpus of 500 chunks.
-    In production this would be replaced with a real HuggingFace dataset.
-    For deterministic testing we generate fixed synthetic chunks.
-    """
-    import hashlib
-
-    corpus = []
-
-    # Generate chunks from ground truth answers + additional context
-    for qa in GROUND_TRUTH_QA:
-        chunk = {
-            "chunk_id": qa["chunk_id"],
-            "text": f"NexaCRM FAQ: {qa['question']} \u2014 {qa['answer']}",
-            "source": "nexacrm_faq",
-            "category": _infer_category(qa["question"]),
-        }
-        corpus.append(chunk)
-
-    # Add additional synthetic chunks to reach ~500
-    categories = ["pricing", "security", "integrations", "account", "support", "features"]
-    for i in range(101, 501):
-        chunk_id = f"chunk_{str(i).zfill(3)}"
-        cat = categories[i % len(categories)]
-        corpus.append({
-            "chunk_id": chunk_id,
-            "text": f"NexaCRM {cat} documentation entry {i}: This section covers {cat} related features and configurations for NexaCRM enterprise users.",
-            "source": "nexacrm_docs",
-            "category": cat,
-        })
-
-    path = DATA_DIR / "nexacrm_corpus.json"
-    with open(path, "w") as f:
-        json.dump(corpus, f, indent=2)
-    print(f"Saved {len(corpus)} chunks to {path}")
-    return corpus
-
-
-def _infer_category(question: str) -> str:
-    q = question.lower()
-    if any(w in q for w in ["price", "plan", "cost", "billing", "payment", "refund"]):
-        return "pricing"
-    if any(w in q for w in ["encrypt", "gdpr", "soc", "security", "2fa", "sso"]):
-        return "security"
-    if any(w in q for w in ["integrate", "slack", "google", "zapier", "stripe", "zoom"]):
-        return "integrations"
-    if any(w in q for w in ["user", "team", "member", "role", "permission"]):
-        return "account"
-    if any(w in q for w in ["support", "contact", "help", "phone", "email support"]):
-        return "support"
-    return "features"
-
-
-def save_banking_dataset():
-    import json
-    from pathlib import Path
-    Path("data").mkdir(exist_ok=True)
-    with open("data/banking_corpus.json", "w") as f:
+        
+    # Save Banking Dataset
+    banking_corpus_path = DATA_DIR / "banking_corpus.json"
+    with open(banking_corpus_path, "w") as f:
         json.dump(BANKING_FAQ_CORPUS, f, indent=2)
-    with open("data/banking_ground_truth_qa.json", "w") as f:
+        
+    banking_gt_path = DATA_DIR / "banking_ground_truth_qa.json"
+    with open(banking_gt_path, "w") as f:
         json.dump(BANKING_GROUND_TRUTH_QA, f, indent=2)
-    print(f"Saved {len(BANKING_FAQ_CORPUS)} banking chunks and {len(BANKING_GROUND_TRUTH_QA)} QA pairs")
 
+    # Verification
+    print(f"NexaCRM corpus: {len(NEXACRM_CORPUS)} chunks")
+    print(f"Ground truth QA: {len(GROUND_TRUTH_QA)} pairs")
+    print(f"Banking corpus: {len(BANKING_FAQ_CORPUS)} chunks")
+    print(f"Banking QA: {len(BANKING_GROUND_TRUTH_QA)} pairs")
+    
+    categories = set(c['category'] for c in NEXACRM_CORPUS)
+    print(f"Categories in NexaCRM: {len(categories)}")
+    
+    assert len(NEXACRM_CORPUS) == 2000, f"Expected 2000 chunks, got {len(NEXACRM_CORPUS)}"
+    assert len(GROUND_TRUTH_QA) == 400, f"Expected 400 QA pairs, got {len(GROUND_TRUTH_QA)}"
+    assert len(set(c['chunk_id'] for c in NEXACRM_CORPUS)) == 2000, "Duplicate chunk IDs found"
+    assert len(set(q['id'] for q in GROUND_TRUTH_QA)) == 400, "Duplicate QA IDs found"
+    print("All assertions passed")
 
 if __name__ == "__main__":
-    save_ground_truth()
-    generate_nexacrm_corpus()
-    save_banking_dataset()
-    print("Dataset setup complete.")
+    main()
