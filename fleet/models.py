@@ -148,9 +148,11 @@ class PlanningObservation(BaseModel):
     planning_budget_remaining: int                # how many allocations left
     planning_complete: bool = False
     
-    # Compatibility fields for Round 1 tests
+    # Compatibility fields for Round 1 tests and sanity checks
     step: int = 0
     worker_observations: Dict[str, WorkerPartialObservation] = {}
+    oversight_budget_remaining: int = 0
+    anomaly_alerts: List[str] = []
 
 
 class PlanningReward(BaseModel):

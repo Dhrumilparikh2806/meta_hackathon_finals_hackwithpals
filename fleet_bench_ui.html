@@ -1015,6 +1015,13 @@ function showScreen(screenId) {
   const actions = document.getElementById('runner-actions');
   if (actions) actions.style.display = (screenId === 'runner') ? 'flex' : 'none';
 
+  if (screenId === 'chat') {
+    checkPipeline();
+  }
+  if (screenId === 'health') {
+    refreshHealthDashboard();
+  }
+
   if (screenId === 'training') initCharts();
 }
 
@@ -1033,7 +1040,7 @@ async function api(path, options = {}) {
 function nowTs() { return new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' }); }
 
 function appendLog(logId, action, result, level='ok') {
-  const logEl = document.getElementById(logId === 'runner-step-log' ? 'log' : logId);
+  const logEl = document.getElementById(logId);
   if (!logEl) return;
   const cls = level === 'error' ? 'log-result-err' : level === 'warn' ? 'log-result-warn' : 'log-result-ok';
   const row = document.createElement('div');
@@ -1059,8 +1066,6 @@ function appendLog(logId, action, result, level='ok') {
         <div class="wm"><span class="wm-k">Steps</span><span class="wm-v" id="wsteps-${wid}">0</span></div>
       </div>`;
   });
-  addLog('sys', null, null, null, 'Start a new episode to begin');
-  updateHint({}, 0, 0, false, 8);
 })();
 
 function selAction(a) {
@@ -1647,6 +1652,9 @@ window.onload = () => {
   // Set default level to easy
   document.getElementById('task-sel').value = 'easy_fleet';
   SESSION.selectedTask = 'easy_fleet';
+  
+  addLog('sys', null, null, null, 'Start a new episode to begin');
+  updateHint({}, 0, 0, false, 8);
 };
 
 async function execAction() {
@@ -1722,8 +1730,16 @@ async function onDone() {
   try {
     const resp = await fetch('/fleet/evaluate', { method: 'POST' });
     const data = await resp.json();
+    let report = null;
+    try {
+      const reportResp = await fetch('/fleet/report');
+      const reportData = await reportResp.json();
+      report = reportData.report || null;
+    } catch (e) {
+      report = null;
+    }
     if (data.evaluation) {
-      showEval(data.evaluation);
+      showEval(data.evaluation, report);
       if (epSub) {
         epSub.textContent = data.evaluation.approved
           ? 'approved · composite: ' + data.evaluation.composite_score.toFixed(3)
@@ -1735,7 +1751,7 @@ async function onDone() {
   }
 }
 
-function showEval(ev) {
+function showEval(ev, report = null) {
   const panel = document.getElementById('eval-panel');
   if (panel) panel.style.display = 'block';
   
@@ -1750,13 +1766,23 @@ function showEval(ev) {
     if (el) el.textContent = val;
   };
   
-  setScore('ev-det', (ev.detection_rate * 100).toFixed(1) + '%');
-  setScore('ev-qual', (ev.pipeline_quality * 100).toFixed(1) + '%');
+  const detRate = report && typeof report.detection_rate === 'number'
+    ? report.detection_rate
+    : ev.detection_rate;
+  const pipelineQuality = report && typeof report.pipeline_quality_score === 'number'
+    ? report.pipeline_quality_score
+    : ev.pipeline_quality;
+
+  setScore('ev-det', (detRate * 100).toFixed(1) + '%');
+  setScore('ev-qual', (pipelineQuality * 100).toFixed(1) + '%');
   setScore('ev-eff', (ev.efficiency * 100).toFixed(1) + '%');
   setScore('ev-comp', ev.composite_score.toFixed(3));
   
   const titleText = document.getElementById('eval-title-text');
-  if (titleText) titleText.textContent = 'Detailed Audit Report — Episode ' + (Math.random()*1000).toFixed(0);
+  if (titleText) {
+    const eid = report && report.episode_id ? report.episode_id : 'N/A';
+    titleText.textContent = 'Detailed Audit Report — Episode ' + eid;
+  }
   
   const tbody = document.getElementById('gate-tbody');
   if (tbody) {
@@ -1858,7 +1884,8 @@ function showReward(r, total) {
 }
 
 function addLog(type, action, worker, reward, note) {
-  const scroll = document.getElementById('log');
+  const scroll = document.getElementById('runner-step-log');
+  if (!scroll) return;
   const el = document.createElement('div');
   el.className = 'll';
   if (type === 'sys') {
@@ -2127,8 +2154,15 @@ async function autoRunEpisode() {
     let detectCount = 0;
     let approveCount = 0;
     let falsePositives = 0;
+    let budgetRemaining = maxBudget;
+    let episodeDone = false;
 
     for (const [action, worker, reason] of oversightPlan) {
+      if (action !== 'submit_audit' && budgetRemaining <= 1) {
+        appendLog('runner-step-log', 'budget_guard()', '→ reserving final step for submit_audit', 'warn');
+        break;
+      }
+
       await new Promise(r => setTimeout(r, 650));
 
       try {
@@ -2145,6 +2179,7 @@ async function autoRunEpisode() {
         oversightRewardTotal += reward;
         SESSION.totalReward += reward;
         SESSION.stepCount++;
+  budgetRemaining = result.observation?.oversight_budget_remaining ?? Math.max(0, budgetRemaining - 1);
 
         if (reward >= 0.35) detectCount++;
         if (reward >= 0.08 && reward < 0.35) approveCount++;
@@ -2175,6 +2210,7 @@ async function autoRunEpisode() {
         await updateWorkerCards();
 
         if (result.done) {
+          episodeDone = true;
           appendLog('runner-step-log', 'episode_done()', '→ Episode complete', 'ok');
           break;
         }
@@ -2184,9 +2220,45 @@ async function autoRunEpisode() {
       }
     }
 
+    if (!episodeDone && budgetRemaining > 0) {
+      await new Promise(r => setTimeout(r, 500));
+      try {
+        const submitResult = await api('/fleet/step', {
+          method: 'POST',
+          body: JSON.stringify({
+            action_type: 'submit_audit',
+            worker_id: 'worker_1',
+            reason: 'Auto-run finalization: submitting audit before budget exhaustion',
+          })
+        });
+        const submitReward = submitResult.reward_total || 0;
+        oversightRewardTotal += submitReward;
+        SESSION.totalReward += submitReward;
+        SESSION.stepCount++;
+        episodeDone = !!submitResult.done;
+        appendLog('runner-step-log', 'submit_audit(worker_1)', '→ ' + (submitReward >= 0 ? '+' : '') + submitReward.toFixed(3), 'ok');
+      } catch (e) {
+        appendLog('runner-step-log', 'submit_audit(worker_1)', '→ error: ' + e.message, 'error');
+      }
+    }
+
     // PHASE 4 — FINAL RESULTS
     await new Promise(r => setTimeout(r, 500));
-    await refreshEvaluation();
+    if (!episodeDone) {
+      try {
+        const stateResp = await api('/fleet/state');
+        episodeDone = !!stateResp.state?.is_done;
+      } catch (e) {
+        episodeDone = false;
+      }
+    }
+
+    if (episodeDone) {
+      await refreshEvaluation();
+      checkPipeline();
+    } else {
+      appendLog('runner-step-log', 'evaluate()', '→ skipped: episode did not terminate cleanly', 'warn');
+    }
 
     const combinedTotal = planningRewardTotal + oversightRewardTotal;
 

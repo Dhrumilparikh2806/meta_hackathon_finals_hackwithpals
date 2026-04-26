@@ -30,7 +30,7 @@ RUN mkdir -p plots data checkpoints ui/static
 RUN python data/setup_dataset.py
 
 # Generate plots in simulation mode for training results page
-RUN python fleet_train.py --simulate --episodes 30 --task-id easy_fleet || true
+RUN python fleet_train.py --simulate --episodes 30 --task-id easy_fleet --mode real || true
 
 # Expose port
 EXPOSE 7860

@@ -13,6 +13,7 @@ fleet/worker_registry.py
 fleet_oversight_env.egg-info/PKG-INFO
 fleet_oversight_env.egg-info/SOURCES.txt
 fleet_oversight_env.egg-info/dependency_links.txt
+fleet_oversight_env.egg-info/entry_points.txt
 fleet_oversight_env.egg-info/requires.txt
 fleet_oversight_env.egg-info/top_level.txt
 tests/test_api_routes.py

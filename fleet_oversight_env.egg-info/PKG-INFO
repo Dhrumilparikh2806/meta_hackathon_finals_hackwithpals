@@ -14,3 +14,11 @@ Requires-Dist: faiss-cpu>=1.7.4
 Requires-Dist: datasets>=2.14.0
 Requires-Dist: numpy>=1.24.0
 Requires-Dist: matplotlib>=3.7.0
+Requires-Dist: torch>=2.0.0
+Requires-Dist: transformers>=4.36.0
+Requires-Dist: trl>=0.7.0
+Requires-Dist: accelerate>=0.24.0
+Requires-Dist: unsloth
+Requires-Dist: requests>=2.31.0
+Requires-Dist: python-multipart>=0.0.6
+Requires-Dist: pyyaml>=6.0

@@ -617,6 +617,8 @@ class FleetOversightEnv:
             # Compatibility fields
             step=self.step_count,
             worker_observations=fleet_obs.worker_observations,
+            oversight_budget_remaining=self.oversight_budget_remaining,
+            anomaly_alerts=fleet_obs.anomaly_alerts,
         )
 
     def _transition_to_oversight(self) -> None:

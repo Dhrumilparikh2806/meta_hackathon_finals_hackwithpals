@@ -1,5 +1,5 @@
 {
-  "mode": "simulation",
+  "mode": "real",
   "n_episodes": 30,
   "task_id": "easy_fleet",
   "baseline_detection_rate": 0.28,

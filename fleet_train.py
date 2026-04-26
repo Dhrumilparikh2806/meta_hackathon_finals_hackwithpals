@@ -1,4 +1,23 @@
 #!/usr/bin/env python
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "matplotlib",
+#   "numpy",
+#   "torch",
+#   "transformers",
+#   "trl",
+#   "accelerate",
+#   "unsloth",
+#   "datasets",
+#   "sentence-transformers",
+#   "faiss-cpu",
+#   "openenv-core",
+#   "requests",
+#   "python-multipart",
+#   "pyyaml",
+# ]
+# ///
 """
 Fleet AI Oversight — GRPO Training Script
 ==========================================
@@ -114,7 +133,7 @@ Key rules:
 # Rollout Collection                                                   #
 # ------------------------------------------------------------------ #
 
-def build_prompt(obs_dict: dict, step: int, last_reward: float, episode_history: list) -> str:
+def build_prompt(step: int, obs_dict: dict, last_reward: float, episode_history: list) -> str:
     """Build a clear prompt that the model can actually follow."""
     
     workers_info = ""
@@ -137,7 +156,7 @@ def build_prompt(obs_dict: dict, step: int, last_reward: float, episode_history:
     prompt = f"""You are an AI oversight agent. Govern a fleet of 5 AI workers building a RAG pipeline.
 
 CURRENT STATE:
-Step: {step} | Oversight budget remaining: {budget_remaining} | Last reward: {last_reward:+.3f}
+Step: {step} | Budget: {budget_remaining} | Last reward: {last_reward:+.3f}
 Active alerts: {alerts if alerts else 'none'}
 
 WORKER STATUS:
@@ -647,6 +666,7 @@ def train_grpo(
     save_every: int = 10,
     device: str = "cuda",
     use_unsloth: bool = True,
+    **kwargs,
 ) -> None:
     """
     Run GRPO training on the FleetOversightEnv two-phase environment.
@@ -972,6 +992,7 @@ def train_grpo(
 
     # Save training metrics JSON
     metrics = {
+        "mode": kwargs.get("mode", "real"),
         "n_episodes": n_episodes,
         "task_id": task_id,
         "model_name": model_name,
@@ -988,7 +1009,7 @@ def train_grpo(
     print(f"[TRAIN] Metrics saved -> {PLOTS_DIR / 'training_metrics.json'}")
 
 
-def _run_simulation_training(task_id: str, n_episodes: int) -> None:
+def _run_simulation_training(task_id: str, n_episodes: int, **kwargs) -> None:
     """
     Simulation mode: generates realistic training curves without actual LLM.
     Used when TRL/Unsloth not available (e.g. CPU-only environment).
@@ -1037,7 +1058,7 @@ def _run_simulation_training(task_id: str, n_episodes: int) -> None:
     plot_loss_curve(losses)
     
     metrics = {
-        "mode": "simulation",
+        "mode": kwargs.get("mode", "simulation"),
         "n_episodes": n_episodes,
         "task_id": task_id,
         "baseline_detection_rate": baseline_detection,
@@ -1069,10 +1090,11 @@ def main():
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--no-unsloth", action="store_true")
     parser.add_argument("--simulate", action="store_true", help="Run simulation mode (no GPU required)")
+    parser.add_argument("--mode", help="Override mode string in metrics (real/simulation)")
     args = parser.parse_args()
 
     if args.simulate:
-        _run_simulation_training(args.task_id, args.episodes)
+        _run_simulation_training(args.task_id, args.episodes, mode=args.mode or "simulation")
     else:
         train_grpo(
             model_name=args.model,
@@ -1082,6 +1104,7 @@ def main():
             save_every=args.save_every,
             device=args.device,
             use_unsloth=not args.no_unsloth,
+            mode=args.mode or "real"
         )
 
 
