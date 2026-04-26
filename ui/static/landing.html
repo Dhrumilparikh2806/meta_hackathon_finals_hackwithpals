@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fleet AI Oversight — Meta Hackathon Finals</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sidebar-bg: #0e0f11;
+    --sidebar-text: #a1a1aa;
+    --sidebar-accent: #6366f1;
+    --canvas: #f4f4f5;
+    --surface: #ffffff;
+    --border: #e4e4e7;
+    --border-soft: #f0f0ef;
+    --text-primary: #111112;
+    --text-secondary: #71717a;
+    --text-mono: #3d3d3a;
+    --indigo: #6366f1;
+    --indigo-soft: #eef2ff;
+    --indigo-border: #c7d2fe;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --amber: #d97706;
+    --amber-soft: #fffbeb;
+    --rose: #e11d48;
+    --rose-soft: #fff1f2;
+    --gray-100: #f4f4f5;
+    --gray-200: #e4e4e7;
+    --gray-300: #d4d4d8;
+    --gray-400: #a1a1aa;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--canvas); color: var(--text-primary); font-size: 13px; line-height: 1.5; min-height: 100vh; }
+
+  .app-shell { display: flex; min-height: 100vh; }
+  .sidebar { width: 220px; flex-shrink: 0; background: var(--sidebar-bg); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .sidebar-logo { padding: 18px 16px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 9px; }
+  .logo-mark { width: 28px; height: 28px; background: var(--sidebar-accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+  .logo-text { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .logo-text span { display: block; font-size: 10px; color: var(--sidebar-text); font-weight: 400; }
+  .nav-section { padding: 20px 12px 6px; font-size: 10px; font-weight: 600; color: rgba(161,161,170,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+  .nav-item { display: flex; align-items: center; gap: 9px; padding: 7px 12px; margin: 1px 4px; border-radius: 6px; font-size: 13px; color: var(--sidebar-text); text-decoration: none; transition: all 0.15s; cursor: pointer; }
+  .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .nav-item.active { background: rgba(99,102,241,0.18); color: #fff; }
+  .nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+  .nav-item.active .nav-dot { opacity: 1; background: var(--sidebar-accent); }
+
+  .main { flex: 1; padding: 40px 48px; }
+
+  /* Health bar */
+  .health-bar { display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: var(--radius); margin-bottom: 32px; font-size: 12px; font-weight: 500; border: 1px solid; }
+  .health-bar.ok      { background: var(--emerald-soft); border-color: #a7f3d0; color: var(--emerald); }
+  .health-bar.err     { background: var(--rose-soft); border-color: #fca5a5; color: var(--rose); }
+  .health-bar.checking{ background: var(--gray-100); border-color: var(--gray-200); color: var(--text-secondary); }
+  .h-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .h-dot.pulse { animation: pulse 2s infinite; }
+
+  /* Episode strip */
+  .ep-strip { display: none; margin-bottom: 20px; padding: 10px 14px; background: var(--indigo-soft); border: 1px solid var(--indigo-border); border-radius: var(--radius); font-size: 12px; }
+  .ep-strip a { color: var(--indigo); font-weight: 600; text-decoration: none; }
+  .ep-strip a:hover { text-decoration: underline; }
+
+  /* Hero */
+  .hero { margin-bottom: 40px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: var(--indigo-soft); border: 1px solid var(--indigo-border); padding: 4px 12px; border-radius: 20px; font-size: 11px; color: var(--indigo); font-weight: 600; margin-bottom: 18px; }
+  .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--indigo); animation: pulse 2s infinite; }
+  .hero h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 14px; color: var(--text-primary); }
+  .hero h1 span { color: var(--indigo); }
+  .hero p { font-size: 14px; color: var(--text-secondary); max-width: 560px; line-height: 1.7; margin-bottom: 26px; }
+  .hero-actions { display: flex; gap: 10px; }
+  .btn-primary { background: var(--indigo); color: #fff; padding: 10px 20px; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: background 0.15s; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .btn-primary:hover { background: #4f46e5; }
+  .btn-secondary { background: var(--surface); color: var(--text-secondary); padding: 10px 20px; border-radius: var(--radius); font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: all 0.15s; box-shadow: var(--shadow); font-family: 'Plus Jakarta Sans', sans-serif; }
+  .btn-secondary:hover { color: var(--text-primary); border-color: var(--gray-300); }
+
+  /* Stats */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); transition: box-shadow 0.15s; }
+  .stat-card:hover { box-shadow: var(--shadow-md); }
+  .stat-label { font-size: 10px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .stat-value { font-size: 26px; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--text-primary); }
+  .stat-value.indigo { color: var(--indigo); }
+  .stat-value.emerald { color: var(--emerald); }
+  .stat-value.amber { color: var(--amber); }
+  .stat-sub { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+
+  /* Feature cards */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; text-decoration: none; color: inherit; transition: all 0.18s; display: block; box-shadow: var(--shadow); }
+  .feature-card:hover { box-shadow: var(--shadow-md); border-color: var(--gray-300); transform: translateY(-1px); }
+  .feature-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 12px; }
+  .fi-indigo { background: var(--indigo-soft); }
+  .fi-emerald { background: var(--emerald-soft); }
+  .fi-amber { background: var(--amber-soft); }
+  .feature-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
+  .feature-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">⚡</div>
+      <div class="logo-text">Fleet Oversight<span>v2.0 · Hackathon Finals</span></div>
+    </div>
+    <div class="nav-section">Workspace</div>
+    <a href="/ui/" class="nav-item active"><span class="nav-dot"></span>Dashboard</a>
+    <a href="/ui/fleet" class="nav-item"><span class="nav-dot"></span>Fleet Runner</a>
+    <a href="/ui/chat" class="nav-item"><span class="nav-dot"></span>RAG Chatbot</a>
+    <div class="nav-section">Evaluation</div>
+    <a href="/ui/results" class="nav-item"><span class="nav-dot"></span>Training Results</a>
+    <div class="nav-section">API</div>
+    <a href="/ui/api" class="nav-item"><span class="nav-dot"></span>API Docs</a>
+    <a href="/ui/health" class="nav-item"><span class="nav-dot"></span>Health Check</a>
+  </nav>
+
+  <main class="main">
+    <div class="health-bar checking" id="health-bar">
+      <div class="h-dot" id="h-dot"></div>
+      <span id="h-text">Checking environment status...</span>
+    </div>
+
+    <div class="ep-strip" id="ep-strip">
+      <span id="ep-strip-text"></span> — <a href="/ui/fleet">Continue in Fleet Runner →</a>
+    </div>
+
+    <div class="hero">
+      <div class="hero-badge"><div class="badge-dot"></div>OpenEnv · Theme 3.1 + Theme 2</div>
+      <h1>The First RL Environment<br>for <span>AI Fleet Oversight</span></h1>
+      <p>Train an LLM oversight agent to govern a fleet of 5 AI workers building an enterprise RAG pipeline. Detect injected faults through partial observations. Learn when to trust. Learn when to intervene.</p>
+      <div class="hero-actions">
+        <a href="/ui/fleet" class="btn-primary">▶ Launch Fleet Runner</a>
+        <a href="/ui/chat" class="btn-secondary">💬 RAG Chatbot</a>
+        <a href="/ui/results" class="btn-secondary">📈 Training Results</a>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Worker Agents</div>
+        <div class="stat-value indigo">5</div>
+        <div class="stat-sub">Clean → Chunk → Embed → Retrieve → Eval</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Anomaly Types</div>
+        <div class="stat-value amber">4</div>
+        <div class="stat-sub">Drift · Collusion · Budget Dump · Constraint</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Trained Detection Rate</div>
+        <div class="stat-value emerald">72%</div>
+        <div class="stat-sub">vs 28% random baseline · +44pp</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Difficulty Levels</div>
+        <div class="stat-value indigo">3</div>
+        <div class="stat-sub">Easy · Medium · Hard</div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <a href="/ui/fleet" class="feature-card">
+        <div class="feature-icon fi-indigo">🛡️</div>
+        <div class="feature-title">Fleet Runner</div>
+        <div class="feature-desc">Run episodes, take oversight actions, watch real-time worker state. Anomaly detection with partial observations and noisy flags.</div>
+      </a>
+      <a href="/ui/chat" class="feature-card">
+        <div class="feature-icon fi-emerald">💬</div>
+        <div class="feature-title">Enterprise Chatbot</div>
+        <div class="feature-desc">Query the RAG pipeline built by the fleet. Requires a completed episode with the embedding worker active.</div>
+      </a>
+      <a href="/ui/results" class="feature-card">
+        <div class="feature-icon fi-amber">📈</div>
+        <div class="feature-title">Training Evidence</div>
+        <div class="feature-desc">Reward curve, detection rate improvement, before/after comparison. Loads from real training data when available.</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<script>
+async function checkHealth() {
+  try {
+    const resp = await fetch('/health');
+    const data = await resp.json();
+    const bar = document.getElementById('health-bar');
+    const dot = document.getElementById('h-dot');
+    if (data.status === 'healthy') {
+      bar.className = 'health-bar ok';
+      dot.classList.add('pulse');
+      document.getElementById('h-text').textContent = 'Environment running · All systems operational';
+    } else {
+      bar.className = 'health-bar err';
+      document.getElementById('h-text').textContent = 'Environment unhealthy';
+    }
+  } catch (e) {
+    document.getElementById('health-bar').className = 'health-bar err';
+    document.getElementById('h-text').textContent = 'Cannot reach environment — is the server running?';
+  }
+}
+
+async function checkEpisode() {
+  try {
+    const resp = await fetch('/fleet/state');
+    if (!resp.ok) return;
+    const data = await resp.json();
+    const s = data.state;
+    if (s && s.step_count > 0 && !s.is_done) {
+      const strip = document.getElementById('ep-strip');
+      strip.style.display = 'block';
+      document.getElementById('ep-strip-text').textContent =
+        `Episode in progress · ${s.task_id} · step ${s.step_count} · budget ${s.oversight_budget_remaining} remaining · reward ${Number(s.total_reward).toFixed(3)}`;
+    }
+  } catch (e) {}
+}
+
+checkHealth();
+checkEpisode();
+</script>
+</body>
+</html>

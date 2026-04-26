@@ -4,9 +4,7 @@ Round 1 Component.
 """
 
 from __future__ import annotations
-
 import random
-
 from workers.base_worker import BaseWorker
 
 TRIAGE_TASK_CONFIGS = {
@@ -15,12 +13,10 @@ TRIAGE_TASK_CONFIGS = {
     "hard_triage": {"step_budget": 12},
 }
 
-
 class DataQualityTriageEnv(BaseWorker):
     """
     Worker Agent 1: Data Quality Triage.
     """
-
     VALID_ACTIONS = ["inspect_schema", "clean_nulls", "deduplicate", "validate_types", "submit"]
 
     def __init__(self, task_id: str = "easy_triage") -> None:
@@ -45,7 +41,7 @@ class DataQualityTriageEnv(BaseWorker):
             self.submitted = True
             self.is_done = True
             reward = 0.5
-
+        
         self.step_count += 1
         self.step_budget_remaining -= 1
         self.total_reward += reward
