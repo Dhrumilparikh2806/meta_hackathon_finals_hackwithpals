@@ -492,7 +492,7 @@
         <div class="col-stack">
             <div class="log-panel" style="flex:1; min-height: 500px;">
                 <div class="panel-title" style="margin-bottom:10px">Episode Log</div>
-                <div class="log-scroll" id="log"></div>
+                <div class="log-scroll" id="runner-step-log"></div>
             </div>
         </div>
 
@@ -706,7 +706,7 @@
     <!-- Evaluation panel -->
     <div class="eval-panel" id="eval-panel" style="display:none">
       <div class="eval-hdr">
-        <div class="eval-title">Episode Evaluation</div>
+        <div class="eval-title" id="eval-title-text">Detailed Audit Report</div>
         <div class="eval-badge" id="eval-badge">—</div>
       </div>
       <div class="eval-scores">
@@ -1102,7 +1102,9 @@ async function startEpisode() {
       body: JSON.stringify({ task_id: taskId, seed: 42 })
     });
     
-    document.getElementById('log').innerHTML = '';
+    const stepLog = document.getElementById('runner-step-log');
+    if (stepLog) stepLog.innerHTML = '';
+    
     document.getElementById('eval-panel').style.display = 'none';
     appendLog('runner-step-log', 'fleet_reset()', `→ episode initialized · task: ${taskId}`, 'ok');
     appendLog('runner-step-log', 'phase()', '→ Phase 1: PLANNING — allocate tasks to workers', 'ok');
@@ -1748,10 +1750,13 @@ function showEval(ev) {
     if (el) el.textContent = val;
   };
   
-  setScore('ev-det', (ev.detection_rate * 100).toFixed(0) + '%');
-  setScore('ev-qual', (ev.pipeline_quality * 100).toFixed(0) + '%');
-  setScore('ev-eff', (ev.efficiency * 100).toFixed(0) + '%');
+  setScore('ev-det', (ev.detection_rate * 100).toFixed(1) + '%');
+  setScore('ev-qual', (ev.pipeline_quality * 100).toFixed(1) + '%');
+  setScore('ev-eff', (ev.efficiency * 100).toFixed(1) + '%');
   setScore('ev-comp', ev.composite_score.toFixed(3));
+  
+  const titleText = document.getElementById('eval-title-text');
+  if (titleText) titleText.textContent = 'Detailed Audit Report — Episode ' + (Math.random()*1000).toFixed(0);
   
   const tbody = document.getElementById('gate-tbody');
   if (tbody) {
