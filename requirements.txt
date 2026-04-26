@@ -1,27 +1,26 @@
-# Core
+# Core API
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=2.0.0
-pytest
 
-# OpenEnv
-openenv-core>=0.2.3
-
-# ML
-openai>=1.0.0
-sentence-transformers>=2.2.2
-faiss-cpu>=1.7.4
-datasets>=2.14.0
-
-# Training
-trl>=0.7.0
-transformers>=4.36.0
+# ML Training
 torch>=2.0.0
+transformers>=4.36.0
+trl>=0.7.0
 accelerate>=0.24.0
+unsloth
 
-# Plotting
+# Data and plotting
 matplotlib>=3.7.0
 numpy>=1.24.0
+datasets>=2.14.0
+sentence-transformers>=2.2.2
+faiss-cpu>=1.7.4
 
-# Data
+# OpenEnv
+openenv-core>=0.2.0
+
+# Utils
 requests>=2.31.0
+python-multipart>=0.0.6
+pyyaml>=6.0
