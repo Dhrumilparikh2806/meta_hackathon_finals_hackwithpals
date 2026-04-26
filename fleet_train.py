@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Fleet AI Oversight — GRPO Training Script
 ==========================================
