@@ -267,9 +267,9 @@ class TestImports:
         import workers
         assert workers is not None
 
-    def test_fleet_package_import(self):
-        import fleet
-        assert fleet is not None
+    def test_env_package_import(self):
+        import env
+        assert env is not None
 
     def test_base_worker_import(self):
         from workers.base_worker import BaseWorker
