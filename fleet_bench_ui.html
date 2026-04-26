@@ -1700,11 +1700,19 @@ async function execAction() {
 }
 
 async function onDone() {
-  epActive = false; stopPoll(); updateBtn();
-  document.getElementById('s-status').textContent = 'DONE';
-  document.getElementById('s-status').style.color = 'var(--emerald)';
+  epActive = false; 
+  stopPoll(); 
+  updateBtn();
+  
+  const sStatus = document.getElementById('s-status');
+  if (sStatus) {
+    sStatus.textContent = 'DONE';
+    sStatus.style.color = 'var(--emerald)';
+  }
+  
   const epSub = document.getElementById('ep-sub');
   if (epSub) epSub.textContent = 'Episode complete — evaluating...';
+  
   addLog('sys', null, null, null, 'Episode complete — running gate evaluation');
 
   updateHint({}, totalRwd, curStep, true, curObsBudget);
@@ -1714,31 +1722,48 @@ async function onDone() {
     const data = await resp.json();
     if (data.evaluation) {
       showEval(data.evaluation);
-      document.getElementById('ep-sub').textContent = data.evaluation.approved
-        ? 'approved · composite: ' + data.evaluation.composite_score.toFixed(3)
-        : 'rejected · failed gates: ' + (data.evaluation.failed_gate_names || []).join(', ');
+      if (epSub) {
+        epSub.textContent = data.evaluation.approved
+          ? 'approved · composite: ' + data.evaluation.composite_score.toFixed(3)
+          : 'rejected · failed gates: ' + (data.evaluation.failed_gate_names || []).join(', ');
+      }
     }
-  } catch (e) { addLog('err', null, null, null, 'Evaluation error: ' + e.message); }
+  } catch (e) { 
+    addLog('err', null, null, null, 'Evaluation error: ' + e.message); 
+  }
 }
 
 function showEval(ev) {
   const panel = document.getElementById('eval-panel');
-  panel.style.display = 'block';
+  if (panel) panel.style.display = 'block';
+  
   const badge = document.getElementById('eval-badge');
-  badge.textContent = ev.approved ? '✓ Approved' : '✗ Rejected';
-  badge.className = 'eval-badge ' + (ev.approved ? 'badge-ok' : 'badge-fail');
-  document.getElementById('ev-det').textContent  = (ev.detection_rate * 100).toFixed(0) + '%';
-  document.getElementById('ev-qual').textContent = (ev.pipeline_quality * 100).toFixed(0) + '%';
-  document.getElementById('ev-eff').textContent  = (ev.efficiency * 100).toFixed(0) + '%';
-  document.getElementById('ev-comp').textContent = ev.composite_score.toFixed(3);
+  if (badge) {
+    badge.textContent = ev.approved ? '✓ Approved' : '✗ Rejected';
+    badge.className = 'eval-badge ' + (ev.approved ? 'badge-ok' : 'badge-fail');
+  }
+  
+  const setScore = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+  
+  setScore('ev-det', (ev.detection_rate * 100).toFixed(0) + '%');
+  setScore('ev-qual', (ev.pipeline_quality * 100).toFixed(0) + '%');
+  setScore('ev-eff', (ev.efficiency * 100).toFixed(0) + '%');
+  setScore('ev-comp', ev.composite_score.toFixed(3));
+  
   const tbody = document.getElementById('gate-tbody');
-  tbody.innerHTML = '';
-  (ev.gates || []).forEach(g => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${g.gate_name}</td><td>${g.actual_value}</td><td>${g.threshold}</td><td class="${g.passed ? 'g-pass' : 'g-fail'}">${g.passed ? '✓ pass' : '✗ fail'}</td>`;
-    tbody.appendChild(tr);
-  });
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (tbody) {
+    tbody.innerHTML = '';
+    (ev.gates || []).forEach(g => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${g.gate_name}</td><td>${g.actual_value}</td><td>${g.threshold}</td><td class="${g.passed ? 'g-pass' : 'g-fail'}">${g.passed ? '✓ pass' : '✗ fail'}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  
+  if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 async function refreshWorkers() {
@@ -1801,20 +1826,30 @@ function renderWorkers(workers) {
 }
 
 function showReward(r, total) {
-  document.getElementById('rw-box').style.display = 'block';
+  const box = document.getElementById('rw-box');
+  if (box) box.style.display = 'block';
+  
   function fmt(v, id) {
     const el = document.getElementById(id);
+    if (!el) return;
     if (!v || v === 0) { el.className = 'rw-zero'; el.textContent = '0.000'; }
     else if (v > 0) { el.className = 'rw-pos'; el.textContent = '+' + v.toFixed(3); }
     else { el.className = 'rw-neg'; el.textContent = v.toFixed(3); }
   }
-  fmt(r.detection_reward, 'r-det'); fmt(r.approval_reward, 'r-app');
-  fmt(r.escalation_reward, 'r-esc'); fmt(r.false_positive_penalty, 'r-fp');
-  fmt(r.missed_violation_penalty, 'r-mv'); fmt(r.completion_bonus, 'r-comp');
+  
+  fmt(r.detection_reward, 'r-det'); 
+  fmt(r.approval_reward, 'r-app');
+  fmt(r.escalation_reward, 'r-esc'); 
+  fmt(r.false_positive_penalty, 'r-fp');
+  fmt(r.missed_violation_penalty, 'r-mv'); 
+  fmt(r.completion_bonus, 'r-comp');
+  
   const tel = document.getElementById('r-total');
-  if (total > 0) { tel.className = 'rw-pos'; tel.textContent = '+' + total.toFixed(3); }
-  else if (total < 0) { tel.className = 'rw-neg'; tel.textContent = total.toFixed(3); }
-  else { tel.className = 'rw-zero'; tel.textContent = '0.000'; }
+  if (tel) {
+    if (total > 0) { tel.className = 'rw-pos'; tel.textContent = '+' + total.toFixed(3); }
+    else if (total < 0) { tel.className = 'rw-neg'; tel.textContent = total.toFixed(3); }
+    else { tel.className = 'rw-zero'; tel.textContent = '0.000'; }
+  }
 }
 
 function addLog(type, action, worker, reward, note) {
